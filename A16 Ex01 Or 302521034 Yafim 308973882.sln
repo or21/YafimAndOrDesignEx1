@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUI", "AppUI\AppUI.csproj", "{FA281B26-47A7-4A5E-AAF3-C946B650B750}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookLoginTest", "FacebookLoginTest\FacebookLoginTest.csproj", "{878C5AC2-CB41-4BF5-8D12-D2CDC80F7552}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FA281B26-47A7-4A5E-AAF3-C946B650B750}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA281B26-47A7-4A5E-AAF3-C946B650B750}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA281B26-47A7-4A5E-AAF3-C946B650B750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{878C5AC2-CB41-4BF5-8D12-D2CDC80F7552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878C5AC2-CB41-4BF5-8D12-D2CDC80F7552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878C5AC2-CB41-4BF5-8D12-D2CDC80F7552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878C5AC2-CB41-4BF5-8D12-D2CDC80F7552}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
