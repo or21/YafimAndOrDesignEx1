@@ -39,6 +39,9 @@
             this.listBox4 = new System.Windows.Forms.ListBox();
             this.buttonFeature1 = new System.Windows.Forms.Button();
             this.buttonFeature2 = new System.Windows.Forms.Button();
+            this.buttonLogin = new System.Windows.Forms.Button();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.buttonLogout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +52,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(105, 62);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // textBox1
             // 
@@ -74,6 +78,7 @@
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(120, 95);
             this.listBoxEvents.TabIndex = 3;
+            this.listBoxEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEvents_SelectedIndexChanged);
             // 
             // listBoxGroups
             // 
@@ -133,11 +138,42 @@
             this.buttonFeature2.Text = "buttonFeature2";
             this.buttonFeature2.UseVisualStyleBackColor = true;
             // 
+            // buttonLogin
+            // 
+            this.buttonLogin.Location = new System.Drawing.Point(231, 5);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogin.TabIndex = 11;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            // 
+            // buttonPost
+            // 
+            this.buttonPost.Location = new System.Drawing.Point(605, 32);
+            this.buttonPost.Name = "buttonPost";
+            this.buttonPost.Size = new System.Drawing.Size(75, 23);
+            this.buttonPost.TabIndex = 12;
+            this.buttonPost.Text = "Post";
+            this.buttonPost.UseVisualStyleBackColor = true;
+            // 
+            // buttonLogout
+            // 
+            this.buttonLogout.Location = new System.Drawing.Point(426, 5);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogout.TabIndex = 13;
+            this.buttonLogout.Text = "Logout";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 464);
+            this.Controls.Add(this.buttonLogout);
+            this.Controls.Add(this.buttonPost);
+            this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.buttonFeature2);
             this.Controls.Add(this.buttonFeature1);
             this.Controls.Add(this.listBox4);
@@ -170,6 +206,9 @@
         private System.Windows.Forms.ListBox listBox4;
         private System.Windows.Forms.Button buttonFeature1;
         private System.Windows.Forms.Button buttonFeature2;
+        private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.Button buttonPost;
+        private System.Windows.Forms.Button buttonLogout;
     }
 }
 
