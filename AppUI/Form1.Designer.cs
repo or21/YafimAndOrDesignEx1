@@ -41,6 +41,8 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonPost = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
+            this.listBoxRelationships = new System.Windows.Forms.TextBox();
+            this.listBoxFriends = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,18 +115,19 @@
             // 
             // buttonFeature1
             // 
-            this.buttonFeature1.Location = new System.Drawing.Point(101, 414);
+            this.buttonFeature1.Location = new System.Drawing.Point(41, 398);
             this.buttonFeature1.Name = "buttonFeature1";
-            this.buttonFeature1.Size = new System.Drawing.Size(203, 23);
+            this.buttonFeature1.Size = new System.Drawing.Size(109, 54);
             this.buttonFeature1.TabIndex = 9;
-            this.buttonFeature1.Text = "buttonFeature1";
+            this.buttonFeature1.Text = "Get Relationship statistics";
             this.buttonFeature1.UseVisualStyleBackColor = true;
+            this.buttonFeature1.Click += new System.EventHandler(this.buttonFeature1_Click);
             // 
             // buttonFeature2
             // 
-            this.buttonFeature2.Location = new System.Drawing.Point(426, 414);
+            this.buttonFeature2.Location = new System.Drawing.Point(670, 314);
             this.buttonFeature2.Name = "buttonFeature2";
-            this.buttonFeature2.Size = new System.Drawing.Size(203, 23);
+            this.buttonFeature2.Size = new System.Drawing.Size(50, 23);
             this.buttonFeature2.TabIndex = 10;
             this.buttonFeature2.Text = "buttonFeature2";
             this.buttonFeature2.UseVisualStyleBackColor = true;
@@ -157,11 +160,30 @@
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = true;
             // 
+            // listBoxRelationships
+            // 
+            this.listBoxRelationships.Location = new System.Drawing.Point(156, 398);
+            this.listBoxRelationships.Multiline = true;
+            this.listBoxRelationships.Name = "listBoxRelationships";
+            this.listBoxRelationships.Size = new System.Drawing.Size(186, 54);
+            this.listBoxRelationships.TabIndex = 14;
+            this.listBoxRelationships.Text = "statistics";
+            // 
+            // listBoxFriends
+            // 
+            this.listBoxFriends.FormattingEnabled = true;
+            this.listBoxFriends.Location = new System.Drawing.Point(426, 398);
+            this.listBoxFriends.Name = "listBoxFriends";
+            this.listBoxFriends.Size = new System.Drawing.Size(120, 56);
+            this.listBoxFriends.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 464);
+            this.Controls.Add(this.listBoxFriends);
+            this.Controls.Add(this.listBoxRelationships);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.buttonPost);
             this.Controls.Add(this.buttonLogin);
@@ -198,6 +220,9 @@
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Button buttonPost;
         private System.Windows.Forms.Button buttonLogout;
+        private System.Windows.Forms.TextBox listBoxRelationships;
+        private System.Windows.Forms.ListBox listBoxFriends;
+
     }
 }
 

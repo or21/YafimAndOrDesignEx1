@@ -67,8 +67,8 @@ namespace AppUI
 
         private void loginAndInit()
         {
-            LoginResult result = FacebookService.Login("904603836301816", "public_profile", "user_events", "user_about_me", "user_birthday", "user_hometown");
-
+            LoginResult result = FacebookService.Login("904603836301816", "user_photos", "public_profile", "user_events", "user_about_me", "user_birthday", "user_hometown");
+            
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
                 m_LoggedInUser = result.LoggedInUser;
@@ -99,5 +99,15 @@ namespace AppUI
         {
 
         }
+
+        private void buttonFeature1_Click(object sender, EventArgs e)
+        {
+            fetchSomething();
+        }
+
+        private void fetchSomething()
+        {
+        }
+
     }
 }
