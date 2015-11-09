@@ -67,7 +67,7 @@ namespace AppUI
 
         private void loginAndInit()
         {
-            LoginResult result = FacebookService.Login("904603836301816", "public_profile", "user_events");
+            LoginResult result = FacebookService.Login("904603836301816", "public_profile", "user_events", "user_about_me", "user_birthday", "user_hometown");
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
@@ -83,6 +83,21 @@ namespace AppUI
         private void fetchUserInfo()
         {
             fetchEvents();
+            fetchUserData();
+        }
+
+        private void fetchUserData()
+        {
+            pictureBox1.LoadAsync(m_LoggedInUser.PictureNormalURL);
+            textBoxPost.Text = "What's on your mind...";
+            listBoxProfie.Items.Add("Birthday: " + m_LoggedInUser.Birthday);
+            listBoxProfie.Items.Add("Gender: " + m_LoggedInUser.Gender);
+            listBoxProfie.Items.Add("Hometown: " + m_LoggedInUser.Hometown);
+        }
+
+        private void listBoxProfie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBoxFeed = new System.Windows.Forms.ListBox();
+            this.textBoxPost = new System.Windows.Forms.TextBox();
             this.listBoxEvents = new System.Windows.Forms.ListBox();
             this.listBoxGroups = new System.Windows.Forms.ListBox();
             this.listBox3 = new System.Windows.Forms.ListBox();
@@ -47,36 +46,27 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(42, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(60, 22);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(105, 62);
+            this.pictureBox1.Size = new System.Drawing.Size(90, 52);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // textBox1
+            // textBoxPost
             // 
-            this.textBox1.Location = new System.Drawing.Point(174, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(407, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // listBoxFeed
-            // 
-            this.listBoxFeed.FormattingEnabled = true;
-            this.listBoxFeed.Location = new System.Drawing.Point(229, 89);
-            this.listBoxFeed.Name = "listBoxFeed";
-            this.listBoxFeed.Size = new System.Drawing.Size(272, 303);
-            this.listBoxFeed.TabIndex = 2;
-            this.listBoxFeed.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.textBoxPost.Location = new System.Drawing.Point(229, 54);
+            this.textBoxPost.Name = "textBoxPost";
+            this.textBoxPost.Size = new System.Drawing.Size(272, 20);
+            this.textBoxPost.TabIndex = 1;
+            this.textBoxPost.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // listBoxEvents
             // 
             this.listBoxEvents.FormattingEnabled = true;
             this.listBoxEvents.Location = new System.Drawing.Point(42, 89);
             this.listBoxEvents.Name = "listBoxEvents";
-            this.listBoxEvents.Size = new System.Drawing.Size(120, 95);
+            this.listBoxEvents.Size = new System.Drawing.Size(300, 95);
             this.listBoxEvents.TabIndex = 3;
             this.listBoxEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEvents_SelectedIndexChanged);
             // 
@@ -85,7 +75,7 @@
             this.listBoxGroups.FormattingEnabled = true;
             this.listBoxGroups.Location = new System.Drawing.Point(42, 200);
             this.listBoxGroups.Name = "listBoxGroups";
-            this.listBoxGroups.Size = new System.Drawing.Size(120, 82);
+            this.listBoxGroups.Size = new System.Drawing.Size(300, 82);
             this.listBoxGroups.TabIndex = 4;
             // 
             // listBox3
@@ -93,36 +83,37 @@
             this.listBox3.FormattingEnabled = true;
             this.listBox3.Location = new System.Drawing.Point(42, 297);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(120, 95);
+            this.listBox3.Size = new System.Drawing.Size(300, 95);
             this.listBox3.TabIndex = 5;
             // 
             // listBoxProfie
             // 
             this.listBoxProfie.FormattingEnabled = true;
-            this.listBoxProfie.Location = new System.Drawing.Point(560, 89);
+            this.listBoxProfie.Location = new System.Drawing.Point(387, 89);
             this.listBoxProfie.Name = "listBoxProfie";
-            this.listBoxProfie.Size = new System.Drawing.Size(120, 95);
+            this.listBoxProfie.Size = new System.Drawing.Size(300, 95);
             this.listBoxProfie.TabIndex = 6;
+            this.listBoxProfie.SelectedIndexChanged += new System.EventHandler(this.listBoxProfie_SelectedIndexChanged);
             // 
             // listBoxPages
             // 
             this.listBoxPages.FormattingEnabled = true;
-            this.listBoxPages.Location = new System.Drawing.Point(560, 200);
+            this.listBoxPages.Location = new System.Drawing.Point(387, 200);
             this.listBoxPages.Name = "listBoxPages";
-            this.listBoxPages.Size = new System.Drawing.Size(120, 82);
+            this.listBoxPages.Size = new System.Drawing.Size(300, 82);
             this.listBoxPages.TabIndex = 7;
             // 
             // listBox4
             // 
             this.listBox4.FormattingEnabled = true;
-            this.listBox4.Location = new System.Drawing.Point(560, 297);
+            this.listBox4.Location = new System.Drawing.Point(387, 297);
             this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(120, 95);
+            this.listBox4.Size = new System.Drawing.Size(300, 95);
             this.listBox4.TabIndex = 8;
             // 
             // buttonFeature1
             // 
-            this.buttonFeature1.Location = new System.Drawing.Point(103, 414);
+            this.buttonFeature1.Location = new System.Drawing.Point(101, 414);
             this.buttonFeature1.Name = "buttonFeature1";
             this.buttonFeature1.Size = new System.Drawing.Size(203, 23);
             this.buttonFeature1.TabIndex = 9;
@@ -140,7 +131,7 @@
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(231, 5);
+            this.buttonLogin.Location = new System.Drawing.Point(229, 25);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(75, 23);
             this.buttonLogin.TabIndex = 11;
@@ -150,7 +141,7 @@
             // 
             // buttonPost
             // 
-            this.buttonPost.Location = new System.Drawing.Point(605, 32);
+            this.buttonPost.Location = new System.Drawing.Point(518, 52);
             this.buttonPost.Name = "buttonPost";
             this.buttonPost.Size = new System.Drawing.Size(75, 23);
             this.buttonPost.TabIndex = 12;
@@ -159,7 +150,7 @@
             // 
             // buttonLogout
             // 
-            this.buttonLogout.Location = new System.Drawing.Point(426, 5);
+            this.buttonLogout.Location = new System.Drawing.Point(426, 25);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(75, 23);
             this.buttonLogout.TabIndex = 13;
@@ -182,8 +173,7 @@
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.listBoxGroups);
             this.Controls.Add(this.listBoxEvents);
-            this.Controls.Add(this.listBoxFeed);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxPost);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -196,8 +186,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBoxFeed;
+        private System.Windows.Forms.TextBox textBoxPost;
         private System.Windows.Forms.ListBox listBoxEvents;
         private System.Windows.Forms.ListBox listBoxGroups;
         private System.Windows.Forms.ListBox listBox3;
