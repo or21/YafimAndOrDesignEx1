@@ -246,7 +246,7 @@ namespace AppUI
         }
 
         /// <summary>
-        /// Creates new top likeable pictures 
+        /// Creates new top likeable pictures .
         /// </summary>
         private void createTopLikeablePictureForm()
         {
