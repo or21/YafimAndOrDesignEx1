@@ -88,7 +88,7 @@ namespace AppUI
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.buttonExit.ForeColor = System.Drawing.Color.Black;
-            this.buttonExit.Location = new System.Drawing.Point(68, 4);
+            this.buttonExit.Location = new System.Drawing.Point(68, 33);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(154, 27);
             this.buttonExit.TabIndex = 32;
@@ -109,9 +109,9 @@ namespace AppUI
             // 
             // pictureBoxCurrentPic
             // 
-            this.pictureBoxCurrentPic.Location = new System.Drawing.Point(12, 35);
+            this.pictureBoxCurrentPic.Location = new System.Drawing.Point(12, 66);
             this.pictureBoxCurrentPic.Name = "pictureBoxCurrentPic";
-            this.pictureBoxCurrentPic.Size = new System.Drawing.Size(260, 190);
+            this.pictureBoxCurrentPic.Size = new System.Drawing.Size(260, 159);
             this.pictureBoxCurrentPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
@@ -142,6 +142,13 @@ namespace AppUI
             this.Name = "TopLikeablePictureForm";
             this.Text = "TopLikeablePictureForm";
             this.Load += new System.EventHandler(this.buttonTopPicture_Click);
+            this.Controls.SetChildIndex(this.pictureBoxCurrentPic, 0);
+            this.Controls.SetChildIndex(this.buttonExit, 0);
+            this.Controls.SetChildIndex(this.buttonBack, 0);
+            this.Controls.SetChildIndex(this.buttonTopPicture, 0);
+            this.Controls.SetChildIndex(this.buttonNext, 0);
+            this.Controls.SetChildIndex(this.labelNumberOfLikes, 0);
+            this.Controls.SetChildIndex(this.pictureBox1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

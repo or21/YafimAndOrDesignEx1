@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
+using Utils;
 
 namespace AppUI
 {
-    public partial class TopLikeablePictureForm : Form
+    public partial class TopLikeablePictureForm : FbForm
     {
         private readonly List<Photo> m_TopLikeablePhotos;
         private int m_IndexOfCurrentImage;

@@ -8,11 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
+using Utils;
 
 namespace AppUI
 {
     // Test comment to commit and push
-    public partial class Form1 : Form
+    public partial class Form1 : FbForm
     {
         User m_LoggedInUser;
 
@@ -22,7 +23,8 @@ namespace AppUI
         public Form1()
         {
             InitializeComponent();
-            FacebookWrapper.FacebookService.s_CollectionLimit = 1000;
+            FacebookService.s_CollectionLimit = 1000;
+            
         }
 
         private void textBoxPost_TextChanged(object sender, EventArgs e)
@@ -257,9 +259,9 @@ namespace AppUI
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FbForm_Load(object sender, EventArgs e)
         {
-
+            this.LabelHeader.Size = new Size(Width, 29);
         }
     }
 }
