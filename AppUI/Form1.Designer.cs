@@ -2,7 +2,7 @@
 {
     partial class Form1
     {
-        /// <summary>
+        /// <summary>רגע
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
