@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper;
@@ -14,6 +15,9 @@ namespace AppUI
     public partial class Form1 : Form
     {
         User m_LoggedInUser;
+
+        private List<Photo> m_ListOfPhotos;
+        private List<Photo> m_TopLikeablePhotos; 
 
         public Form1()
         {
@@ -58,7 +62,9 @@ namespace AppUI
 
         private void loginAndInit()
         {
-            LoginResult result = FacebookService.Login("904603836301816", "user_friends", "email", "user_likes", "publish_actions", "user_posts", "public_profile", "user_events", "user_about_me", "user_birthday", "user_hometown");
+            LoginResult result = FacebookService.Login("904603836301816", 
+                "user_friends", "email", "user_likes", "publish_actions", "user_posts", "public_profile",
+                "user_events", "user_about_me", "user_birthday", "user_hometown", "user_photos");
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
@@ -75,7 +81,7 @@ namespace AppUI
         {
             textBoxPost.Text = "What's on your mind...";
             fetchEvents();
-            fetchUserData();
+        //    fetchUserData();
             fetchPosts();
             fetchPages();
             fetchCheckIn();
@@ -111,6 +117,24 @@ namespace AppUI
                 MessageBox.Show("You didn't do any check in");
             }
         }
+
+        private void fetchPhotos()
+        {
+            //TODO: Singleton... 
+            m_ListOfPhotos = new List<Photo>();
+            m_TopLikeablePhotos = new List<Photo>();
+
+            foreach (Album album in m_LoggedInUser.Albums)
+            {
+                foreach (Photo photo in album.Photos)
+                {
+                    m_ListOfPhotos.Add(photo);
+                }
+                
+            }
+            //TODO: no photos to show
+        }
+        
 
         private void fetchPosts()
         {
@@ -171,6 +195,54 @@ namespace AppUI
         private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Sort list of photos by number of likes 
+        /// </summary>
+        private void sortPhotosByDescendingOrder()
+        {
+            m_ListOfPhotos.Sort((p, q) => p.LikedBy.Count().CompareTo(q.LikedBy.Count()));
+            m_ListOfPhotos.Reverse();
+
+        }
+
+        /// <summary>
+        /// Get top five likeablePictures
+        /// </summary>
+        private void getMostLikeablePictures(int i_NumberOfPictures)
+        {
+            foreach (Photo photo in m_ListOfPhotos)
+            {
+                if (i_NumberOfPictures != 0)
+                {
+                    m_TopLikeablePhotos.Add(photo);
+                    i_NumberOfPictures--;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        private void buttonFeature1_Click(object sender, EventArgs e)
+        {
+            fetchPhotos();
+            sortPhotosByDescendingOrder();
+
+            //TODO: Define general field by guy's guide... (private int readonly _NumberOfMostLikeablePictures = 5)
+            getMostLikeablePictures(5);
+            createTopLikeablePictureForm();
+        }
+
+        /// <summary>
+        /// Creates new top likeable pictures 
+        /// </summary>
+        private void createTopLikeablePictureForm()
+        {
+            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos);
+            likeablePictureForm.ShowDialog();
         }
     }
 }

@@ -34,7 +34,7 @@
             this.listBoxCheckIn = new System.Windows.Forms.ListBox();
             this.listBoxProfie = new System.Windows.Forms.ListBox();
             this.listBoxPages = new System.Windows.Forms.ListBox();
-            this.buttonFeature1 = new System.Windows.Forms.Button();
+            this.buttonGetTopPictures = new System.Windows.Forms.Button();
             this.buttonFeature2 = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonPost = new System.Windows.Forms.Button();
@@ -101,14 +101,15 @@
             this.listBoxPages.Size = new System.Drawing.Size(154, 121);
             this.listBoxPages.TabIndex = 7;
             // 
-            // buttonFeature1
+            // buttonGetTopPictures
             // 
-            this.buttonFeature1.Location = new System.Drawing.Point(82, 414);
-            this.buttonFeature1.Name = "buttonFeature1";
-            this.buttonFeature1.Size = new System.Drawing.Size(203, 23);
-            this.buttonFeature1.TabIndex = 9;
-            this.buttonFeature1.Text = "buttonFeature1";
-            this.buttonFeature1.UseVisualStyleBackColor = true;
+            this.buttonGetTopPictures.Location = new System.Drawing.Point(12, 398);
+            this.buttonGetTopPictures.Name = "buttonGetTopPictures";
+            this.buttonGetTopPictures.Size = new System.Drawing.Size(154, 23);
+            this.buttonGetTopPictures.TabIndex = 9;
+            this.buttonGetTopPictures.Text = "Get Top 5 Likeable Pictures";
+            this.buttonGetTopPictures.UseVisualStyleBackColor = true;
+            this.buttonGetTopPictures.Click += new System.EventHandler(this.buttonFeature1_Click);
             // 
             // buttonFeature2
             // 
@@ -220,7 +221,7 @@
             this.Controls.Add(this.buttonPost);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.buttonFeature2);
-            this.Controls.Add(this.buttonFeature1);
+            this.Controls.Add(this.buttonGetTopPictures);
             this.Controls.Add(this.listBoxPages);
             this.Controls.Add(this.listBoxProfie);
             this.Controls.Add(this.listBoxCheckIn);
@@ -244,7 +245,7 @@
         private System.Windows.Forms.ListBox listBoxCheckIn;
         private System.Windows.Forms.ListBox listBoxProfie;
         private System.Windows.Forms.ListBox listBoxPages;
-        private System.Windows.Forms.Button buttonFeature1;
+        private System.Windows.Forms.Button buttonGetTopPictures;
         private System.Windows.Forms.Button buttonFeature2;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Button buttonPost;
