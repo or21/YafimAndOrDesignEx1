@@ -15,6 +15,7 @@ namespace AppUI
             InitializeComponent();
             m_TopLikeablePhotos = i_TopLikeablePhotos;
             m_IndexOfCurrentImage = 0;
+
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace AppUI
 
         private void setNumberOfLikes(Photo i_Photo)
         {
-            labelNumberOfLikes.Text = i_Photo.LikedBy.Count.ToString();
+            labelNumberOfLikes.Text = String.Format("{0} Likes", i_Photo.LikedBy.Count);
         }
 
         private void loadImage(Photo i_ImageToLoad)

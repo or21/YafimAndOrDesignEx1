@@ -30,18 +30,23 @@ namespace AppUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonNext = new System.Windows.Forms.Button();
-            this.buttonTopPicture = new System.Windows.Forms.Button();
-            this.buttonBack = new System.Windows.Forms.Button();
-            this.buttonExit = new System.Windows.Forms.Button();
-            this.labelNumberOfLikesHeader = new System.Windows.Forms.Label();
+            this.buttonNext = new Utils.FbBlueButton();
+            this.buttonTopPicture = new Utils.FbBlueButton();
+            this.buttonBack = new Utils.FbBlueButton();
+            this.buttonExit = new Utils.FbWhiteButton();
             this.labelNumberOfLikes = new System.Windows.Forms.Label();
             this.pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNext
             // 
+            this.buttonNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonNext.ForeColor = System.Drawing.Color.White;
             this.buttonNext.Location = new System.Drawing.Point(192, 233);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(80, 23);
@@ -52,16 +57,24 @@ namespace AppUI
             // 
             // buttonTopPicture
             // 
+            this.buttonTopPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonTopPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTopPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonTopPicture.ForeColor = System.Drawing.Color.White;
             this.buttonTopPicture.Location = new System.Drawing.Point(103, 233);
             this.buttonTopPicture.Name = "buttonTopPicture";
             this.buttonTopPicture.Size = new System.Drawing.Size(80, 23);
             this.buttonTopPicture.TabIndex = 35;
-            this.buttonTopPicture.Text = "Top Picture";
+            this.buttonTopPicture.Text = "Reset";
             this.buttonTopPicture.UseVisualStyleBackColor = true;
             this.buttonTopPicture.Click += new System.EventHandler(this.buttonTopPicture_Click);
             // 
             // buttonBack
             // 
+            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonBack.ForeColor = System.Drawing.Color.White;
             this.buttonBack.Location = new System.Drawing.Point(12, 233);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(80, 23);
@@ -72,6 +85,9 @@ namespace AppUI
             // 
             // buttonExit
             // 
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonExit.ForeColor = System.Drawing.Color.Black;
             this.buttonExit.Location = new System.Drawing.Point(68, 4);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(154, 27);
@@ -80,23 +96,16 @@ namespace AppUI
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
-            // labelNumberOfLikesHeader
-            // 
-            this.labelNumberOfLikesHeader.AutoSize = true;
-            this.labelNumberOfLikesHeader.Location = new System.Drawing.Point(12, 177);
-            this.labelNumberOfLikesHeader.Name = "labelNumberOfLikesHeader";
-            this.labelNumberOfLikesHeader.Size = new System.Drawing.Size(80, 13);
-            this.labelNumberOfLikesHeader.TabIndex = 37;
-            this.labelNumberOfLikesHeader.Text = "Number of likes";
-            // 
             // labelNumberOfLikes
             // 
             this.labelNumberOfLikes.AutoSize = true;
-            this.labelNumberOfLikes.Location = new System.Drawing.Point(98, 177);
+            this.labelNumberOfLikes.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelNumberOfLikes.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelNumberOfLikes.Location = new System.Drawing.Point(56, 195);
             this.labelNumberOfLikes.Name = "labelNumberOfLikes";
-            this.labelNumberOfLikes.Size = new System.Drawing.Size(16, 13);
+            this.labelNumberOfLikes.Size = new System.Drawing.Size(70, 29);
             this.labelNumberOfLikes.TabIndex = 38;
-            this.labelNumberOfLikes.Text = "---";
+            this.labelNumberOfLikes.Text = "Likes";
             // 
             // pictureBoxCurrentPic
             // 
@@ -107,13 +116,23 @@ namespace AppUI
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AppUI.Properties.Resources.facebook_like_button_hand;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 195);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(41, 30);
+            this.pictureBox1.TabIndex = 41;
+            this.pictureBox1.TabStop = false;
+            // 
             // TopLikeablePictureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelNumberOfLikes);
-            this.Controls.Add(this.labelNumberOfLikesHeader);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonTopPicture);
             this.Controls.Add(this.buttonBack);
@@ -124,6 +143,7 @@ namespace AppUI
             this.Text = "TopLikeablePictureForm";
             this.Load += new System.EventHandler(this.buttonTopPicture_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,12 +151,12 @@ namespace AppUI
 
         #endregion
 
-        private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.Button buttonTopPicture;
-        private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.Button buttonExit;
-        private Label labelNumberOfLikesHeader;
+        private Utils.FbBlueButton buttonNext;
+        private Utils.FbBlueButton buttonTopPicture;
+        private Utils.FbBlueButton buttonBack;
+        private Utils.FbWhiteButton buttonExit;
         private Label labelNumberOfLikes;
         private PictureBox pictureBoxCurrentPic;
+        private PictureBox pictureBox1;
     }
 }
