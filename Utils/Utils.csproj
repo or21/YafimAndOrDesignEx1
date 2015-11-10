@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\..\..\..\..\Dropbox\Or\IDC\Year 3\Semester 1\Design Patterns\Lectures\1\01_FB01_BasicFacebookFeatures.V6.8.0.13\01_FB01_BasicFacebookFeatures.V6.8.0.13\FBApi\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FbGraphApiWrapper">
+      <HintPath>..\..\..\..\..\Dropbox\Or\IDC\Year 3\Semester 1\Design Patterns\Lectures\1\01_FB01_BasicFacebookFeatures.V6.8.0.13\01_FB01_BasicFacebookFeatures.V6.8.0.13\FBApi\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -42,12 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FbBlueButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FbWhiteButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="FbBlueButton.cs" />
+    <Compile Include="FbWhiteButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
