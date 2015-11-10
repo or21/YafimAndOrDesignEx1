@@ -233,7 +233,6 @@
             this.Controls.Add(this.pictureBoxProfile);
             this.Name = "Form1";
             this.Text = "FormGroups";
-           // this.Load += new System.EventHandler(this.FbForm_Load);
             this.Controls.SetChildIndex(this.pictureBoxProfile, 0);
             this.Controls.SetChildIndex(this.textBoxPost, 0);
             this.Controls.SetChildIndex(this.listBoxFeed, 0);
