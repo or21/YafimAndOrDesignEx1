@@ -55,7 +55,7 @@
             this.pictureBoxProfile.Size = new System.Drawing.Size(110, 71);
             this.pictureBoxProfile.TabIndex = 0;
             this.pictureBoxProfile.TabStop = false;
-            this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBoxProfile_Click);
             // 
             // textBoxPost
             // 
@@ -64,7 +64,8 @@
             this.textBoxPost.Name = "textBoxPost";
             this.textBoxPost.Size = new System.Drawing.Size(304, 20);
             this.textBoxPost.TabIndex = 1;
-            this.textBoxPost.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxPost.Click += new System.EventHandler(this.textBoxPost_Click);
+            this.textBoxPost.TextChanged += new System.EventHandler(this.textBoxPost_TextChanged);
             // 
             // listBoxEvents
             // 
@@ -100,6 +101,7 @@
             this.listBoxPages.Name = "listBoxPages";
             this.listBoxPages.Size = new System.Drawing.Size(154, 121);
             this.listBoxPages.TabIndex = 7;
+            this.listBoxPages.SelectedIndexChanged += new System.EventHandler(this.listBoxPages_SelectedIndexChanged);
             // 
             // buttonFeature1
             // 
@@ -156,7 +158,7 @@
             this.listBoxFeed.Name = "listBoxFeed";
             this.listBoxFeed.Size = new System.Drawing.Size(347, 277);
             this.listBoxFeed.TabIndex = 2;
-            this.listBoxFeed.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxFeed.SelectedIndexChanged += new System.EventHandler(this.listBoxFeed_SelectedIndexChanged);
             // 
             // labelCheckIn
             // 
@@ -230,6 +232,7 @@
             this.Controls.Add(this.pictureBoxProfile);
             this.Name = "Form1";
             this.Text = "FormGroups";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

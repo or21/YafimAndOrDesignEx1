@@ -21,12 +21,18 @@ namespace AppUI
             FacebookWrapper.FacebookService.s_CollectionLimit = 1000;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBoxPost_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void textBoxPost_Click(object sender, EventArgs e)
+        {
+            textBoxPost.Clear();
+            textBoxPost.ForeColor = Color.Black;
+        }
+
+        private void pictureBoxProfile_Click(object sender, EventArgs e)
         {
 
         }
@@ -153,7 +159,7 @@ namespace AppUI
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -166,9 +172,20 @@ namespace AppUI
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
+            Application.Exit();
         }
 
         private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
