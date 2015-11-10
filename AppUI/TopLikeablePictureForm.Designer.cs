@@ -119,7 +119,7 @@ namespace AppUI
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.pictureBoxCurrentPic);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "TopLikeablePictureForm";
             this.Text = "TopLikeablePictureForm";
             this.Load += new System.EventHandler(this.buttonTopPicture_Click);
