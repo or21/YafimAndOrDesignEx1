@@ -89,7 +89,7 @@ namespace AppUI
         {
             textBoxPost.Text = "What's on your mind...";
             fetchEvents();
-        //    fetchUserData();
+            fetchUserData();
             fetchPosts();
             fetchPages();
             fetchCheckIn();

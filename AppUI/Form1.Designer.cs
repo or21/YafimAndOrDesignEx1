@@ -50,9 +50,9 @@
             // 
             // pictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(35, 12);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(48, 32);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(110, 71);
+            this.pictureBoxProfile.Size = new System.Drawing.Size(120, 84);
             this.pictureBoxProfile.TabIndex = 0;
             this.pictureBoxProfile.TabStop = false;
             this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBoxProfile_Click);
@@ -60,7 +60,7 @@
             // textBoxPost
             // 
             this.textBoxPost.HideSelection = false;
-            this.textBoxPost.Location = new System.Drawing.Point(206, 54);
+            this.textBoxPost.Location = new System.Drawing.Point(225, 86);
             this.textBoxPost.Name = "textBoxPost";
             this.textBoxPost.Size = new System.Drawing.Size(304, 20);
             this.textBoxPost.TabIndex = 1;
@@ -70,7 +70,7 @@
             // listBoxEvents
             // 
             this.listBoxEvents.FormattingEnabled = true;
-            this.listBoxEvents.Location = new System.Drawing.Point(12, 115);
+            this.listBoxEvents.Location = new System.Drawing.Point(31, 147);
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(154, 121);
             this.listBoxEvents.TabIndex = 3;
@@ -79,7 +79,7 @@
             // listBoxCheckIn
             // 
             this.listBoxCheckIn.FormattingEnabled = true;
-            this.listBoxCheckIn.Location = new System.Drawing.Point(12, 271);
+            this.listBoxCheckIn.Location = new System.Drawing.Point(31, 303);
             this.listBoxCheckIn.Name = "listBoxCheckIn";
             this.listBoxCheckIn.Size = new System.Drawing.Size(154, 121);
             this.listBoxCheckIn.TabIndex = 4;
@@ -88,7 +88,7 @@
             // listBoxProfie
             // 
             this.listBoxProfie.FormattingEnabled = true;
-            this.listBoxProfie.Location = new System.Drawing.Point(566, 115);
+            this.listBoxProfie.Location = new System.Drawing.Point(585, 147);
             this.listBoxProfie.Name = "listBoxProfie";
             this.listBoxProfie.Size = new System.Drawing.Size(154, 121);
             this.listBoxProfie.TabIndex = 6;
@@ -97,7 +97,7 @@
             // listBoxPages
             // 
             this.listBoxPages.FormattingEnabled = true;
-            this.listBoxPages.Location = new System.Drawing.Point(566, 271);
+            this.listBoxPages.Location = new System.Drawing.Point(585, 303);
             this.listBoxPages.Name = "listBoxPages";
             this.listBoxPages.Size = new System.Drawing.Size(154, 121);
             this.listBoxPages.TabIndex = 7;
@@ -105,9 +105,9 @@
             // 
             // buttonGetTopPictures
             // 
-            this.buttonGetTopPictures.Location = new System.Drawing.Point(12, 398);
+            this.buttonGetTopPictures.Location = new System.Drawing.Point(104, 446);
             this.buttonGetTopPictures.Name = "buttonGetTopPictures";
-            this.buttonGetTopPictures.Size = new System.Drawing.Size(154, 23);
+            this.buttonGetTopPictures.Size = new System.Drawing.Size(196, 23);
             this.buttonGetTopPictures.TabIndex = 9;
             this.buttonGetTopPictures.Text = "Get Top 5 Likeable Pictures";
             this.buttonGetTopPictures.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             // 
             // buttonFeature2
             // 
-            this.buttonFeature2.Location = new System.Drawing.Point(452, 414);
+            this.buttonFeature2.Location = new System.Drawing.Point(478, 446);
             this.buttonFeature2.Name = "buttonFeature2";
             this.buttonFeature2.Size = new System.Drawing.Size(203, 23);
             this.buttonFeature2.TabIndex = 10;
@@ -124,7 +124,7 @@
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(239, 25);
+            this.buttonLogin.Location = new System.Drawing.Point(247, 45);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(75, 23);
             this.buttonLogin.TabIndex = 11;
@@ -134,7 +134,7 @@
             // 
             // buttonPost
             // 
-            this.buttonPost.Location = new System.Drawing.Point(527, 52);
+            this.buttonPost.Location = new System.Drawing.Point(546, 84);
             this.buttonPost.Name = "buttonPost";
             this.buttonPost.Size = new System.Drawing.Size(75, 23);
             this.buttonPost.TabIndex = 12;
@@ -144,7 +144,7 @@
             // 
             // buttonLogout
             // 
-            this.buttonLogout.Location = new System.Drawing.Point(403, 25);
+            this.buttonLogout.Location = new System.Drawing.Point(426, 45);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(75, 23);
             this.buttonLogout.TabIndex = 13;
@@ -155,7 +155,7 @@
             // listBoxFeed
             // 
             this.listBoxFeed.FormattingEnabled = true;
-            this.listBoxFeed.Location = new System.Drawing.Point(190, 115);
+            this.listBoxFeed.Location = new System.Drawing.Point(209, 147);
             this.listBoxFeed.Name = "listBoxFeed";
             this.listBoxFeed.Size = new System.Drawing.Size(347, 277);
             this.listBoxFeed.TabIndex = 2;
@@ -164,7 +164,7 @@
             // labelCheckIn
             // 
             this.labelCheckIn.AutoSize = true;
-            this.labelCheckIn.Location = new System.Drawing.Point(61, 255);
+            this.labelCheckIn.Location = new System.Drawing.Point(80, 287);
             this.labelCheckIn.Name = "labelCheckIn";
             this.labelCheckIn.Size = new System.Drawing.Size(50, 13);
             this.labelCheckIn.TabIndex = 14;
@@ -173,7 +173,7 @@
             // labelEvents
             // 
             this.labelEvents.AutoSize = true;
-            this.labelEvents.Location = new System.Drawing.Point(61, 99);
+            this.labelEvents.Location = new System.Drawing.Point(80, 131);
             this.labelEvents.Name = "labelEvents";
             this.labelEvents.Size = new System.Drawing.Size(40, 13);
             this.labelEvents.TabIndex = 15;
@@ -182,7 +182,7 @@
             // labelPages
             // 
             this.labelPages.AutoSize = true;
-            this.labelPages.Location = new System.Drawing.Point(625, 255);
+            this.labelPages.Location = new System.Drawing.Point(644, 287);
             this.labelPages.Name = "labelPages";
             this.labelPages.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelPages.Size = new System.Drawing.Size(37, 13);
@@ -192,7 +192,7 @@
             // labelData
             // 
             this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(614, 99);
+            this.labelData.Location = new System.Drawing.Point(633, 131);
             this.labelData.Name = "labelData";
             this.labelData.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelData.Size = new System.Drawing.Size(60, 13);
@@ -202,7 +202,7 @@
             // labelFeed
             // 
             this.labelFeed.AutoSize = true;
-            this.labelFeed.Location = new System.Drawing.Point(335, 99);
+            this.labelFeed.Location = new System.Drawing.Point(354, 131);
             this.labelFeed.Name = "labelFeed";
             this.labelFeed.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelFeed.Size = new System.Drawing.Size(58, 13);
@@ -213,7 +213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 464);
+            this.ClientSize = new System.Drawing.Size(774, 490);
             this.Controls.Add(this.labelFeed);
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.labelPages);
