@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using Utils;
 
@@ -22,25 +21,25 @@ namespace AppUI
         /// <summary>
         /// Close form
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonExit_Click(object sender, EventArgs e)
+        /// <param name="i_Sender"></param>
+        /// <param name="i_E"></param>
+        private void buttonExit_Click(object i_Sender, EventArgs i_E)
         {
             this.Close();
         }
 
-        private void buttonTopPicture_Click(object sender, EventArgs e)
+        private void buttonTopPicture_Click(object i_Sender, EventArgs i_E)
         {
             m_IndexOfCurrentImage = 0;
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
-        private void buttonNext_Click(object sender, EventArgs e)
+        private void buttonNext_Click(object i_Sender, EventArgs i_E)
         {
             setNextImage();
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
+        private void buttonBack_Click(object i_Sender, EventArgs i_E)
         {
             setPrevImage();
         }
@@ -59,7 +58,7 @@ namespace AppUI
 
         private void setNumberOfLikes(Photo i_Photo)
         {
-            labelNumberOfLikes.Text = String.Format("{0} Likes", i_Photo.LikedBy.Count);
+            labelNumberOfLikes.Text = string.Format("{0} Likes", i_Photo.LikedBy.Count);
         }
 
         private void loadImage(Photo i_ImageToLoad)

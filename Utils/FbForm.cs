@@ -5,33 +5,34 @@ namespace Utils
 {
     public class FbForm : Form
     {
+        private const string k_AppName = "FaceBoo";
         private readonly Label m_LabelHeader;
+        private readonly PictureBox m_PictureBoxFbIcon;
+        private readonly Label m_LabelFbTextHeader;
 
         public Label LabelHeader
         {
             get { return this.m_LabelHeader; }
         }
-        private readonly PictureBox m_PictureBoxFbIcon;
-        private readonly Label m_LabelFbTextHeader;
 
         public FbForm()
         {
             m_LabelHeader = new Label();
             m_PictureBoxFbIcon = new PictureBox();
             m_LabelFbTextHeader = new Label();
-            
-            InitializeForm();
+
+            initializeForm();
         }
 
-        private void InitializeForm()
+        private void initializeForm()
         {
             // 
             // labelHeader
             // 
             m_LabelHeader.Location = new Point(0, 0);
             m_LabelHeader.Name = "labelHeader";
-        //    m_LabelHeader.Size = new Size(Width, 29);
             m_LabelHeader.BackColor = Color.FromArgb(58, 87, 149);
+
             // 
             // pictureBoxFbIcon
             // 
@@ -46,14 +47,14 @@ namespace Utils
             // 
             // labelFbTextHeader
             // 
-            m_LabelFbTextHeader.Font = new Font("Tahoma", 10F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(177)));
+            m_LabelFbTextHeader.Font = new Font("Tahoma", 10F, FontStyle.Bold, GraphicsUnit.Point, 177);
             m_LabelFbTextHeader.ForeColor = Color.White;
             m_LabelFbTextHeader.Location = new Point(28, 5);
             m_LabelFbTextHeader.BackColor = Color.FromArgb(58, 87, 149);
             m_LabelFbTextHeader.Name = "labelFbTextHeader";
             m_LabelFbTextHeader.Size = new Size(77, 19);
             m_LabelFbTextHeader.TabIndex = 2;
-            m_LabelFbTextHeader.Text = "Facebook";
+            m_LabelFbTextHeader.Text = k_AppName;
 
             // 
             // FbForm
@@ -62,16 +63,13 @@ namespace Utils
             Controls.Add(m_PictureBoxFbIcon);
             Controls.Add(m_LabelFbTextHeader);
             Controls.Add(m_LabelHeader);
-            
             Name = "FbForm";
             ResumeLayout(false);
         }
 
-        private void FbForm_Load(object sender, System.EventArgs e)
+        private void FbForm_Load(object i_Sender, System.EventArgs i_E)
         {
             m_LabelHeader.Size = new Size(Width, 29);
         }
-
-
     }
 }
