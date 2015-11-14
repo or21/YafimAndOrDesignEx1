@@ -121,6 +121,7 @@
             this.buttonFeature2.TabIndex = 10;
             this.buttonFeature2.Text = "buttonFeature2";
             this.buttonFeature2.UseVisualStyleBackColor = true;
+            this.buttonFeature2.Click += new System.EventHandler(this.buttonFeature2_Click);
             // 
             // buttonLogin
             // 

@@ -30,7 +30,6 @@ namespace Utils
             // 
             m_LabelHeader.Location = new Point(0, 0);
             m_LabelHeader.Name = "labelHeader";
-        //    m_LabelHeader.Size = new Size(Width, 29);
             m_LabelHeader.BackColor = Color.FromArgb(58, 87, 149);
             // 
             // pictureBoxFbIcon
@@ -58,6 +57,7 @@ namespace Utils
             // 
             // FbForm
             // 
+            BackColor = Color.White;
             Load += FbForm_Load;
             Controls.Add(m_PictureBoxFbIcon);
             Controls.Add(m_LabelFbTextHeader);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AppUI
@@ -15,6 +14,7 @@ namespace AppUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+        //    Application.Run(new WhoWasBornOnMyBirthdayForm());
         }
     }
 }

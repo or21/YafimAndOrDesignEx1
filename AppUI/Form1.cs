@@ -175,7 +175,7 @@ namespace AppUI
             pictureBoxProfile.LoadAsync(m_LoggedInUser.PictureNormalURL);
             listBoxProfie.Items.Add("Birthday: " + m_LoggedInUser.Birthday);
             listBoxProfie.Items.Add("Gender: " + m_LoggedInUser.Gender);
-            listBoxProfie.Items.Add("Hometown: " + m_LoggedInUser.Hometown.Name);
+    //        listBoxProfie.Items.Add("Hometown: " + m_LoggedInUser.Hometown.Name);
             listBoxProfie.Items.Add("Email: " + m_LoggedInUser.Email);
             listBoxProfie.Items.Add("Languages: " + m_LoggedInUser.Languages);
         }
@@ -262,6 +262,12 @@ namespace AppUI
         private void FbForm_Load(object sender, EventArgs e)
         {
             this.LabelHeader.Size = new Size(Width, 29);
+        }
+
+        private void buttonFeature2_Click(object sender, EventArgs e)
+        {
+            WhoWasBornOnMyBirthdayForm likeablePictureForm = new WhoWasBornOnMyBirthdayForm(m_LoggedInUser.Birthday);
+            likeablePictureForm.ShowDialog();
         }
     }
 }

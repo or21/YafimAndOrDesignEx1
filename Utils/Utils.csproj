@@ -32,11 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\..\..\..\Dropbox\Or\IDC\Year 3\Semester 1\Design Patterns\Lectures\1\01_FB01_BasicFacebookFeatures.V6.8.0.13\01_FB01_BasicFacebookFeatures.V6.8.0.13\FBApi\Facebook.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\שיעורי בית לפי נושאים\שנה ג\סמסטר א\design patterns\01_FB01_BasicFacebookFeatures.V6.8.0.13\FBApi\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\..\Dropbox\Or\IDC\Year 3\Semester 1\Design Patterns\Lectures\1\01_FB01_BasicFacebookFeatures.V6.8.0.13\01_FB01_BasicFacebookFeatures.V6.8.0.13\FBApi\FbGraphApiWrapper.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\שיעורי בית לפי נושאים\שנה ג\סמסטר א\design patterns\01_FB01_BasicFacebookFeatures.V6.8.0.13\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -74,6 +75,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\celeb-birthdays.json" />
     <None Include="Resources\facebook_box_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
