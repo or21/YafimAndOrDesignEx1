@@ -14,14 +14,14 @@ namespace Utils
             Name = "fbBlueButton";
             UseVisualStyleBackColor = false;
 
-            FlatAppearance.BorderColor = Color.Black;
+            FlatAppearance.BorderColor = Color.Blue;
             FlatAppearance.BorderSize = 1;
         }
 
         private void setBackgroundColor()
         {
-            Color tempRGBColor = Color.FromArgb(0x617AAC);
-            BackColor = Color.FromArgb(tempRGBColor.R, tempRGBColor.G, tempRGBColor.B);
+            Color tempRgbColor = Color.FromArgb(0x617AAC);
+            BackColor = Color.FromArgb(tempRgbColor.R, tempRgbColor.G, tempRgbColor.B);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AppUI
 {
-    partial class TopLikeablePictureForm
+    public partial class TopLikeablePictureForm
     {
         /// <summary>
         /// Required designer variable.
@@ -101,7 +101,7 @@ namespace AppUI
             this.labelNumberOfLikes.AutoSize = true;
             this.labelNumberOfLikes.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.labelNumberOfLikes.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labelNumberOfLikes.Location = new System.Drawing.Point(56, 195);
+            this.labelNumberOfLikes.Location = new System.Drawing.Point(127, 196);
             this.labelNumberOfLikes.Name = "labelNumberOfLikes";
             this.labelNumberOfLikes.Size = new System.Drawing.Size(70, 29);
             this.labelNumberOfLikes.TabIndex = 38;
@@ -111,7 +111,7 @@ namespace AppUI
             // 
             this.pictureBoxCurrentPic.Location = new System.Drawing.Point(12, 66);
             this.pictureBoxCurrentPic.Name = "pictureBoxCurrentPic";
-            this.pictureBoxCurrentPic.Size = new System.Drawing.Size(260, 159);
+            this.pictureBoxCurrentPic.Size = new System.Drawing.Size(260, 127);
             this.pictureBoxCurrentPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
@@ -119,7 +119,7 @@ namespace AppUI
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AppUI.Properties.Resources.facebook_like_button_hand;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 195);
+            this.pictureBox1.Location = new System.Drawing.Point(83, 196);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(41, 30);
             this.pictureBox1.TabIndex = 41;

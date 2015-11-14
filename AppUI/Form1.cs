@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
@@ -15,35 +12,40 @@ namespace AppUI
     // Test comment to commit and push
     public partial class Form1 : FbForm
     {
-        User m_LoggedInUser;
-
+        private const string k_StartPost = "What's on your mind...";
+        private const string k_NoEventYet = "No Events yet";
+        private const string k_NoLikes = "You don't like any page";
+        private const string k_NoCheckIns = "You didn't do any check in";
+        private const string k_NoPostsToRetrieve = "No Posts to retrieve :(";
+        private readonly User r_LoggedInUser;
         private List<Photo> m_ListOfPhotos;
         private List<Photo> m_TopLikeablePhotos; 
 
-        public Form1()
+        public Form1(LoginResult i_UserData)
         {
             InitializeComponent();
+            r_LoggedInUser = i_UserData.LoggedInUser;
             FacebookService.s_CollectionLimit = 1000;
-            
+            fetchUserInfo();
         }
 
-        private void textBoxPost_TextChanged(object sender, EventArgs e)
+        private void textBoxPost_TextChanged(object i_Sender, EventArgs i_E)
         {
 
         }
 
-        private void textBoxPost_Click(object sender, EventArgs e)
+        private void textBoxPost_Click(object i_Sender, EventArgs i_E)
         {
             textBoxPost.Clear();
             textBoxPost.ForeColor = Color.Black;
         }
 
-        private void pictureBoxProfile_Click(object sender, EventArgs e)
+        private void pictureBoxProfile_Click(object i_Sender, EventArgs i_E)
         {
 
         }
 
-        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxEvents_SelectedIndexChanged(object i_Sender, EventArgs i_E)
         {
             
         }
@@ -52,42 +54,20 @@ namespace AppUI
         {
             listBoxEvents.HorizontalScrollbar = true;
             listBoxEvents.DisplayMember = "Name";
-            foreach (Event fbEvent in m_LoggedInUser.Events)
+            foreach (Event fbEvent in r_LoggedInUser.Events)
             {
                 listBoxEvents.Items.Add(fbEvent);
             }
 
-            if (m_LoggedInUser.Events.Count == 0)
+            if (r_LoggedInUser.Events.Count == 0)
             {
-                MessageBox.Show("No Events yet");
-            }
-        }
-
-        private void buttonLogin_Click(object sender, EventArgs e)
-        {
-            loginAndInit();
-        }
-
-        private void loginAndInit()
-        {
-            LoginResult result = FacebookService.Login("904603836301816", 
-                "user_friends", "email", "user_likes", "publish_actions", "user_posts", "public_profile",
-                "user_events", "user_about_me", "user_birthday", "user_hometown", "user_photos");
-
-            if (!string.IsNullOrEmpty(result.AccessToken))
-            {
-                m_LoggedInUser = result.LoggedInUser;
-                fetchUserInfo();
-            }
-            else
-            {
-                MessageBox.Show(result.ErrorMessage);
+                MessageBox.Show(k_NoEventYet);
             }
         }
 
         private void fetchUserInfo()
         {
-            textBoxPost.Text = "What's on your mind...";
+            textBoxPost.Text = k_StartPost;
             fetchEvents();
             fetchUserData();
             fetchPosts();
@@ -99,30 +79,29 @@ namespace AppUI
         {
             listBoxPages.HorizontalScrollbar = true;
             listBoxPages.DisplayMember = "Name";
-            foreach (Page fbPage in m_LoggedInUser.LikedPages)
+            foreach (Page fbPage in r_LoggedInUser.LikedPages)
             {
                 listBoxPages.Items.Add(fbPage);
             }
 
-            if (m_LoggedInUser.LikedPages.Count == 0)
+            if (r_LoggedInUser.LikedPages.Count == 0)
             {
-                MessageBox.Show("You don't like any page");
+                MessageBox.Show(k_NoLikes);
             }
-
         }
 
         private void fetchCheckIn()
         {
             listBoxCheckIn.HorizontalScrollbar = true;
             listBoxCheckIn.DisplayMember = "Message";
-            foreach (Checkin fbCheckin in m_LoggedInUser.Checkins)
+            foreach (Checkin fbCheckin in r_LoggedInUser.Checkins)
             {
                 listBoxCheckIn.Items.Add(fbCheckin);
             }
 
-            if (m_LoggedInUser.Checkins.Count == 0)
+            if (r_LoggedInUser.Checkins.Count == 0)
             {
-                MessageBox.Show("You didn't do any check in");
+                MessageBox.Show(k_NoCheckIns);
             }
         }
 
@@ -132,22 +111,20 @@ namespace AppUI
             m_ListOfPhotos = new List<Photo>();
             m_TopLikeablePhotos = new List<Photo>();
 
-            foreach (Album album in m_LoggedInUser.Albums)
+            foreach (Album album in r_LoggedInUser.Albums)
             {
                 foreach (Photo photo in album.Photos)
                 {
                     m_ListOfPhotos.Add(photo);
                 }
-                
         }
             //TODO: no photos to show
         }
 
-
         private void fetchPosts()
         {
             listBoxFeed.HorizontalScrollbar = true;
-            foreach (Post post in m_LoggedInUser.Posts)
+            foreach (Post post in r_LoggedInUser.Posts)
             {
                 if (post.Message != null)
                 {
@@ -163,45 +140,45 @@ namespace AppUI
                 }
             }
 
-            if (m_LoggedInUser.Posts.Count == 0)
+            if (r_LoggedInUser.Posts.Count == 0)
             {
-                MessageBox.Show("No Posts to retrieve :(");
+                MessageBox.Show(k_NoPostsToRetrieve);
             }
         }
 
         private void fetchUserData()
         {
             listBoxProfie.HorizontalScrollbar = true;
-            pictureBoxProfile.LoadAsync(m_LoggedInUser.PictureNormalURL);
-            listBoxProfie.Items.Add("Birthday: " + m_LoggedInUser.Birthday);
-            listBoxProfie.Items.Add("Gender: " + m_LoggedInUser.Gender);
-    //        listBoxProfie.Items.Add("Hometown: " + m_LoggedInUser.Hometown.Name);
-            listBoxProfie.Items.Add("Email: " + m_LoggedInUser.Email);
-            listBoxProfie.Items.Add("Languages: " + m_LoggedInUser.Languages);
+            pictureBoxProfile.LoadAsync(r_LoggedInUser.PictureNormalURL);
+            listBoxProfie.Items.Add("Birthday: " + r_LoggedInUser.Birthday);
+            listBoxProfie.Items.Add("Gender: " + r_LoggedInUser.Gender);
+            listBoxProfie.Items.Add("Hometown: " + r_LoggedInUser.Hometown.Name);
+            listBoxProfie.Items.Add("Email: " + r_LoggedInUser.Email);
+            listBoxProfie.Items.Add("Languages: " + r_LoggedInUser.Languages);
         }
 
-        private void listBoxProfie_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxProfie_SelectedIndexChanged(object i_Sender, EventArgs i_E)
         {
 
         }
 
-        private void listBoxFeed_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxFeed_SelectedIndexChanged(object i_Sender, EventArgs i_E)
         {
 
         }
 
-        private void buttonPost_Click(object sender, EventArgs e)
+        private void buttonPost_Click(object i_Sender, EventArgs i_E)
         {
-            Status postedStatus = m_LoggedInUser.PostStatus(textBoxPost.Text);
-            MessageBox.Show("Status: " + postedStatus.Message + " Posted");
+            Status postedStatus = r_LoggedInUser.PostStatus(textBoxPost.Text);
+            MessageBox.Show(@"Status: {0} Posted", postedStatus.Message);
         }
 
-        private void buttonLogout_Click(object sender, EventArgs e)
+        private void buttonLogout_Click(object i_Sender, EventArgs i_E)
         {
             Application.Exit();
         }
 
-        private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxGroups_SelectedIndexChanged(object i_Sender, EventArgs i_E)
         {
 
         }
@@ -211,9 +188,9 @@ namespace AppUI
         /// </summary>
         private void sortPhotosByDescendingOrder()
         {
-            m_ListOfPhotos.Sort((p, q) => p.LikedBy.Count().CompareTo(q.LikedBy.Count()));
+            m_ListOfPhotos.Sort((i_NumberOfLikesPhotoOne, i_NumberOfLikesPhotoTwo) =>
+                i_NumberOfLikesPhotoOne.LikedBy.Count().CompareTo(i_NumberOfLikesPhotoTwo.LikedBy.Count()));
             m_ListOfPhotos.Reverse();
-
         }
 
         /// <summary>
@@ -235,7 +212,7 @@ namespace AppUI
             }
         }
 
-        private void buttonFeature1_Click(object sender, EventArgs e)
+        private void buttonFeature1_Click(object i_Sender, EventArgs i_E)
         {
             fetchPhotos();
             sortPhotosByDescendingOrder();
@@ -254,14 +231,19 @@ namespace AppUI
             likeablePictureForm.ShowDialog();
         }
 
-        private void listBoxPages_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxPages_SelectedIndexChanged(object i_Sender, EventArgs i_E)
         {
 
         }
 
-        private void FbForm_Load(object sender, EventArgs e)
+        private void buttonFeature2_Click(object i_Sender, EventArgs i_E)
         {
-            this.LabelHeader.Size = new Size(Width, 29);
+
+        }
+
+        private void Form1_Load(object i_Sender, EventArgs i_E)
+        {
+
         }
 
         private void buttonFeature2_Click(object sender, EventArgs e)

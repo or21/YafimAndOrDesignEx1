@@ -1,6 +1,6 @@
 ﻿namespace AppUI
 {
-    partial class Form1
+    public partial class Form1
     {
         /// <summary>רגע
         /// Required designer variable.
@@ -34,11 +34,10 @@
             this.listBoxCheckIn = new System.Windows.Forms.ListBox();
             this.listBoxProfie = new System.Windows.Forms.ListBox();
             this.listBoxPages = new System.Windows.Forms.ListBox();
-            this.buttonGetTopPictures = new System.Windows.Forms.Button();
-            this.buttonFeature2 = new System.Windows.Forms.Button();
-            this.buttonLogin = new System.Windows.Forms.Button();
-            this.buttonPost = new System.Windows.Forms.Button();
-            this.buttonLogout = new System.Windows.Forms.Button();
+            this.buttonGetTopPictures = new Utils.FbBlueButton();
+            this.buttonFeature2 = new Utils.FbBlueButton();
+            this.buttonPost = new Utils.FbBlueButton();
+            this.buttonLogout = new Utils.FbBlueButton();
             this.listBoxFeed = new System.Windows.Forms.ListBox();
             this.labelCheckIn = new System.Windows.Forms.Label();
             this.labelEvents = new System.Windows.Forms.Label();
@@ -50,9 +49,9 @@
             // 
             // pictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(48, 32);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(49, 39);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(120, 84);
+            this.pictureBoxProfile.Size = new System.Drawing.Size(120, 83);
             this.pictureBoxProfile.TabIndex = 0;
             this.pictureBoxProfile.TabStop = false;
             this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBoxProfile_Click);
@@ -105,6 +104,10 @@
             // 
             // buttonGetTopPictures
             // 
+            this.buttonGetTopPictures.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonGetTopPictures.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGetTopPictures.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonGetTopPictures.ForeColor = System.Drawing.Color.White;
             this.buttonGetTopPictures.Location = new System.Drawing.Point(104, 446);
             this.buttonGetTopPictures.Name = "buttonGetTopPictures";
             this.buttonGetTopPictures.Size = new System.Drawing.Size(196, 23);
@@ -115,26 +118,24 @@
             // 
             // buttonFeature2
             // 
+            this.buttonFeature2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonFeature2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFeature2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonFeature2.ForeColor = System.Drawing.Color.White;
             this.buttonFeature2.Location = new System.Drawing.Point(478, 446);
             this.buttonFeature2.Name = "buttonFeature2";
             this.buttonFeature2.Size = new System.Drawing.Size(203, 23);
             this.buttonFeature2.TabIndex = 10;
-            this.buttonFeature2.Text = "buttonFeature2";
+            this.buttonFeature2.Text = "buttonGetCelebs";
             this.buttonFeature2.UseVisualStyleBackColor = true;
             this.buttonFeature2.Click += new System.EventHandler(this.buttonFeature2_Click);
             // 
-            // buttonLogin
-            // 
-            this.buttonLogin.Location = new System.Drawing.Point(247, 45);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
-            this.buttonLogin.TabIndex = 11;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
-            // 
             // buttonPost
             // 
+            this.buttonPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonPost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonPost.ForeColor = System.Drawing.Color.White;
             this.buttonPost.Location = new System.Drawing.Point(546, 84);
             this.buttonPost.Name = "buttonPost";
             this.buttonPost.Size = new System.Drawing.Size(75, 23);
@@ -145,7 +146,11 @@
             // 
             // buttonLogout
             // 
-            this.buttonLogout.Location = new System.Drawing.Point(426, 45);
+            this.buttonLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonLogout.ForeColor = System.Drawing.Color.White;
+            this.buttonLogout.Location = new System.Drawing.Point(699, 39);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(75, 23);
             this.buttonLogout.TabIndex = 13;
@@ -174,7 +179,7 @@
             // labelEvents
             // 
             this.labelEvents.AutoSize = true;
-            this.labelEvents.Location = new System.Drawing.Point(80, 131);
+            this.labelEvents.Location = new System.Drawing.Point(84, 131);
             this.labelEvents.Name = "labelEvents";
             this.labelEvents.Size = new System.Drawing.Size(40, 13);
             this.labelEvents.TabIndex = 15;
@@ -193,7 +198,7 @@
             // labelData
             // 
             this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(633, 131);
+            this.labelData.Location = new System.Drawing.Point(632, 131);
             this.labelData.Name = "labelData";
             this.labelData.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelData.Size = new System.Drawing.Size(60, 13);
@@ -222,7 +227,6 @@
             this.Controls.Add(this.labelCheckIn);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.buttonPost);
-            this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.buttonFeature2);
             this.Controls.Add(this.buttonGetTopPictures);
             this.Controls.Add(this.listBoxPages);
@@ -233,7 +237,8 @@
             this.Controls.Add(this.textBoxPost);
             this.Controls.Add(this.pictureBoxProfile);
             this.Name = "Form1";
-            this.Text = "FormGroups";
+            this.Text = "FaceBoo";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.pictureBoxProfile, 0);
             this.Controls.SetChildIndex(this.textBoxPost, 0);
             this.Controls.SetChildIndex(this.listBoxFeed, 0);
@@ -243,7 +248,6 @@
             this.Controls.SetChildIndex(this.listBoxPages, 0);
             this.Controls.SetChildIndex(this.buttonGetTopPictures, 0);
             this.Controls.SetChildIndex(this.buttonFeature2, 0);
-            this.Controls.SetChildIndex(this.buttonLogin, 0);
             this.Controls.SetChildIndex(this.buttonPost, 0);
             this.Controls.SetChildIndex(this.buttonLogout, 0);
             this.Controls.SetChildIndex(this.labelCheckIn, 0);
@@ -265,11 +269,10 @@
         private System.Windows.Forms.ListBox listBoxCheckIn;
         private System.Windows.Forms.ListBox listBoxProfie;
         private System.Windows.Forms.ListBox listBoxPages;
-        private System.Windows.Forms.Button buttonGetTopPictures;
-        private System.Windows.Forms.Button buttonFeature2;
-        private System.Windows.Forms.Button buttonLogin;
-        private System.Windows.Forms.Button buttonPost;
-        private System.Windows.Forms.Button buttonLogout;
+        private Utils.FbBlueButton buttonGetTopPictures;
+        private Utils.FbBlueButton buttonFeature2;
+        private Utils.FbBlueButton buttonPost;
+        private Utils.FbBlueButton buttonLogout;
         private System.Windows.Forms.ListBox listBoxFeed;
         private System.Windows.Forms.Label labelCheckIn;
         private System.Windows.Forms.Label labelEvents;
@@ -278,4 +281,3 @@
         private System.Windows.Forms.Label labelFeed;
     }
 }
-
