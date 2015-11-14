@@ -236,11 +236,6 @@ namespace AppUI
 
         }
 
-        private void buttonFeature2_Click(object i_Sender, EventArgs i_E)
-        {
-
-        }
-
         private void Form1_Load(object i_Sender, EventArgs i_E)
         {
 
@@ -248,8 +243,8 @@ namespace AppUI
 
         private void buttonFeature2_Click(object sender, EventArgs e)
         {
-            WhoWasBornOnMyBirthdayForm likeablePictureForm = new WhoWasBornOnMyBirthdayForm(m_LoggedInUser.Birthday);
-            likeablePictureForm.ShowDialog();
+            WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);
+            whoWasBornOnMyBirthdayForm.ShowDialog();
         }
     }
 }

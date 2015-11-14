@@ -88,7 +88,7 @@ namespace AppUI
             catch (FileNotFoundException fnf)
             {
                 MessageBox.Show(string.Format("error: {0}", fnf.Message));
-                this.Close();
+       //         this.Close();
 
             }
         }
