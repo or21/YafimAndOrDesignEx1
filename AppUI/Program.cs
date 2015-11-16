@@ -13,7 +13,7 @@ namespace AppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(null));
+            Application.Run(new LoginForm());
         }
     }
 }

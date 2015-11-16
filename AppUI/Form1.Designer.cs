@@ -35,7 +35,7 @@
             this.listBoxProfie = new System.Windows.Forms.ListBox();
             this.listBoxPages = new System.Windows.Forms.ListBox();
             this.buttonGetTopPictures = new Utils.FbBlueButton();
-            this.buttonFeature2 = new Utils.FbBlueButton();
+            this.buttonGetCelebsBD = new Utils.FbBlueButton();
             this.buttonPost = new Utils.FbBlueButton();
             this.buttonLogout = new Utils.FbBlueButton();
             this.listBoxFeed = new System.Windows.Forms.ListBox();
@@ -116,19 +116,19 @@
             this.buttonGetTopPictures.UseVisualStyleBackColor = true;
             this.buttonGetTopPictures.Click += new System.EventHandler(this.buttonFeature1_Click);
             // 
-            // buttonFeature2
+            // buttonGetCelebsBD
             // 
-            this.buttonFeature2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.buttonFeature2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFeature2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.buttonFeature2.ForeColor = System.Drawing.Color.White;
-            this.buttonFeature2.Location = new System.Drawing.Point(478, 446);
-            this.buttonFeature2.Name = "buttonFeature2";
-            this.buttonFeature2.Size = new System.Drawing.Size(203, 23);
-            this.buttonFeature2.TabIndex = 10;
-            this.buttonFeature2.Text = "buttonGetCelebs";
-            this.buttonFeature2.UseVisualStyleBackColor = true;
-            this.buttonFeature2.Click += new System.EventHandler(this.buttonFeature2_Click);
+            this.buttonGetCelebsBD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonGetCelebsBD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGetCelebsBD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonGetCelebsBD.ForeColor = System.Drawing.Color.White;
+            this.buttonGetCelebsBD.Location = new System.Drawing.Point(478, 446);
+            this.buttonGetCelebsBD.Name = "buttonGetCelebsBD";
+            this.buttonGetCelebsBD.Size = new System.Drawing.Size(203, 23);
+            this.buttonGetCelebsBD.TabIndex = 10;
+            this.buttonGetCelebsBD.Text = "Who was born on my Birthday";
+            this.buttonGetCelebsBD.UseVisualStyleBackColor = true;
+            this.buttonGetCelebsBD.Click += new System.EventHandler(this.buttonGetCelebsBD_Click);
             // 
             // buttonPost
             // 
@@ -227,7 +227,7 @@
             this.Controls.Add(this.labelCheckIn);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.buttonPost);
-            this.Controls.Add(this.buttonFeature2);
+            this.Controls.Add(this.buttonGetCelebsBD);
             this.Controls.Add(this.buttonGetTopPictures);
             this.Controls.Add(this.listBoxPages);
             this.Controls.Add(this.listBoxProfie);
@@ -247,7 +247,7 @@
             this.Controls.SetChildIndex(this.listBoxProfie, 0);
             this.Controls.SetChildIndex(this.listBoxPages, 0);
             this.Controls.SetChildIndex(this.buttonGetTopPictures, 0);
-            this.Controls.SetChildIndex(this.buttonFeature2, 0);
+            this.Controls.SetChildIndex(this.buttonGetCelebsBD, 0);
             this.Controls.SetChildIndex(this.buttonPost, 0);
             this.Controls.SetChildIndex(this.buttonLogout, 0);
             this.Controls.SetChildIndex(this.labelCheckIn, 0);
@@ -270,7 +270,7 @@
         private System.Windows.Forms.ListBox listBoxProfie;
         private System.Windows.Forms.ListBox listBoxPages;
         private Utils.FbBlueButton buttonGetTopPictures;
-        private Utils.FbBlueButton buttonFeature2;
+        private Utils.FbBlueButton buttonGetCelebsBD;
         private Utils.FbBlueButton buttonPost;
         private Utils.FbBlueButton buttonLogout;
         private System.Windows.Forms.ListBox listBoxFeed;
