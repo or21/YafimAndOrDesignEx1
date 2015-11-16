@@ -30,7 +30,7 @@ namespace AppUI
         /// <summary>
         /// Message to the user when no shared birthday was found
         /// </summary>
-        private readonly string r_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME :(";
+        private readonly string r_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME frown emoticon";
 
         /// <summary>
         /// Json file to parse
@@ -88,7 +88,7 @@ namespace AppUI
             catch (FileNotFoundException fnf)
             {
                 MessageBox.Show(string.Format("error: {0}", fnf.Message));
-       //         this.Close();
+                //         this.Close();
 
             }
         }

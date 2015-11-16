@@ -170,7 +170,7 @@ namespace AppUI
         private void buttonPost_Click(object i_Sender, EventArgs i_E)
         {
             Status postedStatus = r_LoggedInUser.PostStatus(textBoxPost.Text);
-            MessageBox.Show(@"Status: {0} Posted", postedStatus.Message);
+            MessageBox.Show(string.Format(@"Status: {0} Posted", postedStatus.Message));
         }
 
         private void buttonLogout_Click(object i_Sender, EventArgs i_E)
