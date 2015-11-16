@@ -13,7 +13,7 @@ using Utils;
 namespace AppUI
 {
     /// <summary>
-    /// Get inforamtion about famous people who was born on my birthday date.
+    /// Get inforamtion about famous people who was born on my birthday date
     /// </summary>
     public partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
@@ -23,7 +23,7 @@ namespace AppUI
         private readonly string r_PathToJSONFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
 
         /// <summary>
-        /// List of people who share the same birthday date
+        /// List of people who share the same birthday date.
         /// </summary>
         private readonly List<string> r_ListOfPeopleWhoWasBornOnMyBirthday;
 
