@@ -20,7 +20,7 @@ namespace AppUI
         /// <summary>
         /// Path to Json file
         /// </summary>
-        private readonly string r_PathToJSONFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
+        private readonly string r_PathToJSONFile = @"../../../AppUI\Resources\celeb-birthdays.JSON";
 
         /// <summary>
         /// List of people who share the same birthday date
