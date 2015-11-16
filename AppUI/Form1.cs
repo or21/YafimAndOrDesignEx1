@@ -240,8 +240,8 @@ namespace AppUI
         {
 
         }
-
-        private void buttonFeature2_Click(object sender, EventArgs e)
+        
+        private void buttonGetCelebsBD_Click(object sender, EventArgs e)
         {
             WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);
             whoWasBornOnMyBirthdayForm.ShowDialog();
