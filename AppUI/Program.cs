@@ -14,10 +14,10 @@ namespace AppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-        //    Application.Run(new LoginForm());
-        //    Form currentForm = new LoginForm();
+            Application.Run(new LoginForm());
+            Form currentForm = new LoginForm();
             //TODO: Delete. for fast debug only
-            WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
+            //WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
            
             try
             {
@@ -35,7 +35,6 @@ namespace AppUI
             {
                 MessageBox.Show(e.Message);
             }
-
             finally
             {
                 Application.Exit();

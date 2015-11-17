@@ -9,7 +9,6 @@ using System.Globalization;
 using System.IO;
 using Newtonsoft.Json.Linq;
 
-
 namespace Utils
 {
     /// <summary>
@@ -119,6 +118,7 @@ namespace Utils
 
             return wikiInfo;
         }
+
         /// <summary>
         /// Get information from wiki-json
         /// </summary>
@@ -172,7 +172,5 @@ namespace Utils
                 return reader.ReadToEnd();
             }
         }
-
-
     }
 }

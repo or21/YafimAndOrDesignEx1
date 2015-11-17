@@ -20,7 +20,7 @@ namespace AppUI
         private const string k_WaitMessage = "This may take few seconds... Please click OK";
         private readonly User r_LoggedInUser;
         private List<Photo> m_ListOfPhotos;
-        private List<Photo> m_TopLikeablePhotos; 
+        private List<Photo> m_TopLikeablePhotos;
 
         public Form1(LoginResult i_UserData)
         {
@@ -103,7 +103,7 @@ namespace AppUI
                 {
                     m_ListOfPhotos.Add(photo);
                 }
-        }
+            }
             //TODO: no photos to show
         }
 
@@ -202,12 +202,12 @@ namespace AppUI
             {
                 if (photo.Width > i_Width)
                 {
-                    i_Width = (int) photo.Width;
+                    i_Width = (int)photo.Width;
                 }
 
                 if (photo.Height > i_Height)
                 {
-                    i_Height = (int) photo.Height;
+                    i_Height = (int)photo.Height;
                 }
             }
         }
@@ -224,7 +224,7 @@ namespace AppUI
             };
             likeablePictureForm.ShowDialog();
         }
-        
+
         private void buttonGetCelebsBD_Click(object i_Sender, EventArgs i_E)
         {
             WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);

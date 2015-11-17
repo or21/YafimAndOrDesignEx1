@@ -66,8 +66,8 @@ namespace AppUI
         public WhoWasBornOnMyBirthdayForm(string i_BirthdayDate)
         {
             InitializeComponent();
-                m_MyBirthdayDate = Utils.Utils.ParseBirthdayDate(i_BirthdayDate);
-            }
+            m_MyBirthdayDate = Utils.Utils.ParseBirthdayDate(i_BirthdayDate);
+        }
 
         /// <summary>
         /// 1. Get the json-celeb file and parse it
@@ -78,9 +78,9 @@ namespace AppUI
         protected override void OnLoad(EventArgs i_Event)
         {
             /// TODO:Handle exceptions
-            m_JSON = Utils.Utils.getLocalJsonFile(m_PathToJsonFile);
+            m_Json = Utils.Utils.getLocalJsonFile(m_PathToJsonFile);
 
-            m_ParsedJson = Utils.Utils.parseJSON(m_JSON);
+            m_ParsedJson = Utils.Utils.parseJSON(m_Json);
 
             Utils.Utils.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
@@ -117,7 +117,6 @@ namespace AppUI
                     pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                 }
             }
-            
             catch (WebException wes)
             {
                 // Connection error 
@@ -130,11 +129,11 @@ namespace AppUI
         /// If exists Get JSON file to read Otherwise throw relevant exception and exit
         /// </summary>
         private void getLocalJsonFile()
+        {
+            using (StreamReader reader = new StreamReader(m_PathToJsonFile))
             {
-                using (StreamReader reader = new StreamReader(m_PathToJsonFile))
-                {
-                m_JSON = reader.ReadToEnd();
-        }
+                m_Json = reader.ReadToEnd();
+            }
         }
 
         /// <summary>
