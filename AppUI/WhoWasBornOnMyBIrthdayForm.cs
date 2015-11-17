@@ -118,14 +118,9 @@ namespace AppUI
         {
             try
             {
-                using (WebDownload wc = new WebDownload())
-                {
-                    string json = wc.DownloadString(m_JsonWikiUrl);
-                    m_ParsedJson = JObject.Parse(json);
-                    
+                m_ParsedJson = Utils.Utils.getJSONFromUrl(m_JsonWikiUrl);
                     try
                     {
-                       // string image = m_ParsedJson["query"]["pages"].First.First["thumbnail"]["source"].ToString();
                         string image = Utils.Utils.getJSONWikiImageQuery(m_ParsedJson);
                         pictureBox.LoadAsync(image);
                     }
@@ -133,7 +128,6 @@ namespace AppUI
                     {
                       pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                     }
-                }
             }
             // Connection error
             catch (WebException wes)

@@ -111,7 +111,7 @@ namespace Utils
             return wikiInfo;
         }
         /// <summary>
-        /// 
+        /// Get information from wiki-json
         /// </summary>
         /// <param name="i_JSON"></param>
         /// <returns></returns>
@@ -120,11 +120,30 @@ namespace Utils
             return i_JSON["query"]["pages"].First.First["extract"].ToString();
         }
 
+        /// <summary>
+        /// Get image from wiki-json
+        /// </summary>
+        /// <param name="i_JSON"></param>
+        /// <returns></returns>
         public static string getJSONWikiImageQuery(JObject i_JSON)
         {
             return i_JSON["query"]["pages"].First.First["thumbnail"]["source"].ToString();
         }
-        
+
+        /// <summary>
+        /// Send request to the wiki server, download json and parse it.
+        /// </summary>
+        /// <param name="m_JsonWikiUrl"></param>
+        /// <param name="m_ParsedJson"></param>
+        public static JObject getJSONFromUrl(string m_JsonWikiUrl)
+        {
+            using (WebDownload wc = new WebDownload())
+            {
+                string json = wc.DownloadString(m_JsonWikiUrl);
+                return JObject.Parse(json);
+            }
+        }
+
 
     }
 }
