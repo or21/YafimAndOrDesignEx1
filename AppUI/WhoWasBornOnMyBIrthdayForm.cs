@@ -12,12 +12,13 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using Utils;
 
+
 namespace AppUI
 {
     /// <summary>
     /// Get inforamtion about famous people who was born on my birthday date
     /// </summary>
-    public partial class WhoWasBornOnMyBirthdayForm : FbForm
+    partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
         /// <summary>
         /// Path to Json file
@@ -86,12 +87,12 @@ namespace AppUI
         /// <param name="i_Event"></param>
         protected override void OnLoad(EventArgs i_Event)
         {
-            //TODO: Validate no errors before parseJSON(). (file not found)
+            ///TODO: Validate no errors before parseJSON(). (file not found)
             // try
-            getJSONFile();
+            getJsonFile();
             // catch fileNotFound
 
-            parseJSON();
+            parseJson();
 
             Utils.Utils.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
@@ -117,24 +118,17 @@ namespace AppUI
         {
             try
             {
-                using (WebDownload wc = new WebDownload())
+                m_ParsedJson = Utils.Utils.getJSONFromUrl(m_JsonWikiUrl);
+                try
                 {
-                    string json = wc.DownloadString(m_JsonWikiUrl);
-                    m_ParsedJson = JObject.Parse(json);
-                    
-                    try
-                    {
-                        // string image = m_ParsedJson["query"]["pages"].First.First["thumbnail"]["source"].ToString();
-                        string image = Utils.Utils.GetJsonWikiImageQuery(m_ParsedJson);
-                        pictureBox.LoadAsync(image);
-                    }
-                    catch (NullReferenceException nre)
-                    {
-                      pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
-                    }
+                    string image = Utils.Utils.GetJsonWikiImageQuery(m_ParsedJson);
+                    pictureBox.LoadAsync(image);
                 }
+                catch (NullReferenceException nre)
+                {
+                    pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                 }
-
+            }
             // Connection error
             catch (WebException wes)
             {
@@ -146,7 +140,7 @@ namespace AppUI
         /// <summary>
         /// If exists Get JSON file to read Otherwise throw relevant exception and exit
         /// </summary>
-        private void getJSONFile()
+        private void getJsonFile()
         {
             try
             {
@@ -165,10 +159,10 @@ namespace AppUI
         /// <summary>
         /// Parse JSON file
         /// </summary>
-        private void parseJSON()
+        private void parseJson()
         {
             m_ParsedJson = JObject.Parse(m_Json);
-            }
+        }
 
         /// <summary>
         /// Insert birthday list into listBox
