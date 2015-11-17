@@ -110,7 +110,11 @@ namespace Utils
 
             return wikiInfo;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i_JSON"></param>
+        /// <returns></returns>
         public static string getJSONWikiInfoQuery(JObject i_JSON)
         {
             return i_JSON["query"]["pages"].First.First["extract"].ToString();
