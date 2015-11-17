@@ -29,25 +29,10 @@ namespace AppUI
             fetchUserInfo();
         }
 
-        private void textBoxPost_TextChanged(object i_Sender, EventArgs i_E)
-        {
-
-        }
-
         private void textBoxPost_Click(object i_Sender, EventArgs i_E)
         {
             textBoxPost.Clear();
             textBoxPost.ForeColor = Color.Black;
-        }
-
-        private void pictureBoxProfile_Click(object i_Sender, EventArgs i_E)
-        {
-
-        }
-
-        private void listBoxEvents_SelectedIndexChanged(object i_Sender, EventArgs i_E)
-        {
-            
         }
 
         private void fetchEvents()
@@ -154,17 +139,6 @@ namespace AppUI
             listBoxProfie.Items.Add("Gender: " + r_LoggedInUser.Gender);
             listBoxProfie.Items.Add("Hometown: " + r_LoggedInUser.Hometown.Name);
             listBoxProfie.Items.Add("Email: " + r_LoggedInUser.Email);
-            listBoxProfie.Items.Add("Languages: " + r_LoggedInUser.Languages);
-        }
-
-        private void listBoxProfie_SelectedIndexChanged(object i_Sender, EventArgs i_E)
-        {
-
-        }
-
-        private void listBoxFeed_SelectedIndexChanged(object i_Sender, EventArgs i_E)
-        {
-
         }
 
         private void buttonPost_Click(object i_Sender, EventArgs i_E)
@@ -176,11 +150,6 @@ namespace AppUI
         private void buttonLogout_Click(object i_Sender, EventArgs i_E)
         {
             Application.Exit();
-        }
-
-        private void listBoxGroups_SelectedIndexChanged(object i_Sender, EventArgs i_E)
-        {
-
         }
 
         /// <summary>
@@ -214,34 +183,46 @@ namespace AppUI
 
         private void buttonFeature1_Click(object i_Sender, EventArgs i_E)
         {
+            MessageBox.Show("This may take few seconds!");
+            int width = 0;
+            int height = 0;
             fetchPhotos();
             sortPhotosByDescendingOrder();
 
             //TODO: Define general field by guy's guide... (private int readonly _NumberOfMostLikeablePictures = 5)
             getMostLikeablePictures(5);
-            createTopLikeablePictureForm();
+            getWidthAndHeight(ref width, ref height);
+            createTopLikeablePictureForm(width, height);
+        }
+
+        private void getWidthAndHeight(ref int i_Width, ref int i_Height)
+        {
+            foreach (Photo photo in m_TopLikeablePhotos)
+            {
+                if (photo.Width > i_Width)
+                {
+                    i_Width = (int) photo.Width;
+                }
+                if (photo.Height > i_Height)
+                {
+                    i_Height = (int) photo.Height;
+                }
+            }
         }
 
         /// <summary>
         /// Creates new top likeable pictures.
         /// </summary>
-        private void createTopLikeablePictureForm()
+        private void createTopLikeablePictureForm(int i_Width, int i_Height)
         {
-            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos);
+            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos)
+            {
+                Size = new Size(i_Width, i_Height + 35)
+            };
             likeablePictureForm.ShowDialog();
         }
-
-        private void listBoxPages_SelectedIndexChanged(object i_Sender, EventArgs i_E)
-        {
-
-        }
-
-        private void Form1_Load(object i_Sender, EventArgs i_E)
-        {
-
-        }
         
-        private void buttonGetCelebsBD_Click(object sender, EventArgs e)
+        private void buttonGetCelebsBD_Click(object i_Sender, EventArgs i_E)
         {
             WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);
             whoWasBornOnMyBirthdayForm.ShowDialog();

@@ -54,7 +54,6 @@
             this.pictureBoxProfile.Size = new System.Drawing.Size(120, 83);
             this.pictureBoxProfile.TabIndex = 0;
             this.pictureBoxProfile.TabStop = false;
-            this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBoxProfile_Click);
             // 
             // textBoxPost
             // 
@@ -64,7 +63,6 @@
             this.textBoxPost.Size = new System.Drawing.Size(304, 20);
             this.textBoxPost.TabIndex = 1;
             this.textBoxPost.Click += new System.EventHandler(this.textBoxPost_Click);
-            this.textBoxPost.TextChanged += new System.EventHandler(this.textBoxPost_TextChanged);
             // 
             // listBoxEvents
             // 
@@ -73,7 +71,6 @@
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(154, 121);
             this.listBoxEvents.TabIndex = 3;
-            this.listBoxEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEvents_SelectedIndexChanged);
             // 
             // listBoxCheckIn
             // 
@@ -82,7 +79,6 @@
             this.listBoxCheckIn.Name = "listBoxCheckIn";
             this.listBoxCheckIn.Size = new System.Drawing.Size(154, 121);
             this.listBoxCheckIn.TabIndex = 4;
-            this.listBoxCheckIn.SelectedIndexChanged += new System.EventHandler(this.listBoxGroups_SelectedIndexChanged);
             // 
             // listBoxProfie
             // 
@@ -91,7 +87,6 @@
             this.listBoxProfie.Name = "listBoxProfie";
             this.listBoxProfie.Size = new System.Drawing.Size(154, 121);
             this.listBoxProfie.TabIndex = 6;
-            this.listBoxProfie.SelectedIndexChanged += new System.EventHandler(this.listBoxProfie_SelectedIndexChanged);
             // 
             // listBoxPages
             // 
@@ -100,7 +95,6 @@
             this.listBoxPages.Name = "listBoxPages";
             this.listBoxPages.Size = new System.Drawing.Size(154, 121);
             this.listBoxPages.TabIndex = 7;
-            this.listBoxPages.SelectedIndexChanged += new System.EventHandler(this.listBoxPages_SelectedIndexChanged);
             // 
             // buttonGetTopPictures
             // 
@@ -150,7 +144,7 @@
             this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.buttonLogout.ForeColor = System.Drawing.Color.White;
-            this.buttonLogout.Location = new System.Drawing.Point(699, 39);
+            this.buttonLogout.Location = new System.Drawing.Point(687, 39);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(75, 23);
             this.buttonLogout.TabIndex = 13;
@@ -165,7 +159,6 @@
             this.listBoxFeed.Name = "listBoxFeed";
             this.listBoxFeed.Size = new System.Drawing.Size(347, 277);
             this.listBoxFeed.TabIndex = 2;
-            this.listBoxFeed.SelectedIndexChanged += new System.EventHandler(this.listBoxFeed_SelectedIndexChanged);
             // 
             // labelCheckIn
             // 
@@ -238,7 +231,6 @@
             this.Controls.Add(this.pictureBoxProfile);
             this.Name = "Form1";
             this.Text = "FaceBoo";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.pictureBoxProfile, 0);
             this.Controls.SetChildIndex(this.textBoxPost, 0);
             this.Controls.SetChildIndex(this.listBoxFeed, 0);

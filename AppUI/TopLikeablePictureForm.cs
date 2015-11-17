@@ -15,7 +15,6 @@ namespace AppUI
             InitializeComponent();
             m_TopLikeablePhotos = i_TopLikeablePhotos;
             m_IndexOfCurrentImage = 0;
-
         }
 
         /// <summary>
@@ -63,9 +62,8 @@ namespace AppUI
 
         private void loadImage(Photo i_ImageToLoad)
         {
-            pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureThumbURL);
+            pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureNormalURL);
             setNumberOfLikes(i_ImageToLoad);
         }
-
     }
 }
