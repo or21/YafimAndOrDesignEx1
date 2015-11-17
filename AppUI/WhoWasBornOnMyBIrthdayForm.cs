@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using Utils;
 
+
 namespace AppUI
 {
     /// <summary>
@@ -27,7 +28,7 @@ namespace AppUI
         /// <summary>
         /// List of people who share the same birthday date.
         /// </summary>
-        private readonly List<string> r_ListOfPeopleWhoWasBornOnMyBirthday;
+        private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
 
         /// <summary>
         /// Message to the user when no shared birthday was found
@@ -76,7 +77,6 @@ namespace AppUI
                 this.Close();
             }
 
-            r_ListOfPeopleWhoWasBornOnMyBirthday = new List<string>();
         }
 
         /// <summary>
@@ -93,6 +93,8 @@ namespace AppUI
             // catch fileNotFound
 
             parseJSON();
+            
+            Utils.Utils.parseBirthdayJSON(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
             fetchBirthdays();
             initListBox();
@@ -105,7 +107,7 @@ namespace AppUI
         /// </summary>
         private void initListBox()
         {
-            m_CurrentCelebName = r_ListOfPeopleWhoWasBornOnMyBirthday.First();
+            m_CurrentCelebName = m_ListOfPeopleWhoWasBornOnMyBirthday.First();
             listBoxWhoWasBorn.SelectedIndex = 0;
         }
 
@@ -123,16 +125,15 @@ namespace AppUI
                     
                     try
                     {
-                        string image = m_ParsedJson["query"]["pages"].First.First["thumbnail"]["source"].ToString();
+                       // string image = m_ParsedJson["query"]["pages"].First.First["thumbnail"]["source"].ToString();
+                        string image = Utils.Utils.getJSONWikiImageQuery(m_ParsedJson);
                         pictureBox.LoadAsync(image);
                     }
                     catch (NullReferenceException nre)
                     {
                       pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                     }
-
                 }
-
             }
             // Connection error
             catch (WebException wes)
@@ -142,15 +143,6 @@ namespace AppUI
             }
 
         }
-
-        /// <summary>
-        /// Set json url with current celected name
-        /// </summary>
-        private void setJsonUrl()
-        {
-            m_JsonWikiUrl = string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", m_CurrentCelebName);
-        }
-
 
         /// <summary>
         /// If exists Get JSON file to read Otherwise throw relevant exception and exit
@@ -172,36 +164,25 @@ namespace AppUI
         }
 
         /// <summary>
-        /// Parse JSON file and insert it to collection
+        /// Parse JSON file
         /// </summary>
         private void parseJSON()
         {
-          //  JObject parsedJSONFile = JObject.Parse(m_Json);
             m_ParsedJson = JObject.Parse(m_Json);
-
-            foreach (JToken name in m_ParsedJson[m_MyBirthdayDate])
-            {
-                r_ListOfPeopleWhoWasBornOnMyBirthday.Add(name.ToString());
-            }
         }
-
-
-
-        
 
         /// <summary>
         /// Insert birthday list into listBox
         /// </summary>
         private void fetchBirthdays()
         {
-            listBoxWhoWasBorn.HorizontalScrollbar = true;
-
-            foreach (string name in r_ListOfPeopleWhoWasBornOnMyBirthday)
+            foreach (string name in m_ListOfPeopleWhoWasBornOnMyBirthday)
             {
                 listBoxWhoWasBorn.Items.Add(name);
             }
 
-            if (r_ListOfPeopleWhoWasBornOnMyBirthday.Count == 0)
+            //TODO: If no one was born today...?
+            if (m_ListOfPeopleWhoWasBornOnMyBirthday.Count == 0)
             {
                 MessageBox.Show(r_NoOneWasBornMessage);
             }
@@ -220,42 +201,16 @@ namespace AppUI
         /// <summary>
         /// Update relevant information when item selected
         /// </summary>
-        /// <param name="i_Sender"></param>
-        /// <param name="i_Event"></param>
+        /// <param name="i_Sender">Sender object</param>
+        /// <param name="i_Event">the event</param>
         private void listBoxWhoWasBorn_SelectedIndexChanged(object i_Sender, EventArgs i_Event)
         {
             labelName.Text = listBoxWhoWasBorn.Text;
-            setCurrentNameInFormat(listBoxWhoWasBorn.Text);
+            Utils.Utils.setCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
 
-            setJsonUrl();
+            Utils.Utils.buildJSONWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
             setPictureBox();
-            setTextBoxInfo();
-        }
-
-        /// <summary>
-        /// Format selected name as "first_name" 
-        /// </summary>
-        private void setCurrentNameInFormat(string i_StrToForamt)
-        {
-            m_CurrentCelebName = i_StrToForamt.Replace(" ", "_");
-        }
-
-        /// <summary>
-        /// Set information in textbox
-        /// </summary>
-        private void setTextBoxInfo()
-        {
-            //TODO: Remove from here!!
-            try
-            {
-                string info = m_ParsedJson["query"]["pages"].First.First["extract"].ToString();
-                textBoxInfo.Text = info;
-            }
-            catch (NullReferenceException nre)
-            {
-                textBoxInfo.Text = "Nothing was found... Please let us know";
-            }
-
+            textBoxInfo.Text = Utils.Utils.getWikiJSONInfo(m_ParsedJson);
         }
     }
 }
