@@ -16,7 +16,6 @@ namespace Utils
     /// </summary>
     public static class Utils
     {
-
         # region WhoWasBornOnMyBirthday logic
         /// <summary>
         /// Parse given date to MM-DD format
@@ -177,8 +176,6 @@ namespace Utils
     #endregion
 
         #region TopLikeablePictures logic
-
-
 
         #endregion
     }
