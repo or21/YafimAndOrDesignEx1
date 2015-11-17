@@ -17,6 +17,8 @@ namespace Utils
     /// </summary>
     public static class Utils
     {
+
+        # region WhoWasBornOnMyBirthday logic
         /// <summary>
         /// Parse given date to MM-DD format
         /// </summary>
@@ -172,7 +174,12 @@ namespace Utils
                 return reader.ReadToEnd();
             }
         }
+    #endregion
+
+        #region TopLikeablePictures logic
 
 
+
+        #endregion
     }
 }

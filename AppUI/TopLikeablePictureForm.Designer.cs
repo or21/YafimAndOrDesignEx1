@@ -1,7 +1,15 @@
-﻿using System.Windows.Forms;
+﻿//-----------------------------------------------------------------------
+// <copyright file="TopLikeablePictureForm.Designer.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+using System.Windows.Forms;
 
 namespace AppUI
 {
+    /// <summary>
+    /// Get the N likeable pictures you have on facebook.
+    /// </summary>
     public partial class TopLikeablePictureForm
     {
         /// <summary>
@@ -168,13 +176,39 @@ namespace AppUI
         }
 
         #endregion
-
+        /// <summary>
+        /// Button next picture
+        /// </summary>
         private Utils.FbBlueButton buttonNext;
+
+        /// <summary>
+        /// Button most likeable picture
+        /// </summary>
         private Utils.FbBlueButton buttonTopPicture;
+
+        /// <summary>
+        /// Button previous picture
+        /// </summary>
         private Utils.FbBlueButton buttonBack;
+
+        /// <summary>
+        /// Close form
+        /// </summary>
         private Utils.FbWhiteButton buttonExit;
+
+        /// <summary>
+        /// Label of Number of likes
+        /// </summary>
         private Label labelNumberOfLikes;
+
+        /// <summary>
+        /// Show current photo
+        /// </summary>
         private PictureBox pictureBoxCurrentPic;
+
+        /// <summary>
+        /// Image of facebook like
+        /// </summary>
         private PictureBox pictureBoxLike;
     }
 }
