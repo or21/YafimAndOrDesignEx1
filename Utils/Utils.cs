@@ -21,8 +21,12 @@ namespace Utils
 
             if (isValidDate)
             {
-                string formattedBirhdayDate = string.Format("{0}{1}-{2}{3}", i_BirthdayToParse[0], i_BirthdayToParse[1],
-                    i_BirthdayToParse[3], i_BirthdayToParse[4]);
+                string formattedBirhdayDate = string.Format(
+                    "{0}{1}-{2}{3}", 
+                    i_BirthdayToParse[0], 
+                    i_BirthdayToParse[1],
+                    i_BirthdayToParse[3], 
+                    i_BirthdayToParse[4]);
                 strToReturn = formattedBirhdayDate;
             }
             else

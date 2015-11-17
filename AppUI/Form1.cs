@@ -17,6 +17,7 @@ namespace AppUI
         private const string k_NoLikes = "You don't like any page";
         private const string k_NoCheckIns = "You didn't do any check in";
         private const string k_NoPostsToRetrieve = "No Posts to retrieve :(";
+        private const string k_WaitMessage = "This may take few seconds... Please click OK";
         private readonly User r_LoggedInUser;
         private List<Photo> m_ListOfPhotos;
         private List<Photo> m_TopLikeablePhotos; 
@@ -183,7 +184,7 @@ namespace AppUI
 
         private void buttonFeature1_Click(object i_Sender, EventArgs i_E)
         {
-            MessageBox.Show("This may take few seconds!");
+            MessageBox.Show(k_WaitMessage);
             int width = 0;
             int height = 0;
             fetchPhotos();
@@ -203,6 +204,7 @@ namespace AppUI
                 {
                     i_Width = (int) photo.Width;
                 }
+
                 if (photo.Height > i_Height)
                 {
                     i_Height = (int) photo.Height;
@@ -217,7 +219,8 @@ namespace AppUI
         {
             TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos)
             {
-                Size = new Size(i_Width, i_Height + 35)
+                Size = new Size(i_Width, i_Height + 35),
+                StartPosition = FormStartPosition.CenterScreen
             };
             likeablePictureForm.ShowDialog();
         }

@@ -26,6 +26,7 @@ namespace Utils
             {
                 request.Timeout = this.Timeout;
             }
+
             return request;
         }
     }

@@ -17,7 +17,7 @@ namespace AppUI
     /// <summary>
     /// Get inforamtion about famous people who was born on my birthday date
     /// </summary>
-    public partial class WhoWasBornOnMyBirthdayForm : FbForm
+    partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
         /// <summary>
         /// Path to Json file
@@ -130,17 +130,15 @@ namespace AppUI
                     {
                       pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                     }
-
                 }
-
             }
+
             // Connection error
             catch (WebException wes)
             {
                 MessageBox.Show(wes.Message);
                 this.Close();
             }
-
         }
 
         /// <summary>
@@ -150,7 +148,6 @@ namespace AppUI
         {
             m_JsonWikiUrl = string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", m_CurrentCelebName);
         }
-
 
         /// <summary>
         /// If exists Get JSON file to read Otherwise throw relevant exception and exit
@@ -184,10 +181,6 @@ namespace AppUI
                 r_ListOfPeopleWhoWasBornOnMyBirthday.Add(name.ToString());
             }
         }
-
-
-
-        
 
         /// <summary>
         /// Insert birthday list into listBox
@@ -255,7 +248,6 @@ namespace AppUI
             {
                 textBoxInfo.Text = "Nothing was found... Please let us know";
             }
-
         }
     }
 }
