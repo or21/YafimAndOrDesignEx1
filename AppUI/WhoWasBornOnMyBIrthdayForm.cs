@@ -17,18 +17,8 @@ namespace AppUI
     /// <summary>
     /// Get inforamtion about famous people who was born on my birthday date
     /// </summary>
-    partial class WhoWasBornOnMyBirthdayForm : FbForm
+    public partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
-        /// <summary>
-        /// Path to Json file
-        /// </summary>
-        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
-
-        /// <summary>
-        /// List of people who share the same birthday date.
-        /// </summary>
-        private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
-
         /// <summary>
         /// Message to the user when no shared birthday was found
         /// </summary>
@@ -38,6 +28,16 @@ namespace AppUI
         /// Formatted birthday date date MM-DD
         /// </summary>
         private readonly string m_MyBirthdayDate;
+
+        /// <summary>
+        /// Path to Json file
+        /// </summary>
+        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
+
+        /// <summary>
+        /// List of people who share the same birthday date.
+        /// </summary>
+        private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
 
         /// <summary>
         /// Json file to parse
@@ -127,7 +127,7 @@ namespace AppUI
                     pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                 }
             }
-            // Connection error
+            
             catch (WebException wes)
             {
                 MessageBox.Show(wes.Message);
