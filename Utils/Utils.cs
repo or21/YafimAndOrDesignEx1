@@ -22,10 +22,10 @@ namespace Utils
             if (isValidDate)
             {
                 string formattedBirhdayDate = string.Format(
-                    "{0}{1}-{2}{3}", 
-                    i_BirthdayToParse[0], 
+                    "{0}{1}-{2}{3}",
+                    i_BirthdayToParse[0],
                     i_BirthdayToParse[1],
-                    i_BirthdayToParse[3], 
+                    i_BirthdayToParse[3],
                     i_BirthdayToParse[4]);
                 strToReturn = formattedBirhdayDate;
             }
@@ -81,7 +81,6 @@ namespace Utils
         public static void SetCurrentNameInFormat(string i_StrToForamt, out string o_CurrentCelebName)
         {
             o_CurrentCelebName = i_StrToForamt.Replace(" ", "_");
-            
         }
 
         /// <summary>
@@ -113,7 +112,6 @@ namespace Utils
 
             return wikiInfo;
         }
-
         /// <summary>
         /// Get information from wiki-json
         /// </summary>
@@ -137,17 +135,14 @@ namespace Utils
         /// <summary>
         /// Send request to the wiki server, download json and parse it.
         /// </summary>
-        /// <param name="m_JsonWikiUrl"></param>
-        /// <param name="m_ParsedJson"></param>
-        public static JObject getJSONFromUrl(string m_JsonWikiUrl)
+        /// <param name="i_JsonWikiUrl"></param>
+        public static JObject GetJsonFromUrl(string i_JsonWikiUrl)
         {
             using (WebDownload wc = new WebDownload())
             {
-                string json = wc.DownloadString(m_JsonWikiUrl);
+                string json = wc.DownloadString(i_JsonWikiUrl);
                 return JObject.Parse(json);
             }
         }
-
-
     }
 }

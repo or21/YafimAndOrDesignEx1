@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using Utils;
 
-
 namespace AppUI
 {
     /// <summary>
@@ -33,7 +32,7 @@ namespace AppUI
         /// <summary>
         /// Message to the user when no shared birthday was found
         /// </summary>
-        private readonly string r_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME frown emoticon";
+        private const string k_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME frown emoticon";
 
         /// <summary>
         /// Formatted birthday date date MM-DD
@@ -76,7 +75,6 @@ namespace AppUI
                 MessageBox.Show(bfe.Message);
                 this.Close();
             }
-
         }
 
         /// <summary>
@@ -118,7 +116,7 @@ namespace AppUI
         {
             try
             {
-                m_ParsedJson = Utils.Utils.getJSONFromUrl(m_JsonWikiUrl);
+                m_ParsedJson = Utils.Utils.GetJsonFromUrl(m_JsonWikiUrl);
                 try
                 {
                     string image = Utils.Utils.GetJsonWikiImageQuery(m_ParsedJson);
@@ -142,6 +140,7 @@ namespace AppUI
         /// </summary>
         private void getJsonFile()
         {
+            // TODO: File not found is not working
             try
             {
                 using (StreamReader reader = new StreamReader(m_PathToJsonFile))
@@ -177,7 +176,7 @@ namespace AppUI
             //TODO: If no one was born today...?
             if (m_ListOfPeopleWhoWasBornOnMyBirthday.Count == 0)
             {
-                MessageBox.Show(r_NoOneWasBornMessage);
+                MessageBox.Show(k_NoOneWasBornMessage);
             }
         }
 
