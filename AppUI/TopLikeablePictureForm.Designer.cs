@@ -19,6 +19,7 @@ namespace AppUI
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

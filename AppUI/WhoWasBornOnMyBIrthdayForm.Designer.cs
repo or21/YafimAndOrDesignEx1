@@ -1,6 +1,6 @@
 ﻿namespace AppUI
 {
-    partial class WhoWasBornOnMyBirthdayForm
+    public partial class WhoWasBornOnMyBirthdayForm
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

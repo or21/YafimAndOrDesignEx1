@@ -18,7 +18,7 @@ namespace AppUI
     /// <summary>
     /// Get inforamtion about famous people who was born on my birthday date
     /// </summary>
-    public partial class WhoWasBornOnMyBirthdayForm : FbForm
+    partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
         /// <summary>
         /// Path to Json file
@@ -128,14 +128,13 @@ namespace AppUI
                     {
                       pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                     }
-            }
+                }
             // Connection error
             catch (WebException wes)
             {
                 MessageBox.Show(wes.Message);
                 this.Close();
             }
-
         }
 
         /// <summary>
