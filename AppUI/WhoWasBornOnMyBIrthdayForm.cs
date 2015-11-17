@@ -12,18 +12,17 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using Utils;
 
-
 namespace AppUI
 {
     /// <summary>
     /// Get inforamtion about famous people who was born on my birthday date
     /// </summary>
-    partial class WhoWasBornOnMyBirthdayForm : FbForm
+    public partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
         /// <summary>
         /// Path to Json file
         /// </summary>
-        private readonly string r_PathToJSONFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
+        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
 
         /// <summary>
         /// List of people who share the same birthday date.
@@ -69,7 +68,7 @@ namespace AppUI
             InitializeComponent();
             try
             {
-                m_MyBirthdayDate = Utils.Utils.parseBirthdayDate(i_BirthdayDate);
+                m_MyBirthdayDate = Utils.Utils.ParseBirthdayDate(i_BirthdayDate);
             }
             catch (FormatException bfe)
             {
@@ -87,14 +86,14 @@ namespace AppUI
         /// <param name="i_Event"></param>
         protected override void OnLoad(EventArgs i_Event)
         {
-            ///TODO: Validate no errors before parseJSON(). (file not found)
+            //TODO: Validate no errors before parseJSON(). (file not found)
             // try
             getJSONFile();
             // catch fileNotFound
 
             parseJSON();
 
-            Utils.Utils.parseBirthdayJSON(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
+            Utils.Utils.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
             fetchBirthdays();
             initListBox();
@@ -125,8 +124,8 @@ namespace AppUI
                     
                     try
                     {
-                       // string image = m_ParsedJson["query"]["pages"].First.First["thumbnail"]["source"].ToString();
-                        string image = Utils.Utils.getJSONWikiImageQuery(m_ParsedJson);
+                        // string image = m_ParsedJson["query"]["pages"].First.First["thumbnail"]["source"].ToString();
+                        string image = Utils.Utils.GetJsonWikiImageQuery(m_ParsedJson);
                         pictureBox.LoadAsync(image);
                     }
                     catch (NullReferenceException nre)
@@ -151,7 +150,7 @@ namespace AppUI
         {
             try
             {
-                using (StreamReader reader = new StreamReader(r_PathToJSONFile))
+                using (StreamReader reader = new StreamReader(m_PathToJsonFile))
                 {
                     m_Json = reader.ReadToEnd();
                 }
@@ -206,11 +205,11 @@ namespace AppUI
         private void listBoxWhoWasBorn_SelectedIndexChanged(object i_Sender, EventArgs i_Event)
         {
             labelName.Text = listBoxWhoWasBorn.Text;
-            Utils.Utils.setCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
+            Utils.Utils.SetCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
 
-            Utils.Utils.buildJSONWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
+            Utils.Utils.BuildJsonWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
             setPictureBox();
-            textBoxInfo.Text = Utils.Utils.getWikiJSONInfo(m_ParsedJson);
+            textBoxInfo.Text = Utils.Utils.GetWikiJsonInfo(m_ParsedJson);
         }
     }
 }
