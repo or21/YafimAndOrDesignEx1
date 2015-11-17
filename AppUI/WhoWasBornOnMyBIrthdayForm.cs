@@ -15,24 +15,19 @@ using Utils;
 namespace AppUI
 {
     /// <summary>
-    /// Get inforamtion about famous people who was born on my birthday date
+    /// Get information about famous people who was born on my birthday date
     /// </summary>
-    partial class WhoWasBornOnMyBirthdayForm : FbForm
+    public partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
-        /// <summary>
-        /// Path to Json file
-        /// </summary>
-        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
-
-        /// <summary>
-        /// List of people who share the same birthday date.
-        /// </summary>
-        private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
-
         /// <summary>
         /// Message to the user when no shared birthday was found
         /// </summary>
         private const string k_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME frown emoticon";
+
+        /// <summary>
+        /// Path to Json file
+        /// </summary>
+        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
 
         /// <summary>
         /// Formatted birthday date date MM-DD
@@ -40,9 +35,14 @@ namespace AppUI
         private readonly string m_MyBirthdayDate;
 
         /// <summary>
+        /// List of people who share the same birthday date.
+        /// </summary>
+        private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
+
+        /// <summary>
         /// Json file to parse
         /// </summary>
-        private string m_Json;
+        private string m_JSON;
 
         /// <summary>
         /// Json file from external url
@@ -50,12 +50,12 @@ namespace AppUI
         private string m_JsonWikiUrl;
 
         /// <summary>
-        /// Current celected celeb name to work with.
+        /// Current selected celeb name to work with.
         /// </summary>
         private string m_CurrentCelebName;
 
         /// <summary>
-        /// 
+        /// Parsed json
         /// </summary>
         private JObject m_ParsedJson;
 
@@ -66,32 +66,22 @@ namespace AppUI
         public WhoWasBornOnMyBirthdayForm(string i_BirthdayDate)
         {
             InitializeComponent();
-            try
-            {
-                m_MyBirthdayDate = Utils.Utils.ParseBirthdayDate(i_BirthdayDate);
-            }
-            catch (FormatException bfe)
-            {
-                MessageBox.Show(bfe.Message);
-                this.Close();
-            }
+            m_MyBirthdayDate = Utils.Utils.ParseBirthdayDate(i_BirthdayDate);
         }
 
         /// <summary>
         /// 1. Get the json-celeb file and parse it
         /// 2. Fetch birthdays based on that json file
-        /// 3. Init list box with all the birthdays
+        /// 3. Initialize list box with all the birthdays
         /// </summary>
-        /// <param name="i_Event"></param>
+        /// <param name="i_Event">The event</param>
         protected override void OnLoad(EventArgs i_Event)
         {
-            ///TODO: Validate no errors before parseJSON(). (file not found)
-            // try
-            getJsonFile();
-            // catch fileNotFound
+            /// TODO:Handle exceptions
+            m_JSON = Utils.Utils.getLocalJsonFile(m_PathToJsonFile);
 
-            m_ParsedJson = Utils.Utils.parseJSON(m_Json);
-            
+            m_ParsedJson = Utils.Utils.parseJSON(m_JSON);
+
             Utils.Utils.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
             fetchBirthdays();
@@ -101,7 +91,7 @@ namespace AppUI
         }
 
         /// <summary>
-        /// Init list box to selec first item in the list
+        /// Initialize list box to select first item in the list
         /// </summary>
         private void initListBox()
         {
@@ -127,9 +117,9 @@ namespace AppUI
                       pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
                     }
                 }
-            // Connection error
-            catch (WebException wes)
+            catch (WebException wes) 
             {
+                // Connection error 
                 MessageBox.Show(wes.Message);
                 this.Close();
             }
@@ -138,20 +128,11 @@ namespace AppUI
         /// <summary>
         /// If exists Get JSON file to read Otherwise throw relevant exception and exit
         /// </summary>
-        private void getJsonFile()
+        private void getLocalJsonFile()
         {
-            // TODO: File not found is not working
-            try
+            using (StreamReader reader = new StreamReader(m_PathToJsonFile))
             {
-                using (StreamReader reader = new StreamReader(m_PathToJsonFile))
-                {
-                    m_Json = reader.ReadToEnd();
-                }
-            }
-            catch (FileNotFoundException fnf)
-            {
-                MessageBox.Show(string.Format("error: {0}", fnf.Message));
-                this.Close();
+                m_JSON = reader.ReadToEnd();
             }
         }
 
@@ -165,7 +146,7 @@ namespace AppUI
                 listBoxWhoWasBorn.Items.Add(name);
             }
 
-            //TODO: If no one was born today...?
+            // TODO: If no one was born today...?
             if (m_ListOfPeopleWhoWasBornOnMyBirthday.Count == 0)
             {
                 MessageBox.Show(k_NoOneWasBornMessage);

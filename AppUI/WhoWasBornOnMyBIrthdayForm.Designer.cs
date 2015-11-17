@@ -1,5 +1,13 @@
-﻿namespace AppUI
+﻿//-----------------------------------------------------------------------
+// <copyright file="WhoWasBornOnMyBirthdayForm.Designer.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+namespace AppUI
 {
+    /// <summary>
+    /// Get information about famous people who was born on my birthday date
+    /// </summary>
     public partial class WhoWasBornOnMyBirthdayForm
     {
         /// <summary>
@@ -34,7 +42,7 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelWikiCopyright = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,22 +98,22 @@
             this.labelName.TabIndex = 8;
             this.labelName.Text = "FirstName LastName";
             // 
-            // label2
+            // labelWikiCopyright
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label2.Location = new System.Drawing.Point(441, 221);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "From Wikipedia, the free encyclopedia";
+            this.labelWikiCopyright.AutoSize = true;
+            this.labelWikiCopyright.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelWikiCopyright.Location = new System.Drawing.Point(441, 221);
+            this.labelWikiCopyright.Name = "labelWikiCopyright";
+            this.labelWikiCopyright.Size = new System.Drawing.Size(188, 13);
+            this.labelWikiCopyright.TabIndex = 9;
+            this.labelWikiCopyright.Text = "From Wikipedia, the free encyclopedia";
             // 
             // WhoWasBornOnMyBirthdayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 260);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelWikiCopyright);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxInfo);
             this.Controls.Add(this.pictureBox);
@@ -118,19 +126,42 @@
             this.Controls.SetChildIndex(this.pictureBox, 0);
             this.Controls.SetChildIndex(this.textBoxInfo, 0);
             this.Controls.SetChildIndex(this.labelName, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.labelWikiCopyright, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
-
+        /// <summary>
+        /// list box 
+        /// </summary>
         private System.Windows.Forms.ListBox listBoxWhoWasBorn;
+
+        /// <summary>
+        /// White button
+        /// </summary>
         private Utils.FbWhiteButton fbWhiteButtonExit;
+
+        /// <summary>
+        /// Picture box
+        /// </summary>
         private System.Windows.Forms.PictureBox pictureBox;
+
+        /// <summary>
+        /// TextBox information
+        /// </summary>
         private System.Windows.Forms.TextBox textBoxInfo;
+
+        /// <summary>
+        /// full name 
+        /// </summary>
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Label label2;
+
+        /// <summary>
+        /// Wiki Copyrights
+        /// </summary>
+        private System.Windows.Forms.Label labelWikiCopyright;
     }
 }

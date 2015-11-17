@@ -71,16 +71,6 @@ namespace Utils.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] celeb_birthdays {
-            get {
-                object obj = ResourceManager.GetObject("celeb_birthdays", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap facebook_box_white {

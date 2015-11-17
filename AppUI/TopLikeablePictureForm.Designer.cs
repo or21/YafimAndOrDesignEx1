@@ -31,15 +31,16 @@ namespace AppUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TopLikeablePictureForm));
             this.buttonNext = new Utils.FbBlueButton();
             this.buttonTopPicture = new Utils.FbBlueButton();
             this.buttonBack = new Utils.FbBlueButton();
             this.buttonExit = new Utils.FbWhiteButton();
             this.labelNumberOfLikes = new System.Windows.Forms.Label();
             this.pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLike = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLike)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNext
@@ -125,15 +126,15 @@ namespace AppUI
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
             // 
-            // pictureBox1
+            // pictureBoxLike
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pictureBox1.Image = global::AppUI.Properties.Resources.facebook_like_button_hand;
-            this.pictureBox1.Location = new System.Drawing.Point(172, 387);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 30);
-            this.pictureBox1.TabIndex = 41;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxLike.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pictureBoxLike.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLike.Image")));
+            this.pictureBoxLike.Location = new System.Drawing.Point(172, 387);
+            this.pictureBoxLike.Name = "pictureBoxLike";
+            this.pictureBoxLike.Size = new System.Drawing.Size(41, 30);
+            this.pictureBoxLike.TabIndex = 41;
+            this.pictureBoxLike.TabStop = false;
             // 
             // TopLikeablePictureForm
             // 
@@ -141,7 +142,7 @@ namespace AppUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(469, 459);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxLike);
             this.Controls.Add(this.labelNumberOfLikes);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonTopPicture);
@@ -158,9 +159,9 @@ namespace AppUI
             this.Controls.SetChildIndex(this.buttonTopPicture, 0);
             this.Controls.SetChildIndex(this.buttonNext, 0);
             this.Controls.SetChildIndex(this.labelNumberOfLikes, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
+            this.Controls.SetChildIndex(this.pictureBoxLike, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLike)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +175,6 @@ namespace AppUI
         private Utils.FbWhiteButton buttonExit;
         private Label labelNumberOfLikes;
         private PictureBox pictureBoxCurrentPic;
-        private PictureBox pictureBox1;
+        private PictureBox pictureBoxLike;
     }
 }

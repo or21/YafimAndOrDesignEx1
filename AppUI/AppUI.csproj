@@ -105,7 +105,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\celeb-birthdays.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">
@@ -117,10 +116,7 @@
     <None Include="img\facebook_like_button_hand.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\attachment_unavailable.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\attachment_unavailable1.PNG" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
