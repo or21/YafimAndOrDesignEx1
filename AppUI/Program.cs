@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AppUI
@@ -13,17 +14,31 @@ namespace AppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
-            Form currentForm = new LoginForm();
+        //    Application.Run(new LoginForm());
+        //    Form currentForm = new LoginForm();
             //TODO: Delete. for fast debug only
-            //WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
+            WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
+           
             try
             {
                 currentForm.ShowDialog();
             }
+            catch (FormatException bfe)
+            {
+                MessageBox.Show(bfe.Message);
+            }
+            catch (FileNotFoundException fnf)
+            {
+                MessageBox.Show(fnf.Message);
+            }
             catch (Exception e)
             {
-                currentForm.Close();
+                MessageBox.Show(e.Message);
+            }
+
+            finally
+            {
+                Application.Exit();
             }
         }
     }

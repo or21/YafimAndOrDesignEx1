@@ -79,7 +79,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\celeb-birthdays.json" />
     <None Include="Resources\facebook_box_white.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,14 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Utils.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using Newtonsoft.Json.Linq;
+
 
 namespace Utils
 {
@@ -22,10 +29,10 @@ namespace Utils
             if (isValidDate)
             {
                 string formattedBirhdayDate = string.Format(
-                    "{0}{1}-{2}{3}",
-                    i_BirthdayToParse[0],
+                    "{0}{1}-{2}{3}", 
+                    i_BirthdayToParse[0], 
                     i_BirthdayToParse[1],
-                    i_BirthdayToParse[3],
+                    i_BirthdayToParse[3], 
                     i_BirthdayToParse[4]);
                 strToReturn = formattedBirhdayDate;
             }
@@ -141,8 +148,31 @@ namespace Utils
             using (WebDownload wc = new WebDownload())
             {
                 string json = wc.DownloadString(i_JsonWikiUrl);
-                return JObject.Parse(json);
+                return parseJSON(json);
             }
         }
+
+        /// <summary>
+        /// Parse JSON file
+        /// </summary>
+        public static JObject parseJSON(string i_JsonToParse)
+        {
+            return JObject.Parse(i_JsonToParse);
+        }
+
+        /// <summary>
+        /// Get local JSON file
+        /// </summary>
+        /// <param name="i_PathToJsonFile">Path to json file</param>
+        /// <returns>json file as string</returns>
+        public static string getLocalJsonFile(string i_PathToJsonFile)
+        {
+            using (StreamReader reader = new StreamReader(i_PathToJsonFile))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
+
     }
 }
