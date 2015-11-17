@@ -10,14 +10,29 @@ using Utils;
 
 namespace AppUI
 {
+    /// <summary>
+    /// Get the N likeable pictures you have on facebook.
+    /// </summary>
     public partial class TopLikeablePictureForm : FbForm
     {
+        /// <summary>
+        /// List of the top N pictures
+        /// </summary>
         private readonly List<Photo> m_TopLikeablePhotos;
+
+        /// <summary>
+        /// Current image index
+        /// </summary>
         private int m_IndexOfCurrentImage;
 
+        /// <summary>
+        /// Initializes a new instance of the TopLikeablePictureForm class.
+        /// </summary>
+        /// <param name="i_TopLikeablePhotos">Top likeable pictures</param>
         public TopLikeablePictureForm(List<Photo> i_TopLikeablePhotos)
         {
             InitializeComponent();
+
             m_TopLikeablePhotos = i_TopLikeablePhotos;
             m_IndexOfCurrentImage = 0;
         }
@@ -25,46 +40,75 @@ namespace AppUI
         /// <summary>
         /// Close form
         /// </summary>
-        /// <param name="i_Sender"></param>
-        /// <param name="i_E"></param>
-        private void buttonExit_Click(object i_Sender, EventArgs i_E)
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonExit_Click(object i_Sender, EventArgs i_Event)
         {
             this.Close();
         }
 
-        private void buttonTopPicture_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Get the most likeable picture
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonTopPicture_Click(object i_Sender, EventArgs i_Event)
         {
             m_IndexOfCurrentImage = 0;
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
-        private void buttonNext_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Next picture
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonNext_Click(object i_Sender, EventArgs i_Event)
         {
             setNextImage();
         }
 
-        private void buttonBack_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Previous picture
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonBack_Click(object i_Sender, EventArgs i_Event)
         {
             setPrevImage();
         }
 
+        /// <summary>
+        /// Set next image
+        /// </summary>
         private void setNextImage()
         {
             m_IndexOfCurrentImage = (m_IndexOfCurrentImage + 1 < m_TopLikeablePhotos.Count) ? m_IndexOfCurrentImage + 1 : 0;
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
+        /// <summary>
+        /// Set previous image
+        /// </summary>
         private void setPrevImage()
         {
             m_IndexOfCurrentImage = (m_IndexOfCurrentImage - 1 >= 0) ? m_IndexOfCurrentImage - 1 : m_TopLikeablePhotos.Count - 1;
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
+        /// <summary>
+        /// Set number of likes
+        /// </summary>
+        /// <param name="i_Photo">Current photo</param>
         private void setNumberOfLikes(Photo i_Photo)
         {
             labelNumberOfLikes.Text = string.Format("{0} Likes", i_Photo.LikedBy.Count);
         }
 
+        /// <summary>
+        /// Load image to display
+        /// </summary>
+        /// <param name="i_ImageToLoad">Image to load</param>
         private void loadImage(Photo i_ImageToLoad)
         {
             pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureNormalURL);
