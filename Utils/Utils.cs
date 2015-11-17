@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 
 namespace Utils
@@ -15,7 +14,7 @@ namespace Utils
         /// Parse given date to MM-DD format
         /// </summary>
         /// <param name="i_BirthdayToParse">Birthday date mm/dd/yyyy </param>
-        public static string parseBirthdayDate(string i_BirthdayToParse)
+        public static string ParseBirthdayDate(string i_BirthdayToParse)
         {
             bool isValidDate = validateStringFormat(i_BirthdayToParse);
             string strToReturn;
@@ -63,14 +62,14 @@ namespace Utils
         /// Insert json-celeb data to collection
         /// TODO: Maybe use property instead out OR use as private method after parsing
         /// </summary>
-        /// <param name="i_JSON">json object</param>
+        /// <param name="i_Json">json object</param>
         /// <param name="o_ListOfPeopleWhoWasBornOnMyBirthday">The collection</param>
         /// <param name="i_Key">Key word</param>
-        public static void parseBirthdayJSON(JObject i_JSON, out List<string> o_ListOfPeopleWhoWasBornOnMyBirthday, string i_Key)
+        public static void ParseBirthdayJson(JObject i_Json, out List<string> o_ListOfPeopleWhoWasBornOnMyBirthday, string i_Key)
         {
             o_ListOfPeopleWhoWasBornOnMyBirthday = new List<string>();
 
-            foreach (JToken name in i_JSON[i_Key])
+            foreach (JToken name in i_Json[i_Key])
             {
                 o_ListOfPeopleWhoWasBornOnMyBirthday.Add(name.ToString());
             }
@@ -79,33 +78,32 @@ namespace Utils
         /// <summary>
         /// Format selected name as "first_name" 
         /// </summary>
-        public static void setCurrentNameInFormat(string i_StrToForamt, out string o_CurrentCelebName)
+        public static void SetCurrentNameInFormat(string i_StrToForamt, out string o_CurrentCelebName)
         {
             o_CurrentCelebName = i_StrToForamt.Replace(" ", "_");
-            
         }
 
         /// <summary>
         /// Build json request to wikipedia server using its API.
         /// properties: images|intro content - based on given name
         /// </summary>
-        /// <param name="o_JSONWikiRequest">Request path</param>
+        /// <param name="i_JsonWikiRequest">Request path</param>
         /// <param name="i_FullName">Full name as parameter</param>
-        public static void buildJSONWikiRequest(out string o_JSONWikiRequest, string i_FullName)
+        public static void BuildJsonWikiRequest(out string i_JsonWikiRequest, string i_FullName)
         {
-            o_JSONWikiRequest = string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", i_FullName);
+            i_JsonWikiRequest = string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", i_FullName);
         }
 
         /// <summary>
         /// Get information from wiki json file
         /// </summary>
-        public static string getWikiJSONInfo(JObject i_JSON)
+        public static string GetWikiJsonInfo(JObject i_Json)
         {
             string wikiInfo;
 
             try
             {
-                wikiInfo = getJSONWikiInfoQuery(i_JSON);
+                wikiInfo = GetJsonWikiInfoQuery(i_Json);
             }
             catch (NullReferenceException nre)
             {
@@ -117,33 +115,32 @@ namespace Utils
         /// <summary>
         /// Get information from wiki-json
         /// </summary>
-        /// <param name="i_JSON"></param>
+        /// <param name="i_Json"></param>
         /// <returns></returns>
-        public static string getJSONWikiInfoQuery(JObject i_JSON)
+        public static string GetJsonWikiInfoQuery(JObject i_Json)
         {
-            return i_JSON["query"]["pages"].First.First["extract"].ToString();
+            return i_Json["query"]["pages"].First.First["extract"].ToString();
         }
 
         /// <summary>
         /// Get image from wiki-json
         /// </summary>
-        /// <param name="i_JSON"></param>
+        /// <param name="i_Json"></param>
         /// <returns></returns>
-        public static string getJSONWikiImageQuery(JObject i_JSON)
+        public static string GetJsonWikiImageQuery(JObject i_Json)
         {
-            return i_JSON["query"]["pages"].First.First["thumbnail"]["source"].ToString();
+            return i_Json["query"]["pages"].First.First["thumbnail"]["source"].ToString();
         }
 
         /// <summary>
         /// Send request to the wiki server, download json and parse it.
         /// </summary>
-        /// <param name="m_JsonWikiUrl"></param>
-        /// <param name="m_ParsedJson"></param>
-        public static JObject getJSONFromUrl(string m_JsonWikiUrl)
+        /// <param name="i_JsonWikiUrl"></param>
+        public static JObject GetJsonFromUrl(string i_JsonWikiUrl)
         {
             using (WebDownload wc = new WebDownload())
             {
-                string json = wc.DownloadString(m_JsonWikiUrl);
+                string json = wc.DownloadString(i_JsonWikiUrl);
                 return parseJSON(json);
             }
         }

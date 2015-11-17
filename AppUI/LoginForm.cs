@@ -5,7 +5,7 @@ using Utils;
 
 namespace AppUI
 {
-    partial class LoginForm : FbForm
+    public partial class LoginForm : FbForm
     {
         public LoginForm()
         {
