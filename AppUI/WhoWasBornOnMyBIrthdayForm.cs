@@ -92,7 +92,7 @@ namespace AppUI
             getJSONFile();
             // catch fileNotFound
 
-            parseJSON();
+            m_ParsedJson = Utils.Utils.parseJSON(m_Json);
             
             Utils.Utils.parseBirthdayJSON(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
@@ -154,14 +154,6 @@ namespace AppUI
                 MessageBox.Show(string.Format("error: {0}", fnf.Message));
                 this.Close();
             }
-        }
-
-        /// <summary>
-        /// Parse JSON file
-        /// </summary>
-        private void parseJSON()
-        {
-            m_ParsedJson = JObject.Parse(m_Json);
         }
 
         /// <summary>

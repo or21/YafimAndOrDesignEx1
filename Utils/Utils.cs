@@ -144,8 +144,16 @@ namespace Utils
             using (WebDownload wc = new WebDownload())
             {
                 string json = wc.DownloadString(m_JsonWikiUrl);
-                return JObject.Parse(json);
+                return parseJSON(json);
             }
+        }
+
+        /// <summary>
+        /// Parse JSON file
+        /// </summary>
+        public static JObject parseJSON(string i_JsonToParse)
+        {
+            return JObject.Parse(i_JsonToParse);
         }
 
 
