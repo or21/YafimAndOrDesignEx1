@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TopLikeablePictureForm.Designer.cs" company="A16_Ex01">
+// <copyright file="MostLikeablePictureForm.Designer.cs" company="A16_Ex01">
 // Yafim Vodkov 308973882 Or Brand id 302521034
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,7 +10,7 @@ namespace AppUI
     /// <summary>
     /// Get the N likeable pictures you have on facebook.
     /// </summary>
-    public partial class TopLikeablePictureForm
+    public partial class MostLikeablePictureForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,7 @@ namespace AppUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TopLikeablePictureForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MostLikeablePictureForm));
             this.buttonNext = new Utils.FbBlueButton();
             this.buttonTopPicture = new Utils.FbBlueButton();
             this.buttonBack = new Utils.FbBlueButton();
@@ -133,6 +133,7 @@ namespace AppUI
             this.pictureBoxCurrentPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
+            this.pictureBoxCurrentPic.WaitOnLoad = false;
             // 
             // pictureBoxLike
             // 
@@ -144,7 +145,7 @@ namespace AppUI
             this.pictureBoxLike.TabIndex = 41;
             this.pictureBoxLike.TabStop = false;
             // 
-            // TopLikeablePictureForm
+            // MostLikeablePictureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,8 +159,8 @@ namespace AppUI
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.pictureBoxCurrentPic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "TopLikeablePictureForm";
-            this.Text = "TopLikeablePictureForm";
+            this.Name = "MostLikeablePictureForm";
+            this.Text = "MostLikeablePictureForm";
             this.Load += new System.EventHandler(this.buttonTopPicture_Click);
             this.Controls.SetChildIndex(this.pictureBoxCurrentPic, 0);
             this.Controls.SetChildIndex(this.buttonExit, 0);

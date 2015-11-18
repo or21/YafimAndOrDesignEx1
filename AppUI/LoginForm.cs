@@ -30,7 +30,7 @@ namespace AppUI
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
-                Form appUi = new Form1(result);
+                Form appUi = new MainWindow(result);
                 appUi.Show();
                 this.Hide();
             }

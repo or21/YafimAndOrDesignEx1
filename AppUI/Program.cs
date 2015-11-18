@@ -22,7 +22,8 @@ namespace AppUI
            
             try
             {
-                currentForm.ShowDialog();
+                /*currentForm.ShowDialog();*/
+                Application.Run(new LoginForm());
             }
             catch (FormatException bfe)
             {
@@ -38,7 +39,8 @@ namespace AppUI
             }
             finally
             {
-                Application.Exit();
+                //Application.Exit();
+                
             }
         }
     }

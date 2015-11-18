@@ -7,22 +7,46 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using FacebookWrapper.ObjectModel;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace Utils
 {
     /// <summary>
     /// This class holds the necessarily logic to use AppUI class.
     /// </summary>
-    public static class Utils
+    public class Utils
     {
+        private static Utils m_Instance;
+        private static readonly object m_LockInstance = new object(); 
+        private Utils() {}
+
+        public static Utils Instance
+        {
+            get
+            {
+                if (m_Instance == null)
+                {
+                    lock (m_LockInstance)
+                    {
+                        if (m_Instance == null)
+                        {
+                            m_Instance = new Utils();
+                        }
+                    }
+                }
+                return m_Instance;
+            }
+        }
+
         # region WhoWasBornOnMyBirthday logic
 
         /// <summary>
         /// Parse given date to MM-DD format
         /// </summary>
         /// <param name="i_BirthdayToParse">Birthday date mm/dd/yyyy </param>
-        public static string ParseBirthdayDate(string i_BirthdayToParse)
+        public string ParseBirthdayDate(string i_BirthdayToParse)
         {
             bool isValidDate = validateStringFormat(i_BirthdayToParse);
             string strToReturn;
@@ -30,10 +54,10 @@ namespace Utils
             if (isValidDate)
             {
                 string formattedBirhdayDate = string.Format(
-                    "{0}{1}-{2}{3}", 
-                    i_BirthdayToParse[0], 
+                    "{0}{1}-{2}{3}",
+                    i_BirthdayToParse[0],
                     i_BirthdayToParse[1],
-                    i_BirthdayToParse[3], 
+                    i_BirthdayToParse[3],
                     i_BirthdayToParse[4]);
                 strToReturn = formattedBirhdayDate;
             }
@@ -50,7 +74,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_StringToCheck"></param>
         /// <returns></returns>
-        private static bool validateStringFormat(string i_StringToCheck)
+        private bool validateStringFormat(string i_StringToCheck)
         {
             bool isValid;
             try
@@ -73,7 +97,7 @@ namespace Utils
         /// <param name="i_Json">json object</param>
         /// <param name="o_ListOfPeopleWhoWasBornOnMyBirthday">The collection</param>
         /// <param name="i_Key">Key word</param>
-        public static void ParseBirthdayJson(JObject i_Json, out List<string> o_ListOfPeopleWhoWasBornOnMyBirthday, string i_Key)
+        public void ParseBirthdayJson(JObject i_Json, out List<string> o_ListOfPeopleWhoWasBornOnMyBirthday, string i_Key)
         {
             o_ListOfPeopleWhoWasBornOnMyBirthday = new List<string>();
 
@@ -86,7 +110,7 @@ namespace Utils
         /// <summary>
         /// Format selected name as "first_name" 
         /// </summary>
-        public static void SetCurrentNameInFormat(string i_StrToForamt, out string o_CurrentCelebName)
+        public void SetCurrentNameInFormat(string i_StrToForamt, out string o_CurrentCelebName)
         {
             o_CurrentCelebName = i_StrToForamt.Replace(" ", "_");
         }
@@ -97,7 +121,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_JsonWikiRequest">Request path</param>
         /// <param name="i_FullName">Full name as parameter</param>
-        public static void BuildJsonWikiRequest(out string i_JsonWikiRequest, string i_FullName)
+        public void BuildJsonWikiRequest(out string i_JsonWikiRequest, string i_FullName)
         {
             i_JsonWikiRequest = string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", i_FullName);
         }
@@ -105,7 +129,7 @@ namespace Utils
         /// <summary>
         /// Get information from wiki json file
         /// </summary>
-        public static string GetWikiJsonInfo(JObject i_Json)
+        public string GetWikiJsonInfo(JObject i_Json)
         {
             string wikiInfo;
 
@@ -126,7 +150,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_Json"></param>
         /// <returns></returns>
-        public static string GetJsonWikiInfoQuery(JObject i_Json)
+        public string GetJsonWikiInfoQuery(JObject i_Json)
         {
             return i_Json["query"]["pages"].First.First["extract"].ToString();
         }
@@ -136,7 +160,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_Json"></param>
         /// <returns></returns>
-        public static string GetJsonWikiImageQuery(JObject i_Json)
+        public string GetJsonWikiImageQuery(JObject i_Json)
         {
             return i_Json["query"]["pages"].First.First["thumbnail"]["source"].ToString();
         }
@@ -145,19 +169,19 @@ namespace Utils
         /// Send request to the wiki server, download json and parse it.
         /// </summary>
         /// <param name="i_JsonWikiUrl"></param>
-        public static JObject GetJsonFromUrl(string i_JsonWikiUrl)
+        public JObject GetJsonFromUrl(string i_JsonWikiUrl)
         {
             using (WebDownload wc = new WebDownload())
             {
                 string json = wc.DownloadString(i_JsonWikiUrl);
-                return parseJSON(json);
+                return ParseJSON(json);
             }
         }
 
         /// <summary>
         /// Parse JSON file
         /// </summary>
-        public static JObject parseJSON(string i_JsonToParse)
+        public JObject ParseJSON(string i_JsonToParse)
         {
             return JObject.Parse(i_JsonToParse);
         }
@@ -167,16 +191,110 @@ namespace Utils
         /// </summary>
         /// <param name="i_PathToJsonFile">Path to json file</param>
         /// <returns>json file as string</returns>
-        public static string getLocalJsonFile(string i_PathToJsonFile)
+        public string GetLocalJsonFile(string i_PathToJsonFile)
         {
             using (StreamReader reader = new StreamReader(i_PathToJsonFile))
             {
                 return reader.ReadToEnd();
             }
         }
-    #endregion
+        #endregion
 
-        #region TopLikeablePictures logic
+        #region MostLikeablePictures logic
+        /// <summary>
+        /// Set next image
+        /// </summary>
+        public int SetNextImage(int m_IndexOfCurrentImage, int i_NumberOfPictures)
+        {
+            return (m_IndexOfCurrentImage + 1 < i_NumberOfPictures) ? m_IndexOfCurrentImage + 1 : 0;
+        }
+
+        /// <summary>
+        /// Set previous image
+        /// </summary>
+        public int SetPrevImage(int m_IndexOfCurrentImage, int i_NumberOfPictures)
+        {
+            return (m_IndexOfCurrentImage - 1 >= 0) ? m_IndexOfCurrentImage - 1 : i_NumberOfPictures - 1;
+        }
+
+        #endregion
+
+        #region Form1
+
+        /// <summary>
+        /// Sort list of photos by number of likes 
+        /// </summary>
+        public void SortPhotosByDescendingOrder(List<Photo> io_ListOfPhotos)
+        {
+            io_ListOfPhotos.Sort((numberOfLikesPhotoOne, numberOfLikesPhotoTwo) =>
+                numberOfLikesPhotoOne.LikedBy.Count().CompareTo(numberOfLikesPhotoTwo.LikedBy.Count()));
+            io_ListOfPhotos.Reverse();
+
+        }
+
+        public List<Photo> FindMostLikablePhotos(int i_NumberOfPhotosToShow, List<Photo> i_ListOfPhotos)
+        {
+            List<Photo> topLikeablePhotos = new List<Photo>(i_NumberOfPhotosToShow);
+
+            Photo minPhoto = new Photo();
+
+            foreach (Photo photo in i_ListOfPhotos)
+            {
+                if (topLikeablePhotos.Count != topLikeablePhotos.Capacity)
+                {
+                    topLikeablePhotos.Add(photo);
+                    minPhoto = findMinInTopLikable(topLikeablePhotos);
+                }
+                else
+                {
+                    if (photo.LikedBy.Count >= minPhoto.LikedBy.Count)
+                    {
+                        addPhotoToList(photo, ref minPhoto, topLikeablePhotos);
+                    }
+                }
+            }
+
+            return topLikeablePhotos;
+            //TODO: no photos to show
+        }
+
+        private void addPhotoToList(Photo i_Photo, ref Photo io_MinPhoto, List<Photo> i_TopLikeablePhotos)
+        {
+            i_TopLikeablePhotos.Remove(io_MinPhoto);
+            i_TopLikeablePhotos.Add(i_Photo);
+            io_MinPhoto = findMinInTopLikable(i_TopLikeablePhotos);
+        }
+
+        private Photo findMinInTopLikable(List<Photo> i_TopLikeablePhotos)
+        {
+            Photo minPhoto = i_TopLikeablePhotos[0];
+
+            foreach (Photo photo in i_TopLikeablePhotos)
+            {
+                if (photo.LikedBy.Count <= minPhoto.LikedBy.Count)
+                {
+                    minPhoto = photo;
+                }
+            }
+
+            return minPhoto;
+        }
+
+        public void GetWidthAndHeight(ref int i_Width, ref int i_Height, List<Photo> m_TopLikeablePhotos)
+        {
+            foreach (Photo photo in m_TopLikeablePhotos)
+            {
+                if (photo.Width > i_Width)
+                {
+                    i_Width = (int)photo.Width;
+                }
+
+                if (photo.Height > i_Height)
+                {
+                    i_Height = (int)photo.Height;
+                }
+            }
+        }
 
         #endregion
     }

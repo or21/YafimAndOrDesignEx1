@@ -60,13 +60,21 @@ namespace AppUI
         private JObject m_ParsedJson;
 
         /// <summary>
+        /// Instance of Util class
+        /// </summary>
+        private Utils.Utils m_Util;
+
+        /// <summary>
         /// Initializes a new instance of the WhoWasBornOnMyBirthdayForm class.
         /// </summary>
         /// <param name="i_BirthdayDate">Birthday date mm/dd/yyyy </param>
         public WhoWasBornOnMyBirthdayForm(string i_BirthdayDate)
         {
             InitializeComponent();
-            m_MyBirthdayDate = Utils.Utils.ParseBirthdayDate(i_BirthdayDate);
+
+            m_Util = Utils.Utils.Instance;
+
+            m_MyBirthdayDate = m_Util.ParseBirthdayDate(i_BirthdayDate);
         }
 
         /// <summary>
@@ -78,11 +86,11 @@ namespace AppUI
         protected override void OnLoad(EventArgs i_Event)
         {
             /// TODO:Handle exceptions
-            m_Json = Utils.Utils.getLocalJsonFile(m_PathToJsonFile);
+            m_Json = m_Util.GetLocalJsonFile(m_PathToJsonFile);
 
-            m_ParsedJson = Utils.Utils.parseJSON(m_Json);
+            m_ParsedJson = m_Util.ParseJSON(m_Json);
 
-            Utils.Utils.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
+            m_Util.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
             fetchBirthdays();
             initListBox();
@@ -106,10 +114,10 @@ namespace AppUI
         {
             try
             {
-                m_ParsedJson = Utils.Utils.GetJsonFromUrl(m_JsonWikiUrl);
+                m_ParsedJson = m_Util.GetJsonFromUrl(m_JsonWikiUrl);
                 try
                 {
-                    string image = Utils.Utils.GetJsonWikiImageQuery(m_ParsedJson);
+                    string image = m_Util.GetJsonWikiImageQuery(m_ParsedJson);
                     pictureBox.LoadAsync(image);
                 }
                 catch (NullReferenceException nre)
@@ -171,11 +179,11 @@ namespace AppUI
         private void listBoxWhoWasBorn_SelectedIndexChanged(object i_Sender, EventArgs i_Event)
         {
             labelName.Text = listBoxWhoWasBorn.Text;
-            Utils.Utils.SetCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
+            m_Util.SetCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
 
-            Utils.Utils.BuildJsonWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
+            m_Util.BuildJsonWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
             setPictureBox();
-            textBoxInfo.Text = Utils.Utils.GetWikiJsonInfo(m_ParsedJson);
+            textBoxInfo.Text = m_Util.GetWikiJsonInfo(m_ParsedJson);
         }
     }
 }
