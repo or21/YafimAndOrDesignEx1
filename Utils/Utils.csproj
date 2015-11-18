@@ -65,7 +65,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <Compile Include="WebDownloadcs.cs">
+    <Compile Include="WebDownload.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

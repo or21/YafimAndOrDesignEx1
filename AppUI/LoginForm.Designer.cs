@@ -1,5 +1,13 @@
-﻿namespace AppUI
+﻿//-----------------------------------------------------------------------
+// <copyright file="LoginForm.Designer.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+namespace AppUI
 {
+    /// <summary>
+    /// Login form class
+    /// </summary>
     public partial class LoginForm
     {
         /// <summary>
@@ -75,8 +83,14 @@
         }
 
         #endregion
-
+        /// <summary>
+        /// Label head line
+        /// </summary>
         private System.Windows.Forms.Label labelHeadLine;
+
+        /// <summary>
+        /// Facebook button
+        /// </summary>
         private Utils.FbBlueButton fbBlueButtonLogin;
     }
 }

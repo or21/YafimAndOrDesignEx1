@@ -1,18 +1,34 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="LoginForm.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+using System;
 using System.Windows.Forms;
 using FacebookWrapper;
 using Utils;
 
 namespace AppUI
 {
+    /// <summary>
+    /// Login form class
+    /// </summary>
     public partial class LoginForm : FbForm
     {
+        /// <summary>
+        /// Initializes a new instance of the LoginForm class.
+        /// </summary>
         public LoginForm()
         {
             InitializeComponent();
         }
 
-        private void fbBlueButtonLogin_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Send http request to facebook and get the information.
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void fbBlueButtonLogin_Click(object i_Sender, EventArgs i_Event)
         {
             LoginResult result = FacebookService.Login(
                 "904603836301816", 

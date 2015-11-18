@@ -41,7 +41,7 @@ namespace AppUI
         private const string k_NoCheckIns = "You didn't do any check in";
 
         /// <summary>
-        /// No post to retrive message
+        /// No post to retrieve message
         /// </summary>
         private const string k_NoPostsToRetrieve = "No Posts to retrieve :(";
 

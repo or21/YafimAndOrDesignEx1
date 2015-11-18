@@ -1,8 +1,13 @@
-﻿namespace AppUI
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainWindow.Designer.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+namespace AppUI
 {
     public partial class MainWindow
     {
-        /// <summary>רגע
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
