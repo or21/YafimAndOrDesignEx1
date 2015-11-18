@@ -17,6 +17,7 @@ namespace Utils
     public static class Utils
     {
         # region WhoWasBornOnMyBirthday logic
+
         /// <summary>
         /// Parse given date to MM-DD format
         /// </summary>

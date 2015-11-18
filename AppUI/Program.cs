@@ -16,6 +16,7 @@ namespace AppUI
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
             Form currentForm = new LoginForm();
+
             //TODO: Delete. for fast debug only
             //WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
            
