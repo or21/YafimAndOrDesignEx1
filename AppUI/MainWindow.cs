@@ -230,7 +230,7 @@ namespace AppUI
                 }
             }
 
-            if (r_LoggedInUser.Posts.Count == 0)
+            if (r_LoggedInUser.NewsFeed.Count == 0)
             {
                 listBoxFeed.BackColor = Color.Gray;
                 listBoxFeed.Items.Add(k_NoPostsToRetrieve);
