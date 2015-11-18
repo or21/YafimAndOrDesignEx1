@@ -115,21 +115,18 @@ namespace AppUI
             try
             {
                 m_ParsedJson = r_Util.GetJsonFromUrl(m_JsonWikiUrl);
-                try
-                {
-                    string image = r_Util.GetJsonWikiImageQuery(m_ParsedJson);
-                    pictureBox.LoadAsync(image);
-                }
-                catch (NullReferenceException nre)
-                {
-                    pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
-                }
+                string image = r_Util.GetJsonWikiImageQuery(m_ParsedJson);
+                pictureBox.LoadAsync(image);
             }
             catch (WebException wes)
             {
                 // Connection error 
                 MessageBox.Show(wes.Message);
                 this.Close();
+            }
+            catch (NullReferenceException nre)
+            {
+                pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
             }
         }
 

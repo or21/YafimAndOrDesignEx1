@@ -149,7 +149,7 @@ namespace AppUI
         private void fetchPages()
         {
             listBoxPages.HorizontalScrollbar = true;
-            listBoxPages.DisplayMember = "Name";
+            listBoxPages.DisplayMember = "Message";
             foreach (Page fbPage in r_LoggedInUser.LikedPages)
             {
                 listBoxPages.Items.Add(fbPage);
