@@ -149,7 +149,7 @@ namespace AppUI
         private void fetchPages()
         {
             listBoxPages.HorizontalScrollbar = true;
-            listBoxPages.DisplayMember = "Message";
+            listBoxPages.DisplayMember = "Name";
             foreach (Page fbPage in r_LoggedInUser.LikedPages)
             {
                 listBoxPages.Items.Add(fbPage);
@@ -168,10 +168,13 @@ namespace AppUI
         private void fetchCheckIn()
         {
             listBoxCheckIn.HorizontalScrollbar = true;
-            listBoxCheckIn.DisplayMember = "Name";
+            listBoxCheckIn.DisplayMember = "Message";
             foreach (Checkin fbCheckin in r_LoggedInUser.Checkins)
             {
-                listBoxCheckIn.Items.Add(fbCheckin);
+                if (fbCheckin.Message != null)
+                {
+                    listBoxCheckIn.Items.Add(fbCheckin);
+                }
             }
 
             if (r_LoggedInUser.Checkins.Count == 0)
