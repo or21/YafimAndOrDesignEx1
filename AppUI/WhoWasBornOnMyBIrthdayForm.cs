@@ -5,7 +5,6 @@
 //-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
@@ -88,7 +87,7 @@ namespace AppUI
             /// TODO:Handle exceptions
             m_Json = r_Util.GetLocalJsonFile(m_PathToJsonFile);
 
-            m_ParsedJson = r_Util.ParseJSON(m_Json);
+            m_ParsedJson = r_Util.ParseJson(m_Json);
 
             r_Util.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 

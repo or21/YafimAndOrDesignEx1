@@ -42,7 +42,8 @@ namespace AppUI
         /// Initializes a new instance of the MostLikeablePictureForm class.
         /// </summary>
         /// <param name="i_TopLikeablePhotos">Top likeable pictures</param>
-        public MostLikeablePictureForm(List<Photo> i_TopLikeablePhotos, int iNumberOfPicturesToShow)
+        /// <param name="i_NumberOfPicturesToShow">Number of pictures to show</param>
+        public MostLikeablePictureForm(List<Photo> i_TopLikeablePhotos, int i_NumberOfPicturesToShow)
         {
             InitializeComponent();
 
@@ -51,7 +52,7 @@ namespace AppUI
             m_TopLikeablePhotos = i_TopLikeablePhotos;
             m_IndexOfCurrentImage = 0;
 
-            m_NumberOfPicturesToShow = iNumberOfPicturesToShow;
+            m_NumberOfPicturesToShow = i_NumberOfPicturesToShow;
 
             r_Util = Utils.Utils.Instance;
         }
@@ -118,7 +119,7 @@ namespace AppUI
             pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureNormalURL);
         }
 
-        public void pictureBoxCurrentPic_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        public void pictureBoxCurrentPic_LoadCompleted(object i_Sender, AsyncCompletedEventArgs i_E)
         {
             setNumberOfLikes(m_CurrentImageDisplayed);
         }
