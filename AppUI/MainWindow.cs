@@ -76,15 +76,22 @@ namespace AppUI
         private readonly int r_NumberOfPicturesToShow = 5;
 
         /// <summary>
+        /// Instance of Util class
+        /// </summary>
+        private Utils.Utils m_Util;
+
+        /// <summary>
         /// Initializes a new instance of the MainWindow class.
         /// </summary>
-        /// <param name="i_UserData">The user fb data</param>
+        /// <param name="i_UserData">The user facebook data</param>
         public MainWindow(LoginResult i_UserData)
         {
             InitializeComponent();
             r_LoggedInUser = i_UserData.LoggedInUser;
             FacebookService.s_CollectionLimit = 1000;
             fetchUserInfo();
+
+            m_Util = Utils.Utils.Instance;
         }
 
         /// <summary>
@@ -112,7 +119,8 @@ namespace AppUI
 
             if (r_LoggedInUser.Events.Count == 0)
             {
-                MessageBox.Show(k_NoEventYet);
+                listBoxEvents.BackColor = Color.Gray;
+                listBoxEvents.Items.Add(k_NoEventYet);
             }
         }
 
@@ -130,7 +138,7 @@ namespace AppUI
 
             fetchEvents();
             fetchUserData();
-            fetchPosts();
+            fetchNewsFeed();
             fetchPages();
             fetchCheckIn();
         }
@@ -149,7 +157,8 @@ namespace AppUI
 
             if (r_LoggedInUser.LikedPages.Count == 0)
             {
-                MessageBox.Show(k_NoLikes);
+                listBoxPages.BackColor = Color.Gray;
+                listBoxPages.Items.Add(k_NoLikes);
             }
         }
 
@@ -168,7 +177,8 @@ namespace AppUI
 
             if (r_LoggedInUser.Checkins.Count == 0)
             {
-                MessageBox.Show(k_NoCheckIns);
+                listBoxCheckIn.BackColor = Color.Gray;
+                listBoxCheckIn.Items.Add(k_NoCheckIns);
             }
         }
 
@@ -186,17 +196,23 @@ namespace AppUI
                 }
             }
 
-            //TODO: ...
-            m_TopLikeablePhotos = Utils.Utils.FindMostLikablePhotos(r_NumberOfPicturesToShow, m_ListOfPhotos);
+            if (m_ListOfPhotos.Count == 0)
+            {
+                buttonGetTopPictures.Enabled = false;
+            }
+            else
+            {
+                m_TopLikeablePhotos = m_Util.FindMostLikablePhotos(r_NumberOfPicturesToShow, m_ListOfPhotos);
+            }
         }
 
         /// <summary>
         /// Fetch User posts and show them in relevant textbox
         /// </summary>
-        private void fetchPosts()
+        private void fetchNewsFeed()
         {
             listBoxFeed.HorizontalScrollbar = true;
-            foreach (Post post in r_LoggedInUser.Posts)
+            foreach (Post post in r_LoggedInUser.NewsFeed)
             {
                 if (post.Message != null)
                 {
@@ -214,7 +230,8 @@ namespace AppUI
             
             if (r_LoggedInUser.Posts.Count == 0)
             {
-                MessageBox.Show(k_NoPostsToRetrieve);
+                listBoxFeed.BackColor = Color.Gray;
+                listBoxFeed.Items.Add(k_NoPostsToRetrieve);
             }
         }
 
@@ -257,8 +274,8 @@ namespace AppUI
         /// <summary>
         /// Show 5 most likeable pictures 
         /// </summary>
-        /// <param name="i_Sender"></param>
-        /// <param name="i_Event"></param>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
         private void buttonTopLikeablePhotos_Click(object i_Sender, EventArgs i_Event)
         {
             MessageBox.Show(k_WaitMessage);
@@ -271,8 +288,8 @@ namespace AppUI
                 thread.Join();
             }
 
-            Utils.Utils.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
-            Utils.Utils.GetWidthAndHeight(ref width, ref height, m_TopLikeablePhotos);
+            m_Util.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
+            m_Util.GetWidthAndHeight(ref width, ref height, m_TopLikeablePhotos);
             createMostLikeablePictureForm(width, height);
         }
 
@@ -280,6 +297,8 @@ namespace AppUI
         /// <summary>
         /// Creates a new most likeable pictures form
         /// </summary>
+        /// <param name="i_Width">Picture Width</param>
+        /// <param name="i_Height">Picture Height</param>
         private void createMostLikeablePictureForm(int i_Width, int i_Height)
         {
             // TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT

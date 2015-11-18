@@ -33,6 +33,11 @@ namespace AppUI
         private int m_IndexOfCurrentImage;
 
         /// <summary>
+        /// Instance of Util class
+        /// </summary>
+        private Utils.Utils m_Util;
+
+        /// <summary>
         /// Initializes a new instance of the MostLikeablePictureForm class.
         /// </summary>
         /// <param name="i_TopLikeablePhotos">Top likeable pictures</param>
@@ -47,6 +52,8 @@ namespace AppUI
             m_IndexOfCurrentImage = 0;
 
             m_NumberOfPicturesToShow = iNumberOfPicturesToShow;
+
+            m_Util = Utils.Utils.Instance;
         }
 
         /// <summary>
@@ -77,7 +84,7 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         private void buttonNext_Click(object i_Sender, EventArgs i_Event)
         {
-            m_IndexOfCurrentImage = Utils.Utils.setNextImage(m_IndexOfCurrentImage ,m_NumberOfPicturesToShow);
+            m_IndexOfCurrentImage = m_Util.SetNextImage(m_IndexOfCurrentImage ,m_NumberOfPicturesToShow);
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
@@ -88,7 +95,7 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         private void buttonBack_Click(object i_Sender, EventArgs i_Event)
         {
-            m_IndexOfCurrentImage = Utils.Utils.setPrevImage(m_IndexOfCurrentImage, m_NumberOfPicturesToShow);
+            m_IndexOfCurrentImage = m_Util.SetPrevImage(m_IndexOfCurrentImage, m_NumberOfPicturesToShow);
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
