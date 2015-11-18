@@ -131,17 +131,6 @@ namespace AppUI
         }
 
         /// <summary>
-        /// If exists Get JSON file to read Otherwise throw relevant exception and exit
-        /// </summary>
-        private void getLocalJsonFile()
-        {
-            using (StreamReader reader = new StreamReader(m_PathToJsonFile))
-            {
-                m_Json = reader.ReadToEnd();
-            }
-        }
-
-        /// <summary>
         /// Insert birthday list into listBox
         /// </summary>
         private void fetchBirthdays()
