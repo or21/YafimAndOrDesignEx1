@@ -18,8 +18,8 @@ namespace Utils
     /// </summary>
     public class Utils
     {
-        private static readonly object m_LockInstance = new object();
-        private static Utils m_Instance;
+        private static readonly object sr_LockInstance = new object();
+        private static Utils s_Instance;
 
         private Utils()
         {
@@ -29,18 +29,18 @@ namespace Utils
         {
             get
             {
-                if (m_Instance == null)
+                if (s_Instance == null)
                 {
-                    lock (m_LockInstance)
+                    lock (sr_LockInstance)
                     {
-                        if (m_Instance == null)
+                        if (s_Instance == null)
                         {
-                            m_Instance = new Utils();
+                            s_Instance = new Utils();
                         }
                     }
                 }
 
-                return m_Instance;
+                return s_Instance;
             }
         }
 
@@ -178,14 +178,14 @@ namespace Utils
             using (WebDownload wc = new WebDownload())
             {
                 string json = wc.DownloadString(i_JsonWikiUrl);
-                return ParseJSON(json);
+                return ParseJson(json);
             }
         }
 
         /// <summary>
         /// Parse JSON file
         /// </summary>
-        public JObject ParseJSON(string i_JsonToParse)
+        public JObject ParseJson(string i_JsonToParse)
         {
             return JObject.Parse(i_JsonToParse);
         }
@@ -208,17 +208,17 @@ namespace Utils
         /// <summary>
         /// Set next image
         /// </summary>
-        public int SetNextImage(int m_IndexOfCurrentImage, int i_NumberOfPictures)
+        public int SetNextImage(int i_IndexOfCurrentImage, int i_NumberOfPictures)
         {
-            return (m_IndexOfCurrentImage + 1 < i_NumberOfPictures) ? m_IndexOfCurrentImage + 1 : 0;
+            return (i_IndexOfCurrentImage + 1 < i_NumberOfPictures) ? i_IndexOfCurrentImage + 1 : 0;
         }
 
         /// <summary>
         /// Set previous image
         /// </summary>
-        public int SetPrevImage(int m_IndexOfCurrentImage, int i_NumberOfPictures)
+        public int SetPrevImage(int i_IndexOfCurrentImage, int i_NumberOfPictures)
         {
-            return (m_IndexOfCurrentImage - 1 >= 0) ? m_IndexOfCurrentImage - 1 : i_NumberOfPictures - 1;
+            return (i_IndexOfCurrentImage - 1 >= 0) ? i_IndexOfCurrentImage - 1 : i_NumberOfPictures - 1;
         }
 
         #endregion
@@ -230,8 +230,8 @@ namespace Utils
         /// </summary>
         public void SortPhotosByDescendingOrder(List<Photo> io_ListOfPhotos)
         {
-            io_ListOfPhotos.Sort((numberOfLikesPhotoOne, numberOfLikesPhotoTwo) =>
-                numberOfLikesPhotoOne.LikedBy.Count().CompareTo(numberOfLikesPhotoTwo.LikedBy.Count()));
+            io_ListOfPhotos.Sort((i_NumberOfLikesPhotoOne, i_NumberOfLikesPhotoTwo) =>
+                i_NumberOfLikesPhotoOne.LikedBy.Count().CompareTo(i_NumberOfLikesPhotoTwo.LikedBy.Count()));
             io_ListOfPhotos.Reverse();
         }
 
@@ -283,9 +283,9 @@ namespace Utils
             return minPhoto;
         }
 
-        public void GetWidthAndHeight(ref int i_Width, ref int i_Height, List<Photo> m_TopLikeablePhotos)
+        public void GetWidthAndHeight(ref int i_Width, ref int i_Height, List<Photo> i_TopLikeablePhotos)
         {
-            foreach (Photo photo in m_TopLikeablePhotos)
+            foreach (Photo photo in i_TopLikeablePhotos)
             {
                 if (photo.Width > i_Width)
                 {

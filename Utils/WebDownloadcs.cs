@@ -14,14 +14,14 @@ namespace Utils
         {
         }
 
-        public WebDownload(int timeout)
+        public WebDownload(int i_Timeout)
         {
-            this.Timeout = timeout;
+            this.Timeout = i_Timeout;
         }
 
-        protected override WebRequest GetWebRequest(Uri address)
+        protected override WebRequest GetWebRequest(Uri i_Address)
         {
-            var request = base.GetWebRequest(address);
+            WebRequest request = base.GetWebRequest(i_Address);
             if (request != null)
             {
                 request.Timeout = this.Timeout;

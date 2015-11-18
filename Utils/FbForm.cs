@@ -10,12 +10,12 @@ namespace Utils
         private readonly PictureBox r_PictureBoxFbIcon;
         private readonly Label r_LabelFbTextHeader;
 
-        private int m_buttonMargin = 35;
+        private int m_ButtonMargin = 35;
 
         public int ButtonMargin
         {
-            get { return m_buttonMargin; }
-            set { this.m_buttonMargin = value; }
+            get { return m_ButtonMargin; }
+            set { this.m_ButtonMargin = value; }
         }
 
         public Label LabelHeader

@@ -51,14 +51,14 @@ namespace AppUI
         private const string k_WaitMessage = "This may take few seconds... Please click OK and Go get yourself a cup of coffee";
 
         /// <summary>
+        /// Number of pictures to show
+        /// </summary>
+        private const int k_NumberOfPicturesToShow = 5;
+
+        /// <summary>
         /// LoggedIn user
         /// </summary>
         private readonly User r_LoggedInUser;
-
-        /// <summary>
-        /// Number of pictures to show
-        /// </summary>
-        private readonly int r_NumberOfPicturesToShow = 5;
 
         /// <summary>
         /// Instance of Util class
@@ -89,9 +89,9 @@ namespace AppUI
             InitializeComponent();
             r_LoggedInUser = i_UserData.LoggedInUser;
             FacebookService.s_CollectionLimit = 1000;
-            fetchUserInfo();
-
             r_Util = Utils.Utils.Instance;
+
+            fetchUserInfo();
         }
 
         /// <summary>
@@ -190,6 +190,7 @@ namespace AppUI
         private void fetchPhotos()
         {
             m_ListOfPhotos = new List<Photo>();
+            m_TopLikeablePhotos = new List<Photo>(k_NumberOfPicturesToShow);
             foreach (Album album in r_LoggedInUser.Albums)
             {
                 foreach (Photo photo in album.Photos)
@@ -204,7 +205,7 @@ namespace AppUI
             }
             else
             {
-                m_TopLikeablePhotos = r_Util.FindMostLikablePhotos(r_NumberOfPicturesToShow, m_ListOfPhotos);
+                m_TopLikeablePhotos = r_Util.FindMostLikablePhotos(k_NumberOfPicturesToShow, m_ListOfPhotos);
             }
         }
 
@@ -318,7 +319,7 @@ namespace AppUI
         {
             // TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
             // TODO: HANDLE EXCEPTIONS HERE?
-            MostLikeablePictureForm likeablePictureForm = new MostLikeablePictureForm(m_TopLikeablePhotos, r_NumberOfPicturesToShow)
+            MostLikeablePictureForm likeablePictureForm = new MostLikeablePictureForm(m_TopLikeablePhotos, k_NumberOfPicturesToShow)
             {
                 Size = new Size(i_Width, i_Height + ButtonMargin),
                 StartPosition = FormStartPosition.CenterScreen
