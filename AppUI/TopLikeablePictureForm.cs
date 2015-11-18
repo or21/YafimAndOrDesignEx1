@@ -20,7 +20,7 @@ namespace AppUI
         /// <summary>
         /// Number of pictures 
         /// </summary>
-        private readonly int m_NumberOfPictures;
+        private readonly int m_NumberOfPicturesToShow;
 
         /// <summary>
         /// List of the top N pictures
@@ -36,7 +36,7 @@ namespace AppUI
         /// Initializes a new instance of the TopLikeablePictureForm class.
         /// </summary>
         /// <param name="i_TopLikeablePhotos">Top likeable pictures</param>
-        public TopLikeablePictureForm(List<Photo> i_TopLikeablePhotos, int i_NumberOfPictures)
+        public TopLikeablePictureForm(List<Photo> i_TopLikeablePhotos, int iNumberOfPicturesToShow)
         {
             InitializeComponent();
 
@@ -46,7 +46,7 @@ namespace AppUI
             m_TopLikeablePhotos = i_TopLikeablePhotos;
             m_IndexOfCurrentImage = 0;
 
-            m_NumberOfPictures = i_NumberOfPictures;
+            m_NumberOfPicturesToShow = iNumberOfPicturesToShow;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         private void buttonNext_Click(object i_Sender, EventArgs i_Event)
         {
-            m_IndexOfCurrentImage = Utils.Utils.setNextImage(m_IndexOfCurrentImage ,m_NumberOfPictures);
+            m_IndexOfCurrentImage = Utils.Utils.setNextImage(m_IndexOfCurrentImage ,m_NumberOfPicturesToShow);
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
@@ -88,7 +88,7 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         private void buttonBack_Click(object i_Sender, EventArgs i_Event)
         {
-            m_IndexOfCurrentImage = Utils.Utils.setPrevImage(m_IndexOfCurrentImage, m_NumberOfPictures);
+            m_IndexOfCurrentImage = Utils.Utils.setPrevImage(m_IndexOfCurrentImage, m_NumberOfPicturesToShow);
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 

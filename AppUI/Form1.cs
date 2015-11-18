@@ -21,8 +21,10 @@ namespace AppUI
         private const string k_WaitMessage = "This may take few seconds... Please click OK";
         private readonly User r_LoggedInUser;
         private List<Photo> m_ListOfPhotos;
-        private List<Photo> m_TopLikeablePhotos; 
-        private List<Thread> m_Threads; 
+        private List<Photo> m_TopLikeablePhotos;
+        private List<Thread> m_Threads;
+
+        private int m_NumberOfPicturesToShow;
 
         public Form1(LoginResult i_UserData)
         {
@@ -61,7 +63,7 @@ namespace AppUI
             Thread threadPhotos = new Thread(fetchPhotos);
             m_Threads.Add(threadPhotos);
             threadPhotos.Start();
-            
+
             fetchEvents();
             fetchUserData();
             fetchPosts();
@@ -108,55 +110,10 @@ namespace AppUI
                 {
                     m_ListOfPhotos.Add(photo);
                 }
-        }
-
-            findMostLikablePhotos(5);
-        }
-
-        private void findMostLikablePhotos(int i_AmountOfPhotosToShow)
-        {
-            //TODO: Singleton... 
-            m_TopLikeablePhotos = new List<Photo>(i_AmountOfPhotosToShow);
-            Photo minPhoto = new Photo();
-
-            foreach (Photo photo in m_ListOfPhotos)
-            {
-                if (m_TopLikeablePhotos.Count != m_TopLikeablePhotos.Capacity)
-                {
-                    m_TopLikeablePhotos.Add(photo);
-                    minPhoto = findMinInTopLikable();
-                }
-                else
-                {
-                    if (photo.LikedBy.Count >= minPhoto.LikedBy.Count)
-                    {
-                        addPhotoToList(photo, ref minPhoto);
-                    }
-                }
             }
-            //TODO: no photos to show
-        }
-
-        private void addPhotoToList(Photo i_Photo, ref Photo i_MinPhoto)
-        {
-            m_TopLikeablePhotos.Remove(i_MinPhoto);
-            m_TopLikeablePhotos.Add(i_Photo);
-            i_MinPhoto = findMinInTopLikable();
-        }
-
-        private Photo findMinInTopLikable()
-        {
-            Photo minPhoto = m_TopLikeablePhotos[0];
-
-            foreach (Photo photo in m_TopLikeablePhotos)
-            {
-                if (photo.LikedBy.Count <= minPhoto.LikedBy.Count)
-                {
-                    minPhoto = photo;
-                }
-            }
-
-            return minPhoto;
+            //TODO: Hard Code!!!
+            m_NumberOfPicturesToShow = 10;
+            m_TopLikeablePhotos = Utils.Utils.FindMostLikablePhotos(m_NumberOfPicturesToShow, m_ListOfPhotos);
         }
 
         private void fetchPosts()
@@ -206,19 +163,8 @@ namespace AppUI
             Application.Exit();
         }
 
-        // TODO: REMOVE TO UTILS
-        /// <summary>
-        /// Sort list of photos by number of likes 
-        /// </summary>
-        private void sortPhotosByDescendingOrder()
-        {
-            m_TopLikeablePhotos.Sort((i_NumberOfLikesPhotoOne, i_NumberOfLikesPhotoTwo) =>
-                i_NumberOfLikesPhotoOne.LikedBy.Count().CompareTo(i_NumberOfLikesPhotoTwo.LikedBy.Count()));
-            m_TopLikeablePhotos.Reverse();
-        }
-
         private void buttonTopLikeablePhotos_Click(object i_Sender, EventArgs i_E)
-                {
+        {
             MessageBox.Show(k_WaitMessage);
             int width = 0;
             int height = 0;
@@ -229,7 +175,7 @@ namespace AppUI
                 thread.Join();
             }
 
-            sortPhotosByDescendingOrder();
+            Utils.Utils.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
             getWidthAndHeight(ref width, ref height);
             createTopLikeablePictureForm(width, height);
         }
@@ -260,7 +206,7 @@ namespace AppUI
 
             //TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
 
-            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos, 5)
+            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos, m_NumberOfPicturesToShow)
             {
                 Size = new Size(i_Width, i_Height + 35),
                 StartPosition = FormStartPosition.CenterScreen

@@ -32,10 +32,10 @@ namespace Utils
             if (isValidDate)
             {
                 string formattedBirhdayDate = string.Format(
-                    "{0}{1}-{2}{3}", 
-                    i_BirthdayToParse[0], 
+                    "{0}{1}-{2}{3}",
+                    i_BirthdayToParse[0],
                     i_BirthdayToParse[1],
-                    i_BirthdayToParse[3], 
+                    i_BirthdayToParse[3],
                     i_BirthdayToParse[4]);
                 strToReturn = formattedBirhdayDate;
             }
@@ -176,7 +176,7 @@ namespace Utils
                 return reader.ReadToEnd();
             }
         }
-    #endregion
+        #endregion
 
         #region TopLikeablePictures logic
         /// <summary>
@@ -195,7 +195,6 @@ namespace Utils
             return (m_IndexOfCurrentImage - 1 >= 0) ? m_IndexOfCurrentImage - 1 : i_NumberOfPictures - 1;
         }
 
-
         #endregion
 
         #region Form1
@@ -203,15 +202,61 @@ namespace Utils
         /// <summary>
         /// Sort list of photos by number of likes 
         /// </summary>
-        public static List<Photo> sortPhotosByDescendingOrder(List<Photo> i_ListOfPhotos)
+        public static void SortPhotosByDescendingOrder(List<Photo> io_ListOfPhotos)
         {
-            i_ListOfPhotos.Sort((numberOfLikesPhotoOne, numberOfLikesPhotoTwo) =>
+            io_ListOfPhotos.Sort((numberOfLikesPhotoOne, numberOfLikesPhotoTwo) =>
                 numberOfLikesPhotoOne.LikedBy.Count().CompareTo(numberOfLikesPhotoTwo.LikedBy.Count()));
-            i_ListOfPhotos.Reverse();
+            io_ListOfPhotos.Reverse();
 
-            return i_ListOfPhotos;
         }
 
+        public static List<Photo> FindMostLikablePhotos(int i_NumberOfPhotosToShow, List<Photo> i_ListOfPhotos)
+        {
+            List<Photo> topLikeablePhotos = new List<Photo>(i_NumberOfPhotosToShow);
+
+            Photo minPhoto = new Photo();
+
+            foreach (Photo photo in i_ListOfPhotos)
+            {
+                if (topLikeablePhotos.Count != topLikeablePhotos.Capacity)
+                {
+                    topLikeablePhotos.Add(photo);
+                    minPhoto = findMinInTopLikable(topLikeablePhotos);
+                }
+                else
+                {
+                    if (photo.LikedBy.Count >= minPhoto.LikedBy.Count)
+                    {
+                        addPhotoToList(photo, ref minPhoto, topLikeablePhotos);
+                    }
+                }
+            }
+
+            return topLikeablePhotos;
+            //TODO: no photos to show
+        }
+
+        private static void addPhotoToList(Photo i_Photo, ref Photo i_MinPhoto, List<Photo> i_TopLikeablePhotos)
+        {
+            i_TopLikeablePhotos.Remove(i_MinPhoto);
+            i_TopLikeablePhotos.Add(i_Photo);
+            i_MinPhoto = findMinInTopLikable(i_TopLikeablePhotos);
+        }
+
+        private static Photo findMinInTopLikable(List<Photo> i_TopLikeablePhotos)
+        {
+            Photo minPhoto = i_TopLikeablePhotos[0];
+
+            foreach (Photo photo in i_TopLikeablePhotos)
+            {
+                if (photo.LikedBy.Count <= minPhoto.LikedBy.Count)
+                {
+                    minPhoto = photo;
+                }
+            }
+
+            return minPhoto;
+        }
 
         #endregion
     }
