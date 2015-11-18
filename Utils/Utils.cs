@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using FacebookWrapper.ObjectModel;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 
 namespace Utils
@@ -177,7 +179,38 @@ namespace Utils
     #endregion
 
         #region TopLikeablePictures logic
+        /// <summary>
+        /// Set next image
+        /// </summary>
+        public static int setNextImage(int m_IndexOfCurrentImage, int i_NumberOfPictures)
+        {
+            return (m_IndexOfCurrentImage + 1 < i_NumberOfPictures) ? m_IndexOfCurrentImage + 1 : 0;
+        }
 
+        /// <summary>
+        /// Set previous image
+        /// </summary>
+        public static int setPrevImage(int m_IndexOfCurrentImage, int i_NumberOfPictures)
+        {
+            return (m_IndexOfCurrentImage - 1 >= 0) ? m_IndexOfCurrentImage - 1 : i_NumberOfPictures - 1;
+        }
+
+
+        #endregion
+
+        #region Form1
+
+        /// <summary>
+        /// Sort list of photos by number of likes 
+        /// </summary>
+        public static List<Photo> sortPhotosByDescendingOrder(List<Photo> i_ListOfPhotos)
+        {
+            i_ListOfPhotos.Sort((numberOfLikesPhotoOne, numberOfLikesPhotoTwo) =>
+                numberOfLikesPhotoOne.LikedBy.Count().CompareTo(numberOfLikesPhotoTwo.LikedBy.Count()));
+            i_ListOfPhotos.Reverse();
+
+            return i_ListOfPhotos;
+        }
 
 
         #endregion

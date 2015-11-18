@@ -133,6 +133,7 @@ namespace AppUI
             this.pictureBoxCurrentPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
+            this.pictureBoxCurrentPic.WaitOnLoad = false;
             // 
             // pictureBoxLike
             // 

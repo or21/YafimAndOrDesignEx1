@@ -153,16 +153,7 @@ namespace AppUI
             Application.Exit();
         }
 
-        /// <summary>
-        /// Sort list of photos by number of likes 
-        /// </summary>
-        private void sortPhotosByDescendingOrder()
-        {
-            m_ListOfPhotos.Sort((i_NumberOfLikesPhotoOne, i_NumberOfLikesPhotoTwo) =>
-                i_NumberOfLikesPhotoOne.LikedBy.Count().CompareTo(i_NumberOfLikesPhotoTwo.LikedBy.Count()));
-            m_ListOfPhotos.Reverse();
-        }
-
+        // TODO: REMOVE TO UTILS
         /// <summary>
         /// Get top five likeablePictures
         /// </summary>
@@ -182,13 +173,15 @@ namespace AppUI
             }
         }
 
+        // TODO: SOME LOGIC TO UTILS..?
         private void buttonFeature1_Click(object i_Sender, EventArgs i_E)
         {
             MessageBox.Show(k_WaitMessage);
             int width = 0;
             int height = 0;
             fetchPhotos();
-            sortPhotosByDescendingOrder();
+            // TODO: Put or's code here
+            Utils.Utils.sortPhotosByDescendingOrder(m_ListOfPhotos);
 
             //TODO: Define general field by guy's guide... (private int readonly _NumberOfMostLikeablePictures = 5)
             getMostLikeablePictures(5);
@@ -196,6 +189,7 @@ namespace AppUI
             createTopLikeablePictureForm(width, height);
         }
 
+        // TODO: REMOVE TO UTILS
         private void getWidthAndHeight(ref int i_Width, ref int i_Height)
         {
             foreach (Photo photo in m_TopLikeablePhotos)
@@ -212,19 +206,23 @@ namespace AppUI
             }
         }
 
+        // TODO: HANDLE EXCEPTIONS HERE?
         /// <summary>
         /// Creates new top likeable pictures.
         /// </summary>
         private void createTopLikeablePictureForm(int i_Width, int i_Height)
         {
-            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos)
+
+            //TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
+
+            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos, 5)
             {
                 Size = new Size(i_Width, i_Height + 35),
                 StartPosition = FormStartPosition.CenterScreen
             };
             likeablePictureForm.ShowDialog();
         }
-        
+        // TODO: HANDLE EXCEPTIONS HERE?
         private void buttonGetCelebsBD_Click(object i_Sender, EventArgs i_E)
         {
             WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);

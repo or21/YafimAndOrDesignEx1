@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using FacebookWrapper.ObjectModel;
 using Utils;
 
@@ -15,6 +16,12 @@ namespace AppUI
     /// </summary>
     public partial class TopLikeablePictureForm : FbForm
     {
+        private Photo m_CurrentImageDisplayed;
+        /// <summary>
+        /// Number of pictures 
+        /// </summary>
+        private readonly int m_NumberOfPictures;
+
         /// <summary>
         /// List of the top N pictures
         /// </summary>
@@ -29,12 +36,17 @@ namespace AppUI
         /// Initializes a new instance of the TopLikeablePictureForm class.
         /// </summary>
         /// <param name="i_TopLikeablePhotos">Top likeable pictures</param>
-        public TopLikeablePictureForm(List<Photo> i_TopLikeablePhotos)
+        public TopLikeablePictureForm(List<Photo> i_TopLikeablePhotos, int i_NumberOfPictures)
         {
             InitializeComponent();
 
+            pictureBoxCurrentPic.LoadCompleted += pictureBoxCurrentPic_LoadCompleted;
+
+
             m_TopLikeablePhotos = i_TopLikeablePhotos;
             m_IndexOfCurrentImage = 0;
+
+            m_NumberOfPictures = i_NumberOfPictures;
         }
 
         /// <summary>
@@ -65,7 +77,8 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         private void buttonNext_Click(object i_Sender, EventArgs i_Event)
         {
-            setNextImage();
+            m_IndexOfCurrentImage = Utils.Utils.setNextImage(m_IndexOfCurrentImage ,m_NumberOfPictures);
+            loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
         /// <summary>
@@ -75,24 +88,7 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         private void buttonBack_Click(object i_Sender, EventArgs i_Event)
         {
-            setPrevImage();
-        }
-
-        /// <summary>
-        /// Set next image
-        /// </summary>
-        private void setNextImage()
-        {
-            m_IndexOfCurrentImage = (m_IndexOfCurrentImage + 1 < m_TopLikeablePhotos.Count) ? m_IndexOfCurrentImage + 1 : 0;
-            loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
-        }
-
-        /// <summary>
-        /// Set previous image
-        /// </summary>
-        private void setPrevImage()
-        {
-            m_IndexOfCurrentImage = (m_IndexOfCurrentImage - 1 >= 0) ? m_IndexOfCurrentImage - 1 : m_TopLikeablePhotos.Count - 1;
+            m_IndexOfCurrentImage = Utils.Utils.setPrevImage(m_IndexOfCurrentImage, m_NumberOfPictures);
             loadImage(m_TopLikeablePhotos[m_IndexOfCurrentImage]);
         }
 
@@ -111,8 +107,15 @@ namespace AppUI
         /// <param name="i_ImageToLoad">Image to load</param>
         private void loadImage(Photo i_ImageToLoad)
         {
+            m_CurrentImageDisplayed = i_ImageToLoad; 
             pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureNormalURL);
-            setNumberOfLikes(i_ImageToLoad);
         }
+
+        public void pictureBoxCurrentPic_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            setNumberOfLikes(m_CurrentImageDisplayed);
+        }
+
+        
     }
 }
