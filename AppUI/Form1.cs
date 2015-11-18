@@ -189,10 +189,22 @@ namespace AppUI
             // TODO: check for null
             listBoxProfie.HorizontalScrollbar = true;
             pictureBoxProfile.LoadAsync(r_LoggedInUser.PictureNormalURL);
-            listBoxProfie.Items.Add("Birthday: " + r_LoggedInUser.Birthday);
-            listBoxProfie.Items.Add("Gender: " + r_LoggedInUser.Gender);
-            listBoxProfie.Items.Add("Hometown: " + r_LoggedInUser.Hometown.Name);
-            listBoxProfie.Items.Add("Email: " + r_LoggedInUser.Email);
+            if (r_LoggedInUser.Birthday != null)
+            {
+                listBoxProfie.Items.Add("Birthday: " + r_LoggedInUser.Birthday);
+            }
+            if (r_LoggedInUser.Gender != null)
+            {
+                listBoxProfie.Items.Add("Gender: " + r_LoggedInUser.Gender);
+            }
+            if (r_LoggedInUser.Hometown != null)
+            {
+                listBoxProfie.Items.Add("Hometown: " + r_LoggedInUser.Hometown.Name);
+            }
+            if (r_LoggedInUser.Email != null)
+            {
+                listBoxProfie.Items.Add("Email: " + r_LoggedInUser.Email);
+            }
         }
 
         private void buttonPost_Click(object i_Sender, EventArgs i_E)

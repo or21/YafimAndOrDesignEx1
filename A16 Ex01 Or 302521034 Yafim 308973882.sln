@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUI", "AppUI\AppUI.csproj", "{FA281B26-47A7-4A5E-AAF3-C946B650B750}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{55882397-E71B-4DA4-8E6A-7945B7FC9DFE}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{7AD7391C-10BE-40A0-96CD-06B5141428BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{55882397-E71B-4DA4-8E6A-7945B7FC9DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55882397-E71B-4DA4-8E6A-7945B7FC9DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55882397-E71B-4DA4-8E6A-7945B7FC9DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD7391C-10BE-40A0-96CD-06B5141428BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD7391C-10BE-40A0-96CD-06B5141428BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD7391C-10BE-40A0-96CD-06B5141428BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD7391C-10BE-40A0-96CD-06B5141428BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

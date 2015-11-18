@@ -138,7 +138,7 @@ namespace AppUI
             // 
             this.pictureBoxLike.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pictureBoxLike.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLike.Image")));
-            this.pictureBoxLike.Location = new System.Drawing.Point(172, 387);
+            this.pictureBoxLike.Location = new System.Drawing.Point(167, 387);
             this.pictureBoxLike.Name = "pictureBoxLike";
             this.pictureBoxLike.Size = new System.Drawing.Size(41, 30);
             this.pictureBoxLike.TabIndex = 41;
