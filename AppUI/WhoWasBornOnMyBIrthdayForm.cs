@@ -85,7 +85,7 @@ namespace AppUI
         /// <param name="i_Event">The event</param>
         protected override void OnLoad(EventArgs i_Event)
         {
-            /// TODO:Handle exceptions
+            // TODO:Handle exceptions
             m_Json = m_Util.GetLocalJsonFile(m_PathToJsonFile);
 
             m_ParsedJson = m_Util.ParseJSON(m_Json);
@@ -115,21 +115,18 @@ namespace AppUI
             try
             {
                 m_ParsedJson = m_Util.GetJsonFromUrl(m_JsonWikiUrl);
-                try
-                {
-                    string image = m_Util.GetJsonWikiImageQuery(m_ParsedJson);
-                    pictureBox.LoadAsync(image);
-                }
-                catch (NullReferenceException nre)
-                {
-                    pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
-                }
+                string image = m_Util.GetJsonWikiImageQuery(m_ParsedJson);
+                pictureBox.LoadAsync(image);
             }
             catch (WebException wes)
             {
                 // Connection error 
                 MessageBox.Show(wes.Message);
                 this.Close();
+            }
+            catch (NullReferenceException nre)
+            {
+                pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
             }
         }
 
