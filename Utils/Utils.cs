@@ -258,6 +258,22 @@ namespace Utils
             return minPhoto;
         }
 
+        public static void GetWidthAndHeight(ref int i_Width, ref int i_Height, List<Photo> m_TopLikeablePhotos)
+        {
+            foreach (Photo photo in m_TopLikeablePhotos)
+            {
+                if (photo.Width > i_Width)
+                {
+                    i_Width = (int)photo.Width;
+                }
+
+                if (photo.Height > i_Height)
+                {
+                    i_Height = (int)photo.Height;
+                }
+            }
+        }
+
         #endregion
     }
 }

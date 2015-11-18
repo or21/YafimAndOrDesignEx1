@@ -61,17 +61,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TopLikeablePictureForm.cs">
+    <Compile Include="MostLikeablePictureForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopLikeablePictureForm.Designer.cs">
-      <DependentUpon>TopLikeablePictureForm.cs</DependentUpon>
+    <Compile Include="MostLikeablePictureForm.Designer.cs">
+      <DependentUpon>MostLikeablePictureForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,11 +81,11 @@
     <Compile Include="WhoWasBornOnMyBIrthdayForm.Designer.cs">
       <DependentUpon>WhoWasBornOnMyBIrthdayForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TopLikeablePictureForm.resx">
-      <DependentUpon>TopLikeablePictureForm.cs</DependentUpon>
+    <EmbeddedResource Include="MostLikeablePictureForm.resx">
+      <DependentUpon>MostLikeablePictureForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

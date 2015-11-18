@@ -59,14 +59,14 @@
             this.fbBlueButtonLogin.UseVisualStyleBackColor = false;
             this.fbBlueButtonLogin.Click += new System.EventHandler(this.fbBlueButtonLogin_Click);
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(432, 224);
             this.Controls.Add(this.fbBlueButtonLogin);
             this.Controls.Add(this.labelHeadLine);
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "Welcome";
             this.Controls.SetChildIndex(this.labelHeadLine, 0);
             this.Controls.SetChildIndex(this.fbBlueButtonLogin, 0);

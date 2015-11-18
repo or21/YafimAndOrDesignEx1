@@ -1,7 +1,12 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainWindow.cs" company="A16_Ex01">
+// Yafim Vodkov 308973882 Or Brand id 302521034
+// </copyright>
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper;
@@ -10,23 +15,71 @@ using Utils;
 
 namespace AppUI
 {
-    // Test comment to commit and push
-    public partial class Form1 : FbForm
+    /// <summary>
+    /// UI of the application
+    /// </summary>
+    public partial class MainWindow : FbForm
     {
+        /// <summary>
+        /// Post message
+        /// </summary>
         private const string k_StartPost = "What's on your mind...";
+
+        /// <summary>
+        /// Events message
+        /// </summary>
         private const string k_NoEventYet = "No Events yet";
+
+        /// <summary>
+        /// No likes message
+        /// </summary>
         private const string k_NoLikes = "You don't like any page";
+
+        /// <summary>
+        /// No checkIn message
+        /// </summary>
         private const string k_NoCheckIns = "You didn't do any check in";
+
+        /// <summary>
+        /// No post to retrive message
+        /// </summary>
         private const string k_NoPostsToRetrieve = "No Posts to retrieve :(";
-        private const string k_WaitMessage = "This may take few seconds... Please click OK";
+
+        /// <summary>
+        /// Wait message
+        /// </summary>
+        private const string k_WaitMessage = "This may take few seconds... Please click OK and Go get yourself a cup of coffee";
+
+        /// <summary>
+        /// LoggedIn user
+        /// </summary>
         private readonly User r_LoggedInUser;
+
+        /// <summary>
+        /// List of facebook photos
+        /// </summary>
         private List<Photo> m_ListOfPhotos;
+
+        /// <summary>
+        /// List of top likeable photos
+        /// </summary>
         private List<Photo> m_TopLikeablePhotos;
+
+        /// <summary>
+        /// List of threads
+        /// </summary>
         private List<Thread> m_Threads;
 
-        private int m_NumberOfPicturesToShow;
+        /// <summary>
+        /// Number of pictures to show
+        /// </summary>
+        private readonly int r_NumberOfPicturesToShow = 5;
 
-        public Form1(LoginResult i_UserData)
+        /// <summary>
+        /// Initializes a new instance of the MainWindow class.
+        /// </summary>
+        /// <param name="i_UserData">The user fb data</param>
+        public MainWindow(LoginResult i_UserData)
         {
             InitializeComponent();
             r_LoggedInUser = i_UserData.LoggedInUser;
@@ -34,12 +87,20 @@ namespace AppUI
             fetchUserInfo();
         }
 
-        private void textBoxPost_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Clear textBox when clicked
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void textBoxPost_Click(object i_Sender, EventArgs i_Event)
         {
             textBoxPost.Clear();
             textBoxPost.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// Fetch events and show them in relevant textbox
+        /// </summary>
         private void fetchEvents()
         {
             listBoxEvents.HorizontalScrollbar = true;
@@ -55,6 +116,9 @@ namespace AppUI
             }
         }
 
+        /// <summary>
+        /// Fetch user information and show them in relevant textbox
+        /// </summary>
         private void fetchUserInfo()
         {
             textBoxPost.Text = k_StartPost;
@@ -71,6 +135,9 @@ namespace AppUI
             fetchCheckIn();
         }
 
+        /// <summary>
+        /// Fetch pages and show them in relevant textbox
+        /// </summary>
         private void fetchPages()
         {
             listBoxPages.HorizontalScrollbar = true;
@@ -86,6 +153,10 @@ namespace AppUI
             }
         }
 
+
+        /// <summary>
+        /// Fetch checkIns and show them in relevant textbox
+        /// </summary>
         private void fetchCheckIn()
         {
             listBoxCheckIn.HorizontalScrollbar = true;
@@ -101,6 +172,9 @@ namespace AppUI
             }
         }
 
+        /// <summary>
+        /// Fetch user photos
+        /// </summary>
         private void fetchPhotos()
         {
             m_ListOfPhotos = new List<Photo>();
@@ -111,11 +185,14 @@ namespace AppUI
                     m_ListOfPhotos.Add(photo);
                 }
             }
-            //TODO: Hard Code!!!
-            m_NumberOfPicturesToShow = 10;
-            m_TopLikeablePhotos = Utils.Utils.FindMostLikablePhotos(m_NumberOfPicturesToShow, m_ListOfPhotos);
+
+            //TODO: ...
+            m_TopLikeablePhotos = Utils.Utils.FindMostLikablePhotos(r_NumberOfPicturesToShow, m_ListOfPhotos);
         }
 
+        /// <summary>
+        /// Fetch User posts and show them in relevant textbox
+        /// </summary>
         private void fetchPosts()
         {
             listBoxFeed.HorizontalScrollbar = true;
@@ -134,13 +211,16 @@ namespace AppUI
                     listBoxFeed.Items.Add(string.Format(post.UpdateTime + ": " + "[{0}]", post.Type));
                 }
             }
-
+            
             if (r_LoggedInUser.Posts.Count == 0)
             {
                 MessageBox.Show(k_NoPostsToRetrieve);
             }
         }
 
+        /// <summary>
+        /// Fetch user data and show it in relevant textbox
+        /// </summary>
         private void fetchUserData()
         {
             // TODO: check for null
@@ -152,18 +232,34 @@ namespace AppUI
             listBoxProfie.Items.Add("Email: " + r_LoggedInUser.Email);
         }
 
-        private void buttonPost_Click(object i_Sender, EventArgs i_E)
+
+        /// <summary>
+        /// Post status in facebook wall
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonPost_Click(object i_Sender, EventArgs i_Event)
         {
             Status postedStatus = r_LoggedInUser.PostStatus(textBoxPost.Text);
             MessageBox.Show(string.Format(@"Status: {0} Posted", postedStatus.Message));
         }
 
-        private void buttonLogout_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Logout and exit application
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonLogout_Click(object i_Sender, EventArgs i_Event)
         {
             Application.Exit();
         }
 
-        private void buttonTopLikeablePhotos_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Show 5 most likeable pictures 
+        /// </summary>
+        /// <param name="i_Sender"></param>
+        /// <param name="i_Event"></param>
+        private void buttonTopLikeablePhotos_Click(object i_Sender, EventArgs i_Event)
         {
             MessageBox.Show(k_WaitMessage);
             int width = 0;
@@ -176,39 +272,21 @@ namespace AppUI
             }
 
             Utils.Utils.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
-            getWidthAndHeight(ref width, ref height);
-            createTopLikeablePictureForm(width, height);
-        }
-
-        // TODO: REMOVE TO UTILS
-        private void getWidthAndHeight(ref int i_Width, ref int i_Height)
-        {
-            foreach (Photo photo in m_TopLikeablePhotos)
-            {
-                if (photo.Width > i_Width)
-                {
-                    i_Width = (int)photo.Width;
-                }
-
-                if (photo.Height > i_Height)
-                {
-                    i_Height = (int)photo.Height;
-                }
-            }
+            Utils.Utils.GetWidthAndHeight(ref width, ref height, m_TopLikeablePhotos);
+            createMostLikeablePictureForm(width, height);
         }
 
         // TODO: HANDLE EXCEPTIONS HERE?
         /// <summary>
-        /// Creates new top likeable pictures.
+        /// Creates a new most likeable pictures form
         /// </summary>
-        private void createTopLikeablePictureForm(int i_Width, int i_Height)
+        private void createMostLikeablePictureForm(int i_Width, int i_Height)
         {
+            // TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
 
-            //TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
-
-            TopLikeablePictureForm likeablePictureForm = new TopLikeablePictureForm(m_TopLikeablePhotos, m_NumberOfPicturesToShow)
+            MostLikeablePictureForm likeablePictureForm = new MostLikeablePictureForm(m_TopLikeablePhotos, r_NumberOfPicturesToShow)
             {
-                Size = new Size(i_Width, i_Height + 35),
+                Size = new Size(i_Width, i_Height + ButtonMargin),
                 StartPosition = FormStartPosition.CenterScreen
             };
             likeablePictureForm.ShowDialog();

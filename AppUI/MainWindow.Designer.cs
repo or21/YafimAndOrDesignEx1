@@ -1,6 +1,6 @@
 ﻿namespace AppUI
 {
-    public partial class Form1
+    public partial class MainWindow
     {
         /// <summary>רגע
         /// Required designer variable.
@@ -209,7 +209,7 @@
             this.labelFeed.TabIndex = 18;
             this.labelFeed.Text = "News feed";
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -230,7 +230,7 @@
             this.Controls.Add(this.listBoxFeed);
             this.Controls.Add(this.textBoxPost);
             this.Controls.Add(this.pictureBoxProfile);
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "FaceBoo";
             this.Controls.SetChildIndex(this.pictureBoxProfile, 0);
             this.Controls.SetChildIndex(this.textBoxPost, 0);
