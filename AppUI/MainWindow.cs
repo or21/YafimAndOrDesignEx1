@@ -56,6 +56,16 @@ namespace AppUI
         private readonly User r_LoggedInUser;
 
         /// <summary>
+        /// Number of pictures to show
+        /// </summary>
+        private readonly int r_NumberOfPicturesToShow = 5;
+
+        /// <summary>
+        /// Instance of Util class
+        /// </summary>
+        private readonly Utils.Utils r_Util;
+
+        /// <summary>
         /// List of facebook photos
         /// </summary>
         private List<Photo> m_ListOfPhotos;
@@ -71,16 +81,6 @@ namespace AppUI
         private List<Thread> m_Threads;
 
         /// <summary>
-        /// Number of pictures to show
-        /// </summary>
-        private readonly int r_NumberOfPicturesToShow = 5;
-
-        /// <summary>
-        /// Instance of Util class
-        /// </summary>
-        private Utils.Utils m_Util;
-
-        /// <summary>
         /// Initializes a new instance of the MainWindow class.
         /// </summary>
         /// <param name="i_UserData">The user facebook data</param>
@@ -91,7 +91,7 @@ namespace AppUI
             FacebookService.s_CollectionLimit = 1000;
             fetchUserInfo();
 
-            m_Util = Utils.Utils.Instance;
+            r_Util = Utils.Utils.Instance;
         }
 
         /// <summary>
@@ -162,14 +162,13 @@ namespace AppUI
             }
         }
 
-
         /// <summary>
         /// Fetch checkIns and show them in relevant textbox
         /// </summary>
         private void fetchCheckIn()
         {
             listBoxCheckIn.HorizontalScrollbar = true;
-            listBoxCheckIn.DisplayMember = "Message";
+            listBoxCheckIn.DisplayMember = "Name";
             foreach (Checkin fbCheckin in r_LoggedInUser.Checkins)
             {
                 listBoxCheckIn.Items.Add(fbCheckin);
@@ -202,7 +201,7 @@ namespace AppUI
             }
             else
             {
-                m_TopLikeablePhotos = m_Util.FindMostLikablePhotos(r_NumberOfPicturesToShow, m_ListOfPhotos);
+                m_TopLikeablePhotos = r_Util.FindMostLikablePhotos(r_NumberOfPicturesToShow, m_ListOfPhotos);
             }
         }
 
@@ -227,7 +226,7 @@ namespace AppUI
                     listBoxFeed.Items.Add(string.Format(post.UpdateTime + ": " + "[{0}]", post.Type));
                 }
             }
-            
+
             if (r_LoggedInUser.Posts.Count == 0)
             {
                 listBoxFeed.BackColor = Color.Gray;
@@ -247,20 +246,22 @@ namespace AppUI
             {
                 listBoxProfie.Items.Add("Birthday: " + r_LoggedInUser.Birthday);
             }
+
             if (r_LoggedInUser.Gender != null)
             {
                 listBoxProfie.Items.Add("Gender: " + r_LoggedInUser.Gender);
             }
+
             if (r_LoggedInUser.Hometown != null)
             {
                 listBoxProfie.Items.Add("Hometown: " + r_LoggedInUser.Hometown.Name);
             }
+
             if (r_LoggedInUser.Email != null)
             {
                 listBoxProfie.Items.Add("Email: " + r_LoggedInUser.Email);
             }
         }
-
 
         /// <summary>
         /// Post status in facebook wall
@@ -300,12 +301,11 @@ namespace AppUI
                 thread.Join();
             }
 
-            m_Util.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
-            m_Util.GetWidthAndHeight(ref width, ref height, m_TopLikeablePhotos);
+            r_Util.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
+            r_Util.GetWidthAndHeight(ref width, ref height, m_TopLikeablePhotos);
             createMostLikeablePictureForm(width, height);
         }
 
-        // TODO: HANDLE EXCEPTIONS HERE?
         /// <summary>
         /// Creates a new most likeable pictures form
         /// </summary>
@@ -314,7 +314,7 @@ namespace AppUI
         private void createMostLikeablePictureForm(int i_Width, int i_Height)
         {
             // TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
-
+            // TODO: HANDLE EXCEPTIONS HERE?
             MostLikeablePictureForm likeablePictureForm = new MostLikeablePictureForm(m_TopLikeablePhotos, r_NumberOfPicturesToShow)
             {
                 Size = new Size(i_Width, i_Height + ButtonMargin),

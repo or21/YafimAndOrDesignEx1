@@ -40,7 +40,6 @@ namespace AppUI
             finally
             {
                 //Application.Exit();
-                
             }
         }
     }

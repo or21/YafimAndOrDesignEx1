@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using FacebookWrapper.ObjectModel;
 using Newtonsoft.Json.Linq;
-using System.Linq;
 
 namespace Utils
 {
@@ -18,9 +18,12 @@ namespace Utils
     /// </summary>
     public class Utils
     {
+        private static readonly object m_LockInstance = new object();
         private static Utils m_Instance;
-        private static readonly object m_LockInstance = new object(); 
-        private Utils() {}
+
+        private Utils()
+        {
+        }
 
         public static Utils Instance
         {
@@ -36,11 +39,12 @@ namespace Utils
                         }
                     }
                 }
+
                 return m_Instance;
             }
         }
 
-        # region WhoWasBornOnMyBirthday logic
+        #region WhoWasBornOnMyBirthdaylogic
 
         /// <summary>
         /// Parse given date to MM-DD format
@@ -229,7 +233,6 @@ namespace Utils
             io_ListOfPhotos.Sort((numberOfLikesPhotoOne, numberOfLikesPhotoTwo) =>
                 numberOfLikesPhotoOne.LikedBy.Count().CompareTo(numberOfLikesPhotoTwo.LikedBy.Count()));
             io_ListOfPhotos.Reverse();
-
         }
 
         public List<Photo> FindMostLikablePhotos(int i_NumberOfPhotosToShow, List<Photo> i_ListOfPhotos)

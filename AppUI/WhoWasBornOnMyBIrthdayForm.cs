@@ -35,6 +35,11 @@ namespace AppUI
         private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
 
         /// <summary>
+        /// Instance of Util class
+        /// </summary>
+        private readonly Utils.Utils r_Util;
+
+        /// <summary>
         /// List of people who share the same birthday date.
         /// </summary>
         private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
@@ -60,11 +65,6 @@ namespace AppUI
         private JObject m_ParsedJson;
 
         /// <summary>
-        /// Instance of Util class
-        /// </summary>
-        private Utils.Utils m_Util;
-
-        /// <summary>
         /// Initializes a new instance of the WhoWasBornOnMyBirthdayForm class.
         /// </summary>
         /// <param name="i_BirthdayDate">Birthday date mm/dd/yyyy </param>
@@ -72,9 +72,9 @@ namespace AppUI
         {
             InitializeComponent();
 
-            m_Util = Utils.Utils.Instance;
+            r_Util = Utils.Utils.Instance;
 
-            m_MyBirthdayDate = m_Util.ParseBirthdayDate(i_BirthdayDate);
+            m_MyBirthdayDate = r_Util.ParseBirthdayDate(i_BirthdayDate);
         }
 
         /// <summary>
@@ -86,11 +86,11 @@ namespace AppUI
         protected override void OnLoad(EventArgs i_Event)
         {
             /// TODO:Handle exceptions
-            m_Json = m_Util.GetLocalJsonFile(m_PathToJsonFile);
+            m_Json = r_Util.GetLocalJsonFile(m_PathToJsonFile);
 
-            m_ParsedJson = m_Util.ParseJSON(m_Json);
+            m_ParsedJson = r_Util.ParseJSON(m_Json);
 
-            m_Util.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
+            r_Util.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
             fetchBirthdays();
             initListBox();
@@ -114,10 +114,10 @@ namespace AppUI
         {
             try
             {
-                m_ParsedJson = m_Util.GetJsonFromUrl(m_JsonWikiUrl);
+                m_ParsedJson = r_Util.GetJsonFromUrl(m_JsonWikiUrl);
                 try
                 {
-                    string image = m_Util.GetJsonWikiImageQuery(m_ParsedJson);
+                    string image = r_Util.GetJsonWikiImageQuery(m_ParsedJson);
                     pictureBox.LoadAsync(image);
                 }
                 catch (NullReferenceException nre)
@@ -130,17 +130,6 @@ namespace AppUI
                 // Connection error 
                 MessageBox.Show(wes.Message);
                 this.Close();
-            }
-        }
-
-        /// <summary>
-        /// If exists Get JSON file to read Otherwise throw relevant exception and exit
-        /// </summary>
-        private void getLocalJsonFile()
-        {
-            using (StreamReader reader = new StreamReader(m_PathToJsonFile))
-            {
-                m_Json = reader.ReadToEnd();
             }
         }
 
@@ -179,11 +168,11 @@ namespace AppUI
         private void listBoxWhoWasBorn_SelectedIndexChanged(object i_Sender, EventArgs i_Event)
         {
             labelName.Text = listBoxWhoWasBorn.Text;
-            m_Util.SetCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
+            r_Util.SetCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
 
-            m_Util.BuildJsonWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
+            r_Util.BuildJsonWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
             setPictureBox();
-            textBoxInfo.Text = m_Util.GetWikiJsonInfo(m_ParsedJson);
+            textBoxInfo.Text = r_Util.GetWikiJsonInfo(m_ParsedJson);
         }
     }
 }
