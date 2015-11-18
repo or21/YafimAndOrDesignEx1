@@ -36,6 +36,9 @@ namespace AppUI
         /// </summary>
         private int m_IndexOfCurrentImage;
 
+        /// <summary>
+        /// The current image to display
+        /// </summary>
         private Photo m_CurrentImageDisplayed;
 
         /// <summary>

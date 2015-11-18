@@ -119,6 +119,9 @@ namespace AppUI
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.fbWhiteButtonExit);
             this.Controls.Add(this.listBoxWhoWasBorn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "WhoWasBornOnMyBirthdayForm";
             this.Text = "WhoWasBornOnMyBirthdayForm";
             this.Controls.SetChildIndex(this.listBoxWhoWasBorn, 0);

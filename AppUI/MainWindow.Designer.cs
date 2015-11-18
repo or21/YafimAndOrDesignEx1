@@ -230,6 +230,9 @@
             this.Controls.Add(this.listBoxFeed);
             this.Controls.Add(this.textBoxPost);
             this.Controls.Add(this.pictureBoxProfile);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainWindow";
             this.Text = "FaceBoo";
             this.Controls.SetChildIndex(this.pictureBoxProfile, 0);

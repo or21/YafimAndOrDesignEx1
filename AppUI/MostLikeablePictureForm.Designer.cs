@@ -133,7 +133,6 @@ namespace AppUI
             this.pictureBoxCurrentPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCurrentPic.TabIndex = 40;
             this.pictureBoxCurrentPic.TabStop = false;
-            this.pictureBoxCurrentPic.WaitOnLoad = false;
             // 
             // pictureBoxLike
             // 
@@ -158,7 +157,9 @@ namespace AppUI
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.pictureBoxCurrentPic);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MostLikeablePictureForm";
             this.Text = "MostLikeablePictureForm";
             this.Load += new System.EventHandler(this.buttonTopPicture_Click);
