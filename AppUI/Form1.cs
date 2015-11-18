@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
@@ -21,6 +22,7 @@ namespace AppUI
         private readonly User r_LoggedInUser;
         private List<Photo> m_ListOfPhotos;
         private List<Photo> m_TopLikeablePhotos; 
+        private List<Thread> m_Threads; 
 
         public Form1(LoginResult i_UserData)
         {
@@ -54,6 +56,12 @@ namespace AppUI
         private void fetchUserInfo()
         {
             textBoxPost.Text = k_StartPost;
+            m_Threads = new List<Thread>();
+
+            Thread threadPhotos = new Thread(fetchPhotos);
+            m_Threads.Add(threadPhotos);
+            threadPhotos.Start();
+            
             fetchEvents();
             fetchUserData();
             fetchPosts();
@@ -93,10 +101,7 @@ namespace AppUI
 
         private void fetchPhotos()
         {
-            //TODO: Singleton... 
             m_ListOfPhotos = new List<Photo>();
-            m_TopLikeablePhotos = new List<Photo>();
-
             foreach (Album album in r_LoggedInUser.Albums)
             {
                 foreach (Photo photo in album.Photos)
@@ -104,7 +109,54 @@ namespace AppUI
                     m_ListOfPhotos.Add(photo);
                 }
         }
+
+            findMostLikablePhotos(5);
+        }
+
+        private void findMostLikablePhotos(int i_AmountOfPhotosToShow)
+        {
+            //TODO: Singleton... 
+            m_TopLikeablePhotos = new List<Photo>(i_AmountOfPhotosToShow);
+            Photo minPhoto = new Photo();
+
+            foreach (Photo photo in m_ListOfPhotos)
+            {
+                if (m_TopLikeablePhotos.Count != m_TopLikeablePhotos.Capacity)
+                {
+                    m_TopLikeablePhotos.Add(photo);
+                    minPhoto = findMinInTopLikable();
+                }
+                else
+                {
+                    if (photo.LikedBy.Count >= minPhoto.LikedBy.Count)
+                    {
+                        addPhotoToList(photo, ref minPhoto);
+                    }
+                }
+            }
             //TODO: no photos to show
+        }
+
+        private void addPhotoToList(Photo i_Photo, ref Photo i_MinPhoto)
+        {
+            m_TopLikeablePhotos.Remove(i_MinPhoto);
+            m_TopLikeablePhotos.Add(i_Photo);
+            i_MinPhoto = findMinInTopLikable();
+        }
+
+        private Photo findMinInTopLikable()
+        {
+            Photo minPhoto = m_TopLikeablePhotos[0];
+
+            foreach (Photo photo in m_TopLikeablePhotos)
+            {
+                if (photo.LikedBy.Count <= minPhoto.LikedBy.Count)
+                {
+                    minPhoto = photo;
+                }
+            }
+
+            return minPhoto;
         }
 
         private void fetchPosts()
@@ -134,6 +186,7 @@ namespace AppUI
 
         private void fetchUserData()
         {
+            // TODO: check for null
             listBoxProfie.HorizontalScrollbar = true;
             pictureBoxProfile.LoadAsync(r_LoggedInUser.PictureNormalURL);
             listBoxProfie.Items.Add("Birthday: " + r_LoggedInUser.Birthday);
@@ -155,36 +208,28 @@ namespace AppUI
 
         // TODO: REMOVE TO UTILS
         /// <summary>
-        /// Get top five likeablePictures
+        /// Sort list of photos by number of likes 
         /// </summary>
-        private void getMostLikeablePictures(int i_NumberOfPictures)
+        private void sortPhotosByDescendingOrder()
         {
-            foreach (Photo photo in m_ListOfPhotos)
-            {
-                if (i_NumberOfPictures != 0)
-                {
-                    m_TopLikeablePhotos.Add(photo);
-                    i_NumberOfPictures--;
-                }
-                else
-                {
-                    break;
-                }
-            }
+            m_TopLikeablePhotos.Sort((i_NumberOfLikesPhotoOne, i_NumberOfLikesPhotoTwo) =>
+                i_NumberOfLikesPhotoOne.LikedBy.Count().CompareTo(i_NumberOfLikesPhotoTwo.LikedBy.Count()));
+            m_TopLikeablePhotos.Reverse();
         }
 
-        // TODO: SOME LOGIC TO UTILS..?
-        private void buttonFeature1_Click(object i_Sender, EventArgs i_E)
-        {
+        private void buttonTopLikeablePhotos_Click(object i_Sender, EventArgs i_E)
+                {
             MessageBox.Show(k_WaitMessage);
             int width = 0;
             int height = 0;
-            fetchPhotos();
-            // TODO: Put or's code here
-            Utils.Utils.sortPhotosByDescendingOrder(m_ListOfPhotos);
 
             //TODO: Define general field by guy's guide... (private int readonly _NumberOfMostLikeablePictures = 5)
-            getMostLikeablePictures(5);
+            foreach (Thread thread in m_Threads)
+            {
+                thread.Join();
+            }
+
+            sortPhotosByDescendingOrder();
             getWidthAndHeight(ref width, ref height);
             createTopLikeablePictureForm(width, height);
         }
@@ -196,12 +241,12 @@ namespace AppUI
             {
                 if (photo.Width > i_Width)
                 {
-                    i_Width = (int) photo.Width;
+                    i_Width = (int)photo.Width;
                 }
 
                 if (photo.Height > i_Height)
                 {
-                    i_Height = (int) photo.Height;
+                    i_Height = (int)photo.Height;
                 }
             }
         }

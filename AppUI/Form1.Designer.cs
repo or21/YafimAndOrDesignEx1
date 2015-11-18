@@ -109,7 +109,7 @@
             this.buttonGetTopPictures.TabIndex = 9;
             this.buttonGetTopPictures.Text = "Get Top 5 Likeable Pictures";
             this.buttonGetTopPictures.UseVisualStyleBackColor = true;
-            this.buttonGetTopPictures.Click += new System.EventHandler(this.buttonFeature1_Click);
+            this.buttonGetTopPictures.Click += new System.EventHandler(this.buttonTopLikeablePhotos_Click);
             // 
             // buttonGetCelebsBD
             // 

@@ -25,14 +25,14 @@ namespace AppUI
         private const string k_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME frown emoticon";
 
         /// <summary>
-        /// Path to Json file
-        /// </summary>
-        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
-
-        /// <summary>
         /// Formatted birthday date date MM-DD
         /// </summary>
         private readonly string m_MyBirthdayDate;
+
+        /// <summary>
+        /// Path to Json file
+        /// </summary>
+        private readonly string m_PathToJsonFile = Application.StartupPath + @"/JSONFile/celeb-birthdays.JSON";
 
         /// <summary>
         /// List of people who share the same birthday date.
@@ -42,7 +42,7 @@ namespace AppUI
         /// <summary>
         /// Json file to parse
         /// </summary>
-        private string m_JSON;
+        private string m_Json;
 
         /// <summary>
         /// Json file from external url
@@ -78,9 +78,9 @@ namespace AppUI
         protected override void OnLoad(EventArgs i_Event)
         {
             /// TODO:Handle exceptions
-            m_JSON = Utils.Utils.getLocalJsonFile(m_PathToJsonFile);
+            m_Json = Utils.Utils.getLocalJsonFile(m_PathToJsonFile);
 
-            m_ParsedJson = Utils.Utils.parseJSON(m_JSON);
+            m_ParsedJson = Utils.Utils.parseJSON(m_Json);
 
             Utils.Utils.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
 
@@ -107,17 +107,17 @@ namespace AppUI
             try
             {
                 m_ParsedJson = Utils.Utils.GetJsonFromUrl(m_JsonWikiUrl);
-                    try
-                    {
+                try
+                {
                     string image = Utils.Utils.GetJsonWikiImageQuery(m_ParsedJson);
-                        pictureBox.LoadAsync(image);
-                    }
-                    catch (NullReferenceException nre)
-                    {
-                      pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
-                    }
+                    pictureBox.LoadAsync(image);
                 }
-            catch (WebException wes) 
+                catch (NullReferenceException nre)
+                {
+                    pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
+                }
+            }
+            catch (WebException wes)
             {
                 // Connection error 
                 MessageBox.Show(wes.Message);
@@ -132,7 +132,7 @@ namespace AppUI
         {
             using (StreamReader reader = new StreamReader(m_PathToJsonFile))
             {
-                m_JSON = reader.ReadToEnd();
+                m_Json = reader.ReadToEnd();
             }
         }
 

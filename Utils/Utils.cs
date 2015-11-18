@@ -11,7 +11,6 @@ using FacebookWrapper.ObjectModel;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 
-
 namespace Utils
 {
     /// <summary>
@@ -19,8 +18,8 @@ namespace Utils
     /// </summary>
     public static class Utils
     {
-
         # region WhoWasBornOnMyBirthday logic
+
         /// <summary>
         /// Parse given date to MM-DD format
         /// </summary>
@@ -123,6 +122,7 @@ namespace Utils
 
             return wikiInfo;
         }
+
         /// <summary>
         /// Get information from wiki-json
         /// </summary>
