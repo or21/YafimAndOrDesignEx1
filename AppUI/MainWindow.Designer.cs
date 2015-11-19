@@ -40,7 +40,7 @@ namespace AppUI
             this.listBoxCheckIn = new System.Windows.Forms.ListBox();
             this.listBoxProfie = new System.Windows.Forms.ListBox();
             this.listBoxPages = new System.Windows.Forms.ListBox();
-            this.buttonGetTopPictures = new Utils.FbBlueButton();
+            this.buttonGetMostPhotos = new Utils.FbBlueButton();
             this.buttonGetCelebsBD = new Utils.FbBlueButton();
             this.buttonPost = new Utils.FbBlueButton();
             this.buttonLogout = new Utils.FbBlueButton();
@@ -102,19 +102,19 @@ namespace AppUI
             this.listBoxPages.Size = new System.Drawing.Size(154, 121);
             this.listBoxPages.TabIndex = 7;
             // 
-            // buttonGetTopPictures
+            // buttonGetMostPhotos
             // 
-            this.buttonGetTopPictures.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
-            this.buttonGetTopPictures.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGetTopPictures.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.buttonGetTopPictures.ForeColor = System.Drawing.Color.White;
-            this.buttonGetTopPictures.Location = new System.Drawing.Point(104, 446);
-            this.buttonGetTopPictures.Name = "buttonGetTopPictures";
-            this.buttonGetTopPictures.Size = new System.Drawing.Size(196, 23);
-            this.buttonGetTopPictures.TabIndex = 9;
-            this.buttonGetTopPictures.Text = "Get Top 5 Likeable Pictures";
-            this.buttonGetTopPictures.UseVisualStyleBackColor = true;
-            this.buttonGetTopPictures.Click += new System.EventHandler(this.buttonTopLikeablePhotos_Click);
+            this.buttonGetMostPhotos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(122)))), ((int)(((byte)(172)))));
+            this.buttonGetMostPhotos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGetMostPhotos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonGetMostPhotos.ForeColor = System.Drawing.Color.White;
+            this.buttonGetMostPhotos.Location = new System.Drawing.Point(104, 446);
+            this.buttonGetMostPhotos.Name = "buttonGetMostPhotos";
+            this.buttonGetMostPhotos.Size = new System.Drawing.Size(196, 23);
+            this.buttonGetMostPhotos.TabIndex = 9;
+            this.buttonGetMostPhotos.Text = "Get Most 5 Likeable Photos";
+            this.buttonGetMostPhotos.UseVisualStyleBackColor = true;
+            this.buttonGetMostPhotos.Click += new System.EventHandler(this.buttonTopLikeablePhotos_Click);
             // 
             // buttonGetCelebsBD
             // 
@@ -227,7 +227,7 @@ namespace AppUI
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.buttonPost);
             this.Controls.Add(this.buttonGetCelebsBD);
-            this.Controls.Add(this.buttonGetTopPictures);
+            this.Controls.Add(this.buttonGetMostPhotos);
             this.Controls.Add(this.listBoxPages);
             this.Controls.Add(this.listBoxProfie);
             this.Controls.Add(this.listBoxCheckIn);
@@ -247,7 +247,7 @@ namespace AppUI
             this.Controls.SetChildIndex(this.listBoxCheckIn, 0);
             this.Controls.SetChildIndex(this.listBoxProfie, 0);
             this.Controls.SetChildIndex(this.listBoxPages, 0);
-            this.Controls.SetChildIndex(this.buttonGetTopPictures, 0);
+            this.Controls.SetChildIndex(this.buttonGetMostPhotos, 0);
             this.Controls.SetChildIndex(this.buttonGetCelebsBD, 0);
             this.Controls.SetChildIndex(this.buttonPost, 0);
             this.Controls.SetChildIndex(this.buttonLogout, 0);
@@ -270,7 +270,7 @@ namespace AppUI
         private System.Windows.Forms.ListBox listBoxCheckIn;
         private System.Windows.Forms.ListBox listBoxProfie;
         private System.Windows.Forms.ListBox listBoxPages;
-        private Utils.FbBlueButton buttonGetTopPictures;
+        private Utils.FbBlueButton buttonGetMostPhotos;
         private Utils.FbBlueButton buttonGetCelebsBD;
         private Utils.FbBlueButton buttonPost;
         private Utils.FbBlueButton buttonLogout;

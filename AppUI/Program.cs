@@ -25,28 +25,8 @@ namespace AppUI
 
             // TODO: Delete. for fast debug only
             // WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
-           
-            try
-            {
-                /*currentForm.ShowDialog();*/
-                Application.Run(new LoginForm());
-            }
-            catch (FormatException bfe)
-            {
-                MessageBox.Show(bfe.Message);
-            }
-            catch (FileNotFoundException fnf)
-            {
-                MessageBox.Show(fnf.Message);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            finally
-            {
-                //Application.Exit();
-            }
+
+            Application.Run(new LoginForm());
         }
     }
 }

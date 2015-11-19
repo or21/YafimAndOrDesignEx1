@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MostLikeablePictureForm.Designer.cs" company="A16_Ex01">
+// <copyright file="MostLikeablePhotosForm.Designer.cs" company="A16_Ex01">
 // Yafim Vodkov 308973882 Or Brand id 302521034
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,7 +10,7 @@ namespace AppUI
     /// <summary>
     /// Get the N likeable pictures you have on facebook.
     /// </summary>
-    public partial class MostLikeablePictureForm
+    public partial class MostLikeablePhotosForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,7 @@ namespace AppUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MostLikeablePictureForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MostLikeablePhotosForm));
             this.buttonNext = new Utils.FbBlueButton();
             this.buttonTopPicture = new Utils.FbBlueButton();
             this.buttonBack = new Utils.FbBlueButton();
@@ -144,7 +144,7 @@ namespace AppUI
             this.pictureBoxLike.TabIndex = 41;
             this.pictureBoxLike.TabStop = false;
             // 
-            // MostLikeablePictureForm
+            // MostLikeablePhotosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -160,8 +160,8 @@ namespace AppUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "MostLikeablePictureForm";
-            this.Text = "MostLikeablePictureForm";
+            this.Name = "MostLikeablePhotosForm";
+            this.Text = "MostLikeablePhotosForm";
             this.Load += new System.EventHandler(this.buttonTopPicture_Click);
             this.Controls.SetChildIndex(this.pictureBoxCurrentPic, 0);
             this.Controls.SetChildIndex(this.buttonExit, 0);

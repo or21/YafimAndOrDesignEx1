@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using Newtonsoft.Json.Linq;
 
@@ -18,6 +20,7 @@ namespace Utils
     /// </summary>
     public class Utils
     {
+        #region Initialization
         /// <summary>
         /// Prevent race condition
         /// </summary>
@@ -27,6 +30,11 @@ namespace Utils
         /// Instance of the Utils class
         /// </summary>
         private static Utils s_Instance;
+
+        /// <summary>
+        /// Parsed json
+        /// </summary>
+        private JObject m_ParsedJson;
 
         /// <summary>
         /// Prevents a default instance of the Utils class from being created.
@@ -56,15 +64,45 @@ namespace Utils
                 return s_Instance;
             }
         }
+        #endregion
 
         #region WhoWasBornOnMyBirthdaylogic
+
+        /// <summary>
+        /// Return list of people who was born on specific date.
+        /// </summary>
+        /// <param name="i_PathToJsonFile">Path to local json file</param>
+        /// <param name="i_BirthdayDate">The date</param>
+        /// <returns>List of people who was born on specific date</returns>
+        public List<string> GetListOfPeopleFromJSON(string i_PathToJsonFile, string i_BirthdayDate)
+        {
+            List<string> i_ListOfPeopleWhoWasBornOnMyBirthday;
+            string parsedBirthdayDate = parseBirthdayDate(i_BirthdayDate); 
+            m_ParsedJson = getParsedJSONFile(i_PathToJsonFile);
+            parseBirthdayJson(m_ParsedJson, out i_ListOfPeopleWhoWasBornOnMyBirthday, parsedBirthdayDate);
+
+            return i_ListOfPeopleWhoWasBornOnMyBirthday;
+        }
+
+        /// <summary>
+        /// Get parsed json file
+        /// </summary>
+        /// <param name="i_PathToJsonFile">Path to local json file</param>
+        /// <returns>Parsed json file</returns>
+        private JObject getParsedJSONFile(string i_PathToJsonFile)
+        {
+            string json = getLocalJsonFile(i_PathToJsonFile);
+            m_ParsedJson = parseJson(json);
+
+            return m_ParsedJson;
+        }
 
         /// <summary>
         /// Parse given date to MM-DD format
         /// </summary>
         /// <param name="i_BirthdayToParse">Birthday date mm/dd/yyyy </param>
         /// <returns>parsed birthday as string</returns>
-        public string ParseBirthdayDate(string i_BirthdayToParse)
+        private string parseBirthdayDate(string i_BirthdayToParse)
         {
             bool isValidDate = validateStringFormat(i_BirthdayToParse);
             string strToReturn;
@@ -110,12 +148,11 @@ namespace Utils
 
         /// <summary>
         /// Insert json-celeb data to collection
-        /// TODO: Maybe use property instead out OR use as private method after parsing
         /// </summary>
         /// <param name="i_Json">json object</param>
         /// <param name="o_ListOfPeopleWhoWasBornOnMyBirthday">The collection</param>
         /// <param name="i_Key">Key word</param>
-        public void ParseBirthdayJson(JObject i_Json, out List<string> o_ListOfPeopleWhoWasBornOnMyBirthday, string i_Key)
+        private void parseBirthdayJson(JObject i_Json, out List<string> o_ListOfPeopleWhoWasBornOnMyBirthday, string i_Key)
         {
             o_ListOfPeopleWhoWasBornOnMyBirthday = new List<string>();
 
@@ -126,24 +163,52 @@ namespace Utils
         }
 
         /// <summary>
-        /// Format selected name as "first_name" 
+        /// Format selected name ('firstName lastName') to "firstName_lastName" 
         /// </summary>
         /// <param name="i_StrToForamt">String to format</param>
-        /// <param name="o_CurrentCelebName">Full name</param>
-        public void SetCurrentNameInFormat(string i_StrToForamt, out string o_CurrentCelebName)
+        /// <returns>formatted string</returns>
+        private string setCurrentNameInFormat(string i_StrToForamt)
         {
-            o_CurrentCelebName = i_StrToForamt.Replace(" ", "_");
+            return i_StrToForamt.Replace(" ", "_");
+        }
+
+        /// <summary>
+        /// Returns the image path of the celeb
+        /// </summary>
+        /// <param name="i_CelebFullName">Celeb full name ('firstName secondName')</param>
+        /// <returns>Image path from wikipedia</returns>
+        public string GetCelebPictureUrl(string i_CelebFullName)
+        {
+            string formattedName = setCurrentNameInFormat(i_CelebFullName);
+
+            string jsonWikiRequest = buildJsonWikiRequest(formattedName);
+
+            m_ParsedJson = getJsonFromUrl(jsonWikiRequest);
+
+            string image = getJsonWikiImageQuery(m_ParsedJson);
+
+            return image;
+        }
+
+        /// <summary>
+        /// Get wikipedia information about the celeb
+        /// </summary>
+        /// <param name="i_CelebFullName">Celeb full name</param>
+        /// <returns>Information as string</returns>
+        public string GetCelebInfo(string i_CelebFullName )
+        {
+            return getWikiJsonInfo(m_ParsedJson);
         }
 
         /// <summary>
         /// Build json request to wikipedia server using its API.
         /// properties: images|intro content - based on given name
-        /// </summary>
-        /// <param name="i_JsonWikiRequest">Request path</param>
+        /// </summary>        
         /// <param name="i_FullName">Full name as parameter</param>
-        public void BuildJsonWikiRequest(out string i_JsonWikiRequest, string i_FullName)
+        /// <returns>formatted http request</returns>
+        private string buildJsonWikiRequest(string i_FullName)
         {
-            i_JsonWikiRequest = string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", i_FullName);
+            return string.Format("https://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=pageimages|extracts&exintro=&explaintext=&format=json&pithumbsize=300", i_FullName);
         }
 
         /// <summary>
@@ -151,7 +216,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_Json">Json file</param>
         /// <returns>wiki information as string</returns>
-        public string GetWikiJsonInfo(JObject i_Json)
+        private string getWikiJsonInfo(JObject i_Json)
         {
             string wikiInfo;
 
@@ -159,7 +224,7 @@ namespace Utils
             {
                 wikiInfo = GetJsonWikiInfoQuery(i_Json);
             }
-            catch (NullReferenceException nre)
+            catch (Exception e)
             {
                 wikiInfo = "Nothing was found... Please let us know";
             }
@@ -182,7 +247,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_Json">Json file</param>
         /// <returns>Image path</returns>
-        public string GetJsonWikiImageQuery(JObject i_Json)
+        private string getJsonWikiImageQuery(JObject i_Json)
         {
             return i_Json["query"]["pages"].First.First["thumbnail"]["source"].ToString();
         }
@@ -192,12 +257,12 @@ namespace Utils
         /// </summary>
         /// <param name="i_JsonWikiUrl">Wiki path</param>
         /// <returns>json object</returns>
-        public JObject GetJsonFromUrl(string i_JsonWikiUrl)
+        private JObject getJsonFromUrl(string i_JsonWikiUrl)
         {
             using (WebDownload wc = new WebDownload())
             {
                 string json = wc.DownloadString(i_JsonWikiUrl);
-                return ParseJson(json);
+                return parseJson(json);
             }
         }
 
@@ -206,7 +271,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_JsonToParse">json file to parse</param>
         /// <returns>parsed json file as JObject</returns>
-        public JObject ParseJson(string i_JsonToParse)
+        private JObject parseJson(string i_JsonToParse)
         {
             return JObject.Parse(i_JsonToParse);
         }
@@ -216,7 +281,7 @@ namespace Utils
         /// </summary>
         /// <param name="i_PathToJsonFile">Path to json file</param>
         /// <returns>json file as string</returns>
-        public string GetLocalJsonFile(string i_PathToJsonFile)
+        private string getLocalJsonFile(string i_PathToJsonFile)
         {
             using (StreamReader reader = new StreamReader(i_PathToJsonFile))
             {
@@ -251,7 +316,7 @@ namespace Utils
 
         #endregion
 
-        #region Form1
+        #region MainForm
 
         /// <summary>
         /// Sort list of photos by number of likes 

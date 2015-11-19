@@ -14,7 +14,7 @@ namespace AppUI
     /// <summary>
     /// Get the N likeable pictures you have on facebook.
     /// </summary>
-    public partial class MostLikeablePictureForm : FbForm
+    public partial class MostLikeablePhotosForm : FbForm
     {
         /// <summary>
         /// Number of pictures 
@@ -42,11 +42,11 @@ namespace AppUI
         private Photo m_CurrentImageDisplayed;
 
         /// <summary>
-        /// Initializes a new instance of the MostLikeablePictureForm class.
+        /// Initializes a new instance of the MostLikeablePhotosForm class.
         /// </summary>
         /// <param name="i_TopLikeablePhotos">Top likeable pictures</param>
         /// <param name="i_NumberOfPicturesToShow">Number of pictures to show</param>
-        public MostLikeablePictureForm(List<Photo> i_TopLikeablePhotos, int i_NumberOfPicturesToShow)
+        public MostLikeablePhotosForm(List<Photo> i_TopLikeablePhotos, int i_NumberOfPicturesToShow)
         {
             InitializeComponent();
 

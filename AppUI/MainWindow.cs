@@ -201,7 +201,7 @@ namespace AppUI
 
             if (m_ListOfPhotos.Count == 0)
             {
-                buttonGetTopPictures.Enabled = false;
+                buttonGetMostPhotos.Enabled = false;
             }
             else
             {
@@ -299,7 +299,6 @@ namespace AppUI
             int width = 0;
             int height = 0;
 
-            //TODO: Define general field by guy's guide... (private int readonly _NumberOfMostLikeablePictures = 5)
             foreach (Thread thread in m_Threads)
             {
                 thread.Join();
@@ -319,14 +318,14 @@ namespace AppUI
         {
             // TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
             // TODO: HANDLE EXCEPTIONS HERE?
-            MostLikeablePictureForm likeablePictureForm = new MostLikeablePictureForm(m_TopLikeablePhotos, k_NumberOfPicturesToShow)
+            MostLikeablePhotosForm likeablePhotosForm = new MostLikeablePhotosForm(m_TopLikeablePhotos, k_NumberOfPicturesToShow)
             {
                 Size = new Size(i_Width, i_Height + ButtonMargin),
                 StartPosition = FormStartPosition.CenterScreen
             };
-            likeablePictureForm.ShowDialog();
+            likeablePhotosForm.ShowDialog();
         }
-        // TODO: HANDLE EXCEPTIONS HERE?
+
         private void buttonGetCelebsBD_Click(object i_Sender, EventArgs i_E)
         {
             WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);

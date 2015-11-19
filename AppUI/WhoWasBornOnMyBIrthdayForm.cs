@@ -5,10 +5,9 @@
 //-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 using Utils;
 
 namespace AppUI
@@ -18,16 +17,6 @@ namespace AppUI
     /// </summary>
     public partial class WhoWasBornOnMyBirthdayForm : FbForm
     {
-        /// <summary>
-        /// Message to the user when no shared birthday was found
-        /// </summary>
-        private const string k_NoOneWasBornMessage = "NO ONE FAMOUS WAS BORN ON MY BIRTHDAY EXCEPT ME frown emoticon";
-
-        /// <summary>
-        /// Formatted birthday date date MM-DD
-        /// </summary>
-        private readonly string m_MyBirthdayDate;
-
         /// <summary>
         /// Path to Json file
         /// </summary>
@@ -39,29 +28,14 @@ namespace AppUI
         private readonly Utils.Utils r_Util;
 
         /// <summary>
+        /// Birthday date before validation and parsing.
+        /// </summary>
+        private readonly string m_BirthdayDate;
+
+        /// <summary>
         /// List of people who share the same birthday date.
         /// </summary>
         private List<string> m_ListOfPeopleWhoWasBornOnMyBirthday;
-
-        /// <summary>
-        /// Json file to parse
-        /// </summary>
-        private string m_Json;
-
-        /// <summary>
-        /// Json file from external url
-        /// </summary>
-        private string m_JsonWikiUrl;
-
-        /// <summary>
-        /// Current selected celeb name to work with.
-        /// </summary>
-        private string m_CurrentCelebName;
-
-        /// <summary>
-        /// Parsed json
-        /// </summary>
-        private JObject m_ParsedJson;
 
         /// <summary>
         /// Initializes a new instance of the WhoWasBornOnMyBirthdayForm class.
@@ -73,26 +47,43 @@ namespace AppUI
 
             r_Util = Utils.Utils.Instance;
 
-            m_MyBirthdayDate = r_Util.ParseBirthdayDate(i_BirthdayDate);
+            m_BirthdayDate = i_BirthdayDate;
         }
 
         /// <summary>
-        /// 1. Get the json-celeb file and parse it
-        /// 2. Fetch birthdays based on that json file
+        /// 1. Get the list of people who was born on given date
+        /// 2. Fetch birthdays
         /// 3. Initialize list box with all the birthdays
         /// </summary>
         /// <param name="i_Event">The event</param>
         protected override void OnLoad(EventArgs i_Event)
         {
-            /// TODO:Handle exceptions
-            m_Json = r_Util.GetLocalJsonFile(m_PathToJsonFile);
-
-            m_ParsedJson = r_Util.ParseJson(m_Json);
-
-            r_Util.ParseBirthdayJson(m_ParsedJson, out m_ListOfPeopleWhoWasBornOnMyBirthday, m_MyBirthdayDate);
-
-            fetchBirthdays();
-            initListBox();
+            try
+            {
+                m_ListOfPeopleWhoWasBornOnMyBirthday = r_Util.GetListOfPeopleFromJSON(m_PathToJsonFile, m_BirthdayDate);
+                fetchBirthdays();
+                initListBox();
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                MessageBox.Show(fnfe.Message);
+                this.Dispose();
+            }
+            catch (WebException wes)
+            {
+                MessageBox.Show(wes.Message);
+                this.Dispose();
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show(fe.Message);
+                this.Dispose();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                this.Dispose();
+            }
 
             base.OnLoad(i_Event);
         }
@@ -102,31 +93,7 @@ namespace AppUI
         /// </summary>
         private void initListBox()
         {
-            m_CurrentCelebName = m_ListOfPeopleWhoWasBornOnMyBirthday.First();
             listBoxWhoWasBorn.SelectedIndex = 0;
-        }
-
-        /// <summary>
-        /// Set picture in picture box and display it
-        /// </summary>
-        private void setPictureBox()
-        {
-            try
-            {
-                m_ParsedJson = r_Util.GetJsonFromUrl(m_JsonWikiUrl);
-                string image = r_Util.GetJsonWikiImageQuery(m_ParsedJson);
-                pictureBox.LoadAsync(image);
-            }
-            catch (WebException wes)
-            {
-                // Connection error 
-                MessageBox.Show(wes.Message);
-                this.Close();
-            }
-            catch (NullReferenceException nre)
-            {
-                pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
-            }
         }
 
         /// <summary>
@@ -137,12 +104,6 @@ namespace AppUI
             foreach (string name in m_ListOfPeopleWhoWasBornOnMyBirthday)
             {
                 listBoxWhoWasBorn.Items.Add(name);
-            }
-
-            // TODO: If no one was born today...?
-            if (m_ListOfPeopleWhoWasBornOnMyBirthday.Count == 0)
-            {
-                MessageBox.Show(k_NoOneWasBornMessage);
             }
         }
 
@@ -164,11 +125,23 @@ namespace AppUI
         private void listBoxWhoWasBorn_SelectedIndexChanged(object i_Sender, EventArgs i_Event)
         {
             labelName.Text = listBoxWhoWasBorn.Text;
-            r_Util.SetCurrentNameInFormat(listBoxWhoWasBorn.Text, out m_CurrentCelebName);
 
-            r_Util.BuildJsonWikiRequest(out m_JsonWikiUrl, m_CurrentCelebName);
-            setPictureBox();
-            textBoxInfo.Text = r_Util.GetWikiJsonInfo(m_ParsedJson);
+            string celebFullName = listBoxWhoWasBorn.Text;
+
+            // Load image and text asynchronously
+            try
+            {
+                string celebWikiImagePath = r_Util.GetCelebPictureUrl(celebFullName);
+                pictureBox.LoadAsync(celebWikiImagePath);
+            }
+            catch (NullReferenceException nre)
+            {
+                pictureBox.Image = Utils.Properties.Resources.attachment_unavailable;
+            }
+            finally
+            {
+                textBoxInfo.Text = r_Util.GetCelebInfo(celebFullName);
+            }
         }
     }
 }

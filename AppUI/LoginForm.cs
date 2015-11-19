@@ -46,9 +46,17 @@ namespace AppUI
 
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
-                Form appUi = new MainWindow(result);
-                appUi.Show();
-                this.Hide();
+                try
+                {
+                    Form appUi = new MainWindow(result);
+                    appUi.ShowDialog();
+                    this.Hide();
+                }
+                finally
+                {
+                    Application.Exit();
+                }
+                //TODO: SEND THIS TO MainForm
             }
             else
             {
