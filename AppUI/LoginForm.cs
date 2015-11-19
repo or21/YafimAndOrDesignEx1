@@ -49,14 +49,14 @@ namespace AppUI
                 try
                 {
                     Form appUi = new MainWindow(result);
-                    appUi.ShowDialog();
                     this.Hide();
+                    appUi.ShowDialog();
+
                 }
                 finally
                 {
                     Application.Exit();
                 }
-                //TODO: SEND THIS TO MainForm
             }
             else
             {
