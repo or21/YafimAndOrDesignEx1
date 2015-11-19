@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using Newtonsoft.Json.Linq;
 
@@ -66,7 +64,7 @@ namespace Utils
         }
         #endregion
 
-        #region WhoWasBornOnMyBirthdaylogic
+        #region WhoWasBornOnMyBirthdayForm logic
 
         /// <summary>
         /// Return list of people who was born on specific date.
@@ -290,7 +288,7 @@ namespace Utils
         }
         #endregion
 
-        #region MostLikeablePictures logic
+        #region MostLikeablePicturesForm logic
 
         /// <summary>
         /// Set next image

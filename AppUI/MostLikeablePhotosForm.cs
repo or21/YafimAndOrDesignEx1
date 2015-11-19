@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using Utils;
 
@@ -118,7 +119,7 @@ namespace AppUI
         /// <param name="i_ImageToLoad">Image to load</param>
         private void loadImage(Photo i_ImageToLoad)
         {
-            m_CurrentImageDisplayed = i_ImageToLoad; 
+            m_CurrentImageDisplayed = i_ImageToLoad;
             pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureNormalURL);
         }
 

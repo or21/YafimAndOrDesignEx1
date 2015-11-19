@@ -51,11 +51,6 @@ namespace AppUI
         private const string k_WaitMessage = "This may take few seconds... Please click OK and Go get yourself a cup of coffee";
 
         /// <summary>
-        /// Number of pictures to show
-        /// </summary>
-        private const int k_NumberOfPicturesToShow = 5;
-
-        /// <summary>
         /// LoggedIn user
         /// </summary>
         private readonly User r_LoggedInUser;
@@ -66,6 +61,11 @@ namespace AppUI
         private readonly Utils.Utils r_Util;
 
         /// <summary>
+        /// Number of pictures to show
+        /// </summary>
+        private int k_NumberOfPicturesToShow = 5;
+
+        /// <summary>
         /// List of facebook photos
         /// </summary>
         private List<Photo> m_ListOfPhotos;
@@ -73,7 +73,7 @@ namespace AppUI
         /// <summary>
         /// List of top likeable photos
         /// </summary>
-        private List<Photo> m_TopLikeablePhotos;
+        private List<Photo> m_MostLikeablePhotos;
 
         /// <summary>
         /// List of threads
@@ -190,7 +190,7 @@ namespace AppUI
         private void fetchPhotos()
         {
             m_ListOfPhotos = new List<Photo>();
-            m_TopLikeablePhotos = new List<Photo>(k_NumberOfPicturesToShow);
+            m_MostLikeablePhotos = new List<Photo>(k_NumberOfPicturesToShow);
             foreach (Album album in r_LoggedInUser.Albums)
             {
                 foreach (Photo photo in album.Photos)
@@ -205,7 +205,12 @@ namespace AppUI
             }
             else
             {
-                m_TopLikeablePhotos = r_Util.FindMostLikablePhotos(k_NumberOfPicturesToShow, m_ListOfPhotos);
+                if (m_ListOfPhotos.Count < k_NumberOfPicturesToShow)
+                {
+                    k_NumberOfPicturesToShow = m_ListOfPhotos.Count;
+                }
+
+                m_MostLikeablePhotos = r_Util.FindMostLikablePhotos(k_NumberOfPicturesToShow, m_ListOfPhotos);
             }
         }
 
@@ -243,7 +248,6 @@ namespace AppUI
         /// </summary>
         private void fetchUserData()
         {
-            // TODO: check for null
             listBoxProfie.HorizontalScrollbar = true;
             pictureBoxProfile.LoadAsync(r_LoggedInUser.PictureNormalURL);
             if (r_LoggedInUser.Birthday != null)
@@ -304,8 +308,8 @@ namespace AppUI
                 thread.Join();
             }
 
-            r_Util.SortPhotosByDescendingOrder(m_TopLikeablePhotos);
-            r_Util.GetWidthAndHeight(ref width, ref height, m_TopLikeablePhotos);
+            r_Util.SortPhotosByDescendingOrder(m_MostLikeablePhotos);
+            r_Util.GetWidthAndHeight(ref width, ref height, m_MostLikeablePhotos);
             createMostLikeablePictureForm(width, height);
         }
 
@@ -316,9 +320,7 @@ namespace AppUI
         /// <param name="i_Height">Picture Height</param>
         private void createMostLikeablePictureForm(int i_Width, int i_Height)
         {
-            // TODO: Let the user choose how many pictures - HARD CODED!! CHANGEIT
-            // TODO: HANDLE EXCEPTIONS HERE?
-            MostLikeablePhotosForm likeablePhotosForm = new MostLikeablePhotosForm(m_TopLikeablePhotos, k_NumberOfPicturesToShow)
+            MostLikeablePhotosForm likeablePhotosForm = new MostLikeablePhotosForm(m_MostLikeablePhotos, k_NumberOfPicturesToShow)
             {
                 Size = new Size(i_Width, i_Height + ButtonMargin),
                 StartPosition = FormStartPosition.CenterScreen
@@ -326,7 +328,12 @@ namespace AppUI
             likeablePhotosForm.ShowDialog();
         }
 
-        private void buttonGetCelebsBD_Click(object i_Sender, EventArgs i_E)
+        /// <summary>
+        /// Open new WhoWasBornOnMyBirthdayForm instance.
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        private void buttonGetCelebsBD_Click(object i_Sender, EventArgs i_Event)
         {
             WhoWasBornOnMyBirthdayForm whoWasBornOnMyBirthdayForm = new WhoWasBornOnMyBirthdayForm(r_LoggedInUser.Birthday);
             whoWasBornOnMyBirthdayForm.ShowDialog();
