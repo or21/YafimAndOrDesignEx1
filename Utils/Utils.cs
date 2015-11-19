@@ -356,8 +356,6 @@ namespace Utils
             }
 
             return topLikeablePhotos;
-
-            // TODO: no photos to show
         }
 
         /// <summary>
