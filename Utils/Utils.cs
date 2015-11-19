@@ -25,7 +25,7 @@ namespace Utils
         private static readonly object sr_LockInstance = new object();
 
         /// <summary>
-        /// Instance of the Utils class
+        /// Instance of the Utils class.
         /// </summary>
         private static Utils s_Instance;
 
