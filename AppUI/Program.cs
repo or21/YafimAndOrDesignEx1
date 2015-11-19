@@ -22,10 +22,6 @@ namespace AppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // TODO: Delete. for fast debug only
-            // WhoWasBornOnMyBirthdayForm currentForm = new WhoWasBornOnMyBirthdayForm("12/10/1989");
-
             Application.Run(new LoginForm());
         }
     }

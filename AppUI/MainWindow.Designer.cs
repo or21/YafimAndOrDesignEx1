@@ -5,6 +5,9 @@
 //-----------------------------------------------------------------------
 namespace AppUI
 {
+    /// <summary>
+    /// Form designer
+    /// </summary>
     public partial class MainWindow
     {
         /// <summary>

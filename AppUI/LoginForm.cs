@@ -51,7 +51,6 @@ namespace AppUI
                     Form appUi = new MainWindow(result);
                     this.Hide();
                     appUi.ShowDialog();
-
                 }
                 finally
                 {

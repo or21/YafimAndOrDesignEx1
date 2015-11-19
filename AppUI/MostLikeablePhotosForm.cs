@@ -1,12 +1,11 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MostLikeablePictureForm.cs" company="A16_Ex01">
+// <copyright file="MostLikeablePhotosForm.cs" company="A16_Ex01">
 // Yafim Vodkov 308973882 Or Brand id 302521034
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using Utils;
 
@@ -123,7 +122,12 @@ namespace AppUI
             pictureBoxCurrentPic.LoadAsync(i_ImageToLoad.PictureNormalURL);
         }
 
-        public void pictureBoxCurrentPic_LoadCompleted(object i_Sender, AsyncCompletedEventArgs i_E)
+        /// <summary>
+        /// Set number of likes when load completed
+        /// </summary>
+        /// <param name="i_Sender">Object sender</param>
+        /// <param name="i_Event">The event</param>
+        public void pictureBoxCurrentPic_LoadCompleted(object i_Sender, AsyncCompletedEventArgs i_Event)
         {
             setNumberOfLikes(m_CurrentImageDisplayed);
         }
